@@ -1,0 +1,5 @@
+C:\Kingime\Tester\2018\NKingimeV1.0\src\NKingime.Core\bin\Debug\NKingime.Core.dll
+C:\Kingime\Tester\2018\NKingimeV1.0\src\NKingime.Core\bin\Debug\NKingime.Core.pdb
+C:\Kingime\Tester\2018\NKingimeV1.0\src\NKingime.Core\obj\Debug\NKingime.Core.csprojResolveAssemblyReference.cache
+C:\Kingime\Tester\2018\NKingimeV1.0\src\NKingime.Core\obj\Debug\NKingime.Core.dll
+C:\Kingime\Tester\2018\NKingimeV1.0\src\NKingime.Core\obj\Debug\NKingime.Core.pdb
