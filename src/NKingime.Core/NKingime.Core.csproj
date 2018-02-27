@@ -40,10 +40,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Entity.cs" />
+    <Compile Include="Data\EntityBase.cs" />
+    <Compile Include="Data\ICreateTime.cs" />
+    <Compile Include="Data\IEntity.cs" />
+    <Compile Include="Data\IIdentify.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Data\" />
     <Folder Include="Extension\" />
     <Folder Include="Utility\" />
   </ItemGroup>
