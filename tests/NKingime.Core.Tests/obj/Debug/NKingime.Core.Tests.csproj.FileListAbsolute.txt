@@ -1,9 +1,0 @@
-C:\Kingime\Tester\2018\NKingimeV1.0\tests\NKingime.Core.Tests\bin\Debug\NKingime.Core.Tests.dll
-C:\Kingime\Tester\2018\NKingimeV1.0\tests\NKingime.Core.Tests\bin\Debug\NKingime.Core.Tests.pdb
-C:\Kingime\Tester\2018\NKingimeV1.0\tests\NKingime.Core.Tests\obj\Debug\NKingime.Core.Tests.dll
-C:\Kingime\Tester\2018\NKingimeV1.0\tests\NKingime.Core.Tests\obj\Debug\NKingime.Core.Tests.pdb
-C:\Kingime\Tester\2018\NKingimeV1.0\tests\NKingime.Core.Tests\obj\Debug\NKingime.Core.Tests.csprojResolveAssemblyReference.cache
-C:\Kingime\Tester\2018\NKingimeV1.0\tests\NKingime.Core.Tests\bin\Debug\NKingime.Core.dll
-C:\Kingime\Tester\2018\NKingimeV1.0\tests\NKingime.Core.Tests\bin\Debug\NKingime.Core.pdb
-C:\Kingime\Tester\2018\NKingimeV1.0\tests\NKingime.Core.Tests\bin\Debug\nunit.framework.dll
-C:\Kingime\Tester\2018\NKingimeV1.0\tests\NKingime.Core.Tests\bin\Debug\nunit.framework.xml
