@@ -1,2 +1,5 @@
 /src/NKingime.Core/bin
 /src/NKingime.Core/obj
+/tests/NKingime.Core.Tests/bin
+/tests/NKingime.Core.Tests/obj
+/packages
