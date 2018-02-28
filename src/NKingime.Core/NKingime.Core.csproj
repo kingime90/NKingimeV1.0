@@ -40,16 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Data\Entity.cs" />
+    <Compile Include="Data\IdentifyBase.cs" />
     <Compile Include="Data\EntityBase.cs" />
     <Compile Include="Data\ICreateTime.cs" />
     <Compile Include="Data\IEntity.cs" />
     <Compile Include="Data\IIdentify.cs" />
+    <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utility\TypeConvertUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Extension\" />
-    <Folder Include="Utility\" />
+    <Folder Include="Flag\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,4 +1,5 @@
-﻿
+﻿using System;
+
 namespace NKingime.Core.Data
 {
     /// <summary>
