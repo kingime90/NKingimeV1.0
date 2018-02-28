@@ -8,6 +8,12 @@ namespace NKingime.Core.Tests.Data
     /// </summary>
     public class TestEntity : EntityBase<string>
     {
+        /// <summary>
+        /// 初始化一个<see cref="TestEntity"/>新实例。
+        /// </summary>
+        public TestEntity()
+        {
 
+        }
     }
 }

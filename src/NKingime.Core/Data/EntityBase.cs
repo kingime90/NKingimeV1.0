@@ -8,7 +8,7 @@ namespace NKingime.Core.Data
     public abstract class EntityBase<TKey> : IdentifyBase<TKey>, ICreateTime
     {
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="EntityBase"/>新实例。
         /// </summary>
         /// <param name="isNew">是否新增。</param>
         public EntityBase(bool isNew = true) : base(isNew)
