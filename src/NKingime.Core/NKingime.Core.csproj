@@ -55,7 +55,7 @@
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Flag\CompareFlag.cs" />
-    <Compile Include="Flag\TrimStringFlag.cs" />
+    <Compile Include="Flag\TrimCharFlag.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\TypeConvertUtil.cs" />
   </ItemGroup>

@@ -55,7 +55,7 @@ namespace NKingime.Core.Extension
         /// <param name="value">要测试的值。</param>
         /// <param name="minValue">最小值。</param>
         /// <param name="maxValue">最大值。</param>
-        /// <param name="compareFlag">比较标示，默认大于等于和小于等于。</param>
+        /// <param name="compareFlag">比较标识，默认大于等于和小于等于。</param>
         /// <returns></returns>
         public static bool IsRange<T>(this T value, T minValue, T maxValue, CompareFlag compareFlag = CompareFlag.GreaterEqualAndLessEqual) where T : struct, IComparable
         {

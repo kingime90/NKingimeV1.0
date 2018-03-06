@@ -2,9 +2,9 @@
 namespace NKingime.Core.Flag
 {
     /// <summary>
-    /// 移除字符串标识。
+    /// 移除字符标识。
     /// </summary>
-    public enum TrimStringFlag
+    public enum TrimCharFlag
     {
         /// <summary>
         /// 首部。

@@ -43,10 +43,10 @@ namespace NKingime.Core.Extension
         /// 获取移除数组中指定的一组字符后的字符串。
         /// </summary>
         /// <param name="value">要获取的字符串。</param>
-        /// <param name="trimFlag">移除字符串标示。</param>
+        /// <param name="trimFlag">移除字符标识。</param>
         /// <param name="trimChars">要删除的 Unicode 字符的数组，或 null。</param>
         /// <returns></returns>
-        public static string GetString(this string value, TrimStringFlag trimFlag, params char[] trimChars)
+        public static string GetString(this string value, TrimCharFlag trimFlag, params char[] trimChars)
         {
             return GetString(value, string.Empty, trimFlag, trimChars);
         }
@@ -56,10 +56,10 @@ namespace NKingime.Core.Extension
         /// </summary>
         /// <param name="value">要获取的字符串。</param>
         /// <param name="defVal">默认字符串。</param>
-        /// <param name="trimFlag">移除字符串标示。</param>
+        /// <param name="trimFlag">移除字符标识。</param>
         /// <param name="trimChars">要删除的 Unicode 字符的数组，或 null。</param>
         /// <returns></returns>
-        public static string GetString(this string value, string defVal, TrimStringFlag trimFlag, params char[] trimChars)
+        public static string GetString(this string value, string defVal, TrimCharFlag trimFlag, params char[] trimChars)
         {
             return value.GetOrDefault(defVal).Trim(trimFlag, trimChars);
         }
@@ -68,18 +68,18 @@ namespace NKingime.Core.Extension
         /// 从当前 System.String 对象移除数组中指定的一组字符。
         /// </summary>
         /// <param name="value">目标字符串。</param>
-        /// <param name="trimFlag">移除字符串标示。</param>
+        /// <param name="trimFlag">移除字符标识。</param>
         /// <param name="trimChars">要删除的 Unicode 字符的数组，或 null。</param>
         /// <returns></returns>
-        public static string Trim(this string value, TrimStringFlag trimFlag, params char[] trimChars)
+        public static string Trim(this string value, TrimCharFlag trimFlag, params char[] trimChars)
         {
             switch (trimFlag)
             {
-                case TrimStringFlag.Start:
+                case TrimCharFlag.Start:
                     return value.TrimStart(trimChars);
-                case TrimStringFlag.End:
+                case TrimCharFlag.End:
                     return value.TrimEnd(trimChars);
-                case TrimStringFlag.All:
+                case TrimCharFlag.All:
                     return value.Trim(trimChars);
             }
             return value;

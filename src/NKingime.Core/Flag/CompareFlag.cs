@@ -2,7 +2,7 @@
 namespace NKingime.Core.Flag
 {
     /// <summary>
-    /// 比较标示。
+    /// 比较标识。
     /// </summary>
     public enum CompareFlag
     {

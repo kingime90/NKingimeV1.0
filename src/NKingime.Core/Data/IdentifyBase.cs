@@ -24,6 +24,10 @@ namespace NKingime.Core.Data
                 case "System.String":
                     Id = TypeConvertUtil.CastTo<TKey>(Guid.NewGuid().ToString());
                     break;
+                case "System.Int32":
+                case "System.Int64":
+
+                    break;
             }
         }
 
