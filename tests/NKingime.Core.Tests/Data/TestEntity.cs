@@ -1,5 +1,7 @@
 ﻿using System;
 using NKingime.Core.Data;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NKingime.Core.Tests.Data
 {
@@ -13,7 +15,8 @@ namespace NKingime.Core.Tests.Data
         /// </summary>
         public TestEntity()
         {
-
+            List<int> sds = new List<int>();
+            sds.Where
         }
     }
 }

@@ -5,7 +5,7 @@ namespace NKingime.Core.Data
     /// <summary>
     /// 数据实体基类。
     /// </summary>
-    public abstract class EntityBase<TKey> : IdentifyBase<TKey>, ICreateTime
+    public abstract class EntityBase<TKey> : IdentifyBase<TKey>, ICreateTime where TKey : IEquatable<TKey>
     {
         /// <summary>
         /// 初始化一个<see cref="EntityBase"/>新实例。

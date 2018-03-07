@@ -7,7 +7,7 @@ namespace NKingime.Core.Data
     /// 唯一标识数据实体基类。
     /// </summary>
     /// <typeparam name="TKey"></typeparam>
-    public abstract class IdentifyBase<TKey> : IIdentify<TKey>
+    public abstract class IdentifyBase<TKey> : IIdentify<TKey> where TKey : IEquatable<TKey>
     {
         /// <summary>
         /// 初始化一个<see cref="IdentifyBase"/>新实例。
