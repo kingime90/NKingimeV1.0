@@ -16,7 +16,6 @@ namespace NKingime.Core.Tests.Data
         public TestEntity()
         {
             List<int> sds = new List<int>();
-            sds.Where
         }
     }
 }

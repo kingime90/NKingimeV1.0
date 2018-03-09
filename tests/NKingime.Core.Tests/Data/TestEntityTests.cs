@@ -1,5 +1,6 @@
 ﻿using System;
 using NUnit.Framework;
+using NKingime.Core.Data;
 
 namespace NKingime.Core.Tests.Data
 {
@@ -16,6 +17,8 @@ namespace NKingime.Core.Tests.Data
         public void New()
         {
             TestEntity testEntity = new TestEntity();
+            OrderSelector<TestEntity> orderSelector = new OrderSelector<TestEntity>();
+            orderSelector.KeySelector = s => s.Id;
         }
     }
 }
