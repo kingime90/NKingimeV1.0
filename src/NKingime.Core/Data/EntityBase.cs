@@ -14,7 +14,9 @@ namespace NKingime.Core.Data
         public EntityBase(bool isNew = true) : base(isNew)
         {
             if (!isNew)
+            {
                 return;
+            }
             //
             CreateTime = DateTime.Now;
         }

@@ -1,5 +1,4 @@
 ﻿using System;
-using NKingime.Core.IoC;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,22 +6,22 @@ using System.Linq.Expressions;
 namespace NKingime.Core.Data
 {
     /// <summary>
-    /// 数据仓储泛型接口。
+    /// 数据仓储泛型接口基类。
     /// </summary>
-    /// <typeparam name="TEntity">数据实体类型。</typeparam>
-    public interface IRepository<TEntity> : IRepository where TEntity : IEntity
+    /// <typeparam name="TEntity"></typeparam>
+    public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : IEntity
     {
         #region 属性
 
         /// <summary>
         /// 获取当前业务单元操作。
         /// </summary>
-        IUnitOfWork UnitOfWork { get; }
+        public abstract IUnitOfWork UnitOfWork { get; }
 
         /// <summary>
         /// 
         /// </summary>
-        IQueryable<TEntity> Entities { get; }
+        public abstract IQueryable<TEntity> Entities { get; }
 
         #endregion
 
@@ -33,21 +32,24 @@ namespace NKingime.Core.Data
         /// </summary>
         /// <param name="entity">数据实体。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Save(TEntity entity);
+        public abstract int Save(TEntity entity);
 
         /// <summary>
         /// 保存数据实体数组。
         /// </summary>
         /// <param name="entities">数据实体数组。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Save(params TEntity[] entities);
+        public virtual int Save(params TEntity[] entities)
+        {
+            return Save(entities.ToList());
+        }
 
         /// <summary>
         /// 保存数据实体集合。
         /// </summary>
         /// <param name="entities">数据实体集合。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Save(IEnumerable<TEntity> entities);
+        public abstract int Save(IEnumerable<TEntity> entities);
 
         #endregion
 
@@ -59,35 +61,38 @@ namespace NKingime.Core.Data
         /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>返回受影响的行数。</returns>
-        int DeleteByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+        public abstract int DeleteByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
 
         /// <summary>
         /// 删除数据实体。
         /// </summary>
         /// <param name="entity">数据实体。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Delete(TEntity entity);
+        public abstract int Delete(TEntity entity);
 
         /// <summary>
         /// 删除数据实体数组。
         /// </summary>
         /// <param name="entities">数据实体数组。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Delete(params TEntity[] entities);
+        public virtual int Delete(params TEntity[] entities)
+        {
+            return Delete(entities.ToList());
+        }
 
         /// <summary>
         /// 删除数据实体集合。
         /// </summary>
         /// <param name="entities">数据实体集合。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Delete(IEnumerable<TEntity> entities);
+        public abstract int Delete(IEnumerable<TEntity> entities);
 
         /// <summary>
         /// 删除所有符合条件的数据实体。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Delete(Expression<Func<TEntity, bool>> predicate);
+        public abstract int Delete(Expression<Func<TEntity, bool>> predicate);
 
         #endregion
 
@@ -98,21 +103,24 @@ namespace NKingime.Core.Data
         /// </summary>
         /// <param name="entity">数据实体。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Update(TEntity entity);
+        public abstract int Update(TEntity entity);
 
         /// <summary>
         /// 更新数据实体数组。
         /// </summary>
         /// <param name="entities">数据实体数组。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Update(params TEntity[] entities);
+        public virtual int Update(params TEntity[] entities)
+        {
+            return Update(entities.ToList());
+        }
 
         /// <summary>
         /// 更新数据实体集合。
         /// </summary>
         /// <param name="entities">数据实体集合。</param>
         /// <returns>返回受影响的行数。</returns>
-        int Update(IEnumerable<TEntity> entities);
+        public abstract int Update(IEnumerable<TEntity> entities);
 
         #endregion
 
@@ -124,27 +132,36 @@ namespace NKingime.Core.Data
         /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>如果检索到记录，则返回数据实体，否则返回null。</returns>
-        TEntity GetByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+        public abstract TEntity GetByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
 
         /// <summary>
         /// 获取第一个或默认的数据实体。
         /// </summary>
         /// <returns>如果检索到记录，则返回第一个数据实体，否则返回null。/returns>
-        TEntity FirstOrDefault();
+        public virtual TEntity FirstOrDefault()
+        {
+            return FirstOrDefault((Expression<Func<TEntity, bool>>)null);
+        }
 
         /// <summary>
         /// 根据指定筛选表达式获取第一个或默认的数据实体。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns>如果检索到记录，则返回第一个数据实体，否则返回null。/returns>
-        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate);
+        public virtual TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate)
+        {
+            return FirstOrDefault(predicate, null);
+        }
 
         /// <summary>
         /// 获取第一个或默认的数据实体。
         /// </summary>
         /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns>如果检索到记录，则返回第一个数据实体，否则返回null。/returns>
-        TEntity FirstOrDefault(params OrderSelector<TEntity>[] orderSelectors);
+        public virtual TEntity FirstOrDefault(params OrderSelector<TEntity>[] orderSelectors)
+        {
+            return FirstOrDefault(null, orderSelectors);
+        }
 
         /// <summary>
         /// 根据指定筛选表达式获取第一个或默认的数据实体。
@@ -152,27 +169,36 @@ namespace NKingime.Core.Data
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns>如果检索到记录，则返回第一个数据实体，否则返回null。/returns>
-        TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
+        public abstract TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
         /// <summary>
         /// 查询所有数据实体列表。
         /// </summary>
         /// <returns></returns>
-        List<TEntity> QueryAll();
+        public virtual List<TEntity> QueryAll()
+        {
+            return QueryAll(null);
+        }
 
         /// <summary>
         /// 查询所有数据实体列表。
         /// </summary>
         /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
-        List<TEntity> QueryAll(params OrderSelector<TEntity>[] orderSelectors);
+        public virtual List<TEntity> QueryAll(params OrderSelector<TEntity>[] orderSelectors)
+        {
+            return Query(null, orderSelectors);
+        }
 
         /// <summary>
         /// 根据指定筛选表达式获取数据实体列表。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns></returns>
-        List<TEntity> Query(Expression<Func<TEntity, bool>> predicate);
+        public virtual List<TEntity> Query(Expression<Func<TEntity, bool>> predicate)
+        {
+            return Query(predicate, null);
+        }
 
         /// <summary>
         /// 根据指定筛选表达式获取数据实体列表。
@@ -180,16 +206,8 @@ namespace NKingime.Core.Data
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>
         /// <returns></returns>
-        List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
+        public abstract List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
         #endregion
-    }
-
-    /// <summary>
-    /// 数据仓储接口。
-    /// </summary>
-    public interface IRepository : IScopedDependency
-    {
-
     }
 }

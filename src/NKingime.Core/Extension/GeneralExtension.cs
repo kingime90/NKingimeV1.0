@@ -41,9 +41,15 @@ namespace NKingime.Core.Extension
         /// <returns>如果 t 参数不为 null，则为 t；如果 defVal 参数不为 null，则为 defVal；否则为 default(T)。</returns>
         public static T GetOrDefault<T>(this T t, T defVal)
         {
-            if (IsNotNull(t)) return t;
+            if (IsNotNull(t))
+            {
+                return t;
+            }
             //
-            if (IsNotNull(defVal)) return defVal;
+            if (IsNotNull(defVal))
+            {
+                return defVal;
+            }
             //
             return default(T);
         }
@@ -104,7 +110,6 @@ namespace NKingime.Core.Extension
         }
 
         #endregion
-
 
     }
 }

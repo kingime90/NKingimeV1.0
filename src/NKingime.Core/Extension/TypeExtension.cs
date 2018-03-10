@@ -30,6 +30,7 @@ namespace NKingime.Core.Extension
                 var nullableConverter = new NullableConverter(type);
                 return nullableConverter.UnderlyingType;
             }
+            //
             return type;
         }
     }

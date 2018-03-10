@@ -1,5 +1,5 @@
-﻿using NKingime.Core.Extension;
-using System;
+﻿using System;
+using NKingime.Core.Extension;
 
 namespace NKingime.Core.Utility
 {
@@ -17,11 +17,15 @@ namespace NKingime.Core.Utility
         public static T CastTo<T>(object value)
         {
             if (value.IsNull() && default(T).IsNull())
+            {
                 return default(T);
+            }
             //
             var type = typeof(T);
             if (value.GetType() == type)
+            {
                 return (T)value;
+            }
             //
             return (T)CastTo(value, type);
         }
@@ -35,15 +39,21 @@ namespace NKingime.Core.Utility
         public static object CastTo(object value, Type conversionType)
         {
             if (value.IsNull())
+            {
                 return null;
+            }
             //
             conversionType = conversionType.GetUnNullableType();
             //
             if (conversionType.IsEnum)
+            {
                 return Enum.Parse(conversionType, value.ToString());
+            }
             //
             if (conversionType == typeof(Guid))
+            {
                 return Guid.Parse(value.ToString());
+            }
             //
             return Convert.ChangeType(value, conversionType);
         }

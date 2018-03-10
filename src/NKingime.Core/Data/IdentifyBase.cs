@@ -16,7 +16,9 @@ namespace NKingime.Core.Data
         public IdentifyBase(bool isNew = true)
         {
             if (!isNew)
+            {
                 return;
+            }
             //
             var type = typeof(TKey).FullName;
             switch (type)
