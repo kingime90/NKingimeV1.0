@@ -8,7 +8,7 @@ namespace NKingime.Core.Data
     /// <summary>
     /// 数据仓储泛型接口基类。
     /// </summary>
-    /// <typeparam name="TEntity"></typeparam>
+    /// <typeparam name="TEntity">数据实体类型。</typeparam>
     public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : IEntity
     {
         #region 属性

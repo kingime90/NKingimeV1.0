@@ -8,6 +8,10 @@ using EntityFramework.Extensions;
 
 namespace NKingime.Core.EF
 {
+    /// <summary>
+    /// EntityFramework数据仓储。
+    /// </summary>
+    /// <typeparam name="TEntity">数据实体类型。</typeparam>
     public class EFRepository<TEntity> : RepositoryBase<TEntity> where TEntity : class, IEntity
     {
         #region 属性
