@@ -69,19 +69,67 @@ namespace NKingime.Core.Extension
             switch (compareFlag)
             {
                 case CompareFlag.GreaterAndLess:
-                    result = value.CompareTo(minValue) > 0 && value.CompareTo(maxValue) < 0;
+                    result = IsGreater(value, minValue) && IsLess(value, maxValue);
                     break;
                 case CompareFlag.GreaterEqualAndLessEqual:
-                    result = value.CompareTo(minValue) >= 0 && value.CompareTo(maxValue) <= 0;
+                    result = IsGreaterEqual(value, maxValue) && IsLessEqual(value, maxValue);
                     break;
                 case CompareFlag.GreaterAndLessEqual:
-                    result = value.CompareTo(minValue) > 0 && value.CompareTo(maxValue) <= 0;
+                    result = IsGreater(value, minValue) && IsLessEqual(value, maxValue);
                     break;
                 case CompareFlag.GreaterEqualAndLess:
-                    result = value.CompareTo(minValue) >= 0 && value.CompareTo(maxValue) < 0;
+                    result = IsGreaterEqual(value, maxValue) && IsLess(value, maxValue);
                     break;
             }
             return result;
+        }
+
+        /// <summary>
+        /// 指示指定的值是否大于另一个值。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="compareValue"></param>
+        /// <returns></returns>
+        public static bool IsGreater<T>(this T value, T compareValue) where T : struct, IComparable
+        {
+            return value.CompareTo(compareValue) > 0;
+        }
+
+        /// <summary>
+        /// 指示指定的值是否大于等于另一个值。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="compareValue"></param>
+        /// <returns></returns>
+        public static bool IsGreaterEqual<T>(this T value, T compareValue) where T : struct, IComparable
+        {
+            return value.CompareTo(compareValue) >= 0;
+        }
+
+        /// <summary>
+        /// 指示指定的值是否小于另一个值。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="compareValue"></param>
+        /// <returns></returns>
+        public static bool IsLess<T>(this T value, T compareValue) where T : struct, IComparable
+        {
+            return value.CompareTo(compareValue) < 0;
+        }
+
+        /// <summary>
+        /// 指示指定的值是否小于等于另一个值。
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="value"></param>
+        /// <param name="compareValue"></param>
+        /// <returns></returns>
+        public static bool IsLessEqual<T>(this T value, T compareValue) where T : struct, IComparable
+        {
+            return value.CompareTo(compareValue) <= 0;
         }
 
         #endregion

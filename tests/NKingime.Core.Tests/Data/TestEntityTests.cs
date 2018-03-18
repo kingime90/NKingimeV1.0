@@ -19,23 +19,23 @@ namespace NKingime.Core.Tests.Data
         [Test]
         public void New()
         {
-            TestEntity testEntity = new TestEntity();
-            OrderSelector<TestEntity> orderSelector = new OrderSelector<TestEntity>();
-            orderSelector.KeySelectors.Add(s => s.Id);
-            orderSelector.KeySelectors.Add(s => s.CreateTime);
+            //TestEntity testEntity = new TestEntity();
+            //OrderSelector<TestEntity> orderSelector = new OrderSelector<TestEntity>();
+            //orderSelector.KeySelectors.Add(s => s.Id);
+            //orderSelector.KeySelectors.Add(s => s.CreateTime);
 
-            Expression<Func<TestEntity, bool>> sdsd = null;
-            TestEntity testEntity1 = new TestEntity();
-            TestEntity testEntity2 = new TestEntity();
-            Save(testEntity1);
-            //Save(testEntity1, testEntity2);
-            var list = new List<TestEntity>();
-            list.Add(testEntity1);
-            list.Add(testEntity2);
-            Save(list);
-            var list2 = list.ToArray();
-            Save(list2);
-            Expression<Func<TestEntity, bool>> expression = (Expression<Func<TestEntity, bool>>)null;
+            //Expression<Func<TestEntity, bool>> sdsd = null;
+            //TestEntity testEntity1 = new TestEntity();
+            //TestEntity testEntity2 = new TestEntity();
+            //Save(testEntity1);
+            ////Save(testEntity1, testEntity2);
+            //var list = new List<TestEntity>();
+            //list.Add(testEntity1);
+            //list.Add(testEntity2);
+            //Save(list);
+            //var list2 = list.ToArray();
+            //Save(list2);
+            //Expression<Func<TestEntity, bool>> expression = (Expression<Func<TestEntity, bool>>)null;
         }
 
         public int Save(TestEntity entity)
