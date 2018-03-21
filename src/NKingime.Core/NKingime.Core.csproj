@@ -73,7 +73,6 @@
     <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Flag\CompareFlag.cs" />
     <Compile Include="Flag\LifetimeScopeFlag.cs" />
-    <Compile Include="Flag\OrderByFlag.cs" />
     <Compile Include="Flag\TrimCharFlag.cs" />
     <Compile Include="IoC\IScopedDependency.cs" />
     <Compile Include="IoC\ITransientDependency.cs" />

@@ -5,6 +5,7 @@ using System.Linq.Expressions;
 using NKingime.Core.Data;
 using System.Data.Entity;
 using EntityFramework.Extensions;
+using System.ComponentModel;
 
 namespace NKingime.Core.EF
 {
@@ -200,21 +201,21 @@ namespace NKingime.Core.EF
         /// <returns></returns>
         protected IOrderedQueryable<TEntity> OrderBy(IQueryable<TEntity> queryable, params OrderSelector<TEntity>[] orderSelectors)
         {
-            bool isAsc;
+            bool isAscending;
             int index = 0;
             IOrderedQueryable<TEntity> orderedQueryable = null;
             foreach (var orderSelector in orderSelectors)
             {
-                isAsc = orderSelector.OrderBy == Flag.OrderByFlag.Asc;
+                isAscending = orderSelector.SortDirection == ListSortDirection.Ascending;
                 foreach (var keySelector in orderSelector.KeySelectors)
                 {
                     if (index == 0)
                     {
-                        orderedQueryable = isAsc ? queryable.OrderBy(keySelector) : queryable.OrderByDescending(keySelector);
+                        orderedQueryable = isAscending ? queryable.OrderBy(keySelector) : queryable.OrderByDescending(keySelector);
                     }
                     else
                     {
-                        orderedQueryable = isAsc ? orderedQueryable.ThenBy(keySelector) : orderedQueryable.ThenByDescending(keySelector);
+                        orderedQueryable = isAscending ? orderedQueryable.ThenBy(keySelector) : orderedQueryable.ThenByDescending(keySelector);
                     }
                     //
                     index++;

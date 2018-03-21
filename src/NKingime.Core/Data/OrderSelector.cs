@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using NKingime.Core.Flag;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace NKingime.Core.Data
 {
@@ -46,20 +47,20 @@ namespace NKingime.Core.Data
             }
         }
 
-        private OrderByFlag _orderBy = OrderByFlag.Asc;
+        private ListSortDirection _sortDirection = ListSortDirection.Ascending;
 
         /// <summary>
-        /// 排序方式。
+        /// 排序方向。
         /// </summary>
-        public OrderByFlag OrderBy
+        public ListSortDirection SortDirection
         {
             get
             {
-                return _orderBy;
+                return _sortDirection;
             }
             set
             {
-                _orderBy = value;
+                _sortDirection = value;
             }
         }
     }
