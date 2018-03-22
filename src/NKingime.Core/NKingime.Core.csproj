@@ -69,6 +69,8 @@
     <Compile Include="Data\RepositoryBase.cs" />
     <Compile Include="EF\DbContextBase.cs" />
     <Compile Include="EF\EFRepository.cs" />
+    <Compile Include="EF\EntityConfigurationBase.cs" />
+    <Compile Include="EF\IEntityMapper.cs" />
     <Compile Include="Extension\GeneralExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />

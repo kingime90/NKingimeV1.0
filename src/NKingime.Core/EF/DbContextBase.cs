@@ -1,7 +1,7 @@
-﻿using NKingime.Core.Data;
-using System;
+﻿using System;
 using System.Data;
 using System.Data.Entity;
+using NKingime.Core.Data;
 using System.Data.Entity.ModelConfiguration.Conventions;
 
 namespace NKingime.Core.EF
@@ -9,7 +9,7 @@ namespace NKingime.Core.EF
     /// <summary>
     /// 数据库上下文基类。
     /// </summary>
-    public abstract class DbContextBase<TDbContext> : DbContext, IUnitOfWork where TDbContext : DbContext, IUnitOfWork, new()
+    public abstract class DbContextBase<TDbContext> : DbContext, IUnitOfWork where TDbContext : DbContext, IUnitOfWork
     {
         /// <summary>
         /// 是否开启事务提交。
@@ -56,9 +56,10 @@ namespace NKingime.Core.EF
         /// </summary>
         public void Rollback()
         {
-            if (Database.CurrentTransaction != null)
+            var transaction = Database.CurrentTransaction;
+            if (transaction != null)
             {
-                Database.CurrentTransaction.Rollback();
+                transaction.Rollback();
             }
         }
 
@@ -70,7 +71,6 @@ namespace NKingime.Core.EF
         {
             //移除一对多的级联删除
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
 
         }
     }
