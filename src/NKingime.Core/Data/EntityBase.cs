@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace NKingime.Core.Data
 {
@@ -10,6 +11,7 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 主键ID。
         /// </summary>
+        [Key]
         public string Id { get; set; }
     }
 }

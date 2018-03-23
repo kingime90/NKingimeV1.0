@@ -9,13 +9,13 @@ using System.Linq.Expressions;
 namespace NKingime.Core.Tests.Extension
 {
     /// <summary>
-    /// 
+    /// Expression扩展方法测试。
     /// </summary>
     [TestFixture]
     public class ExpressionExtensionTests
     {
         /// <summary>
-        /// Expression扩展方法测试。
+        /// 
         /// </summary>
         [Test]
         public void And()
@@ -24,25 +24,25 @@ namespace NKingime.Core.Tests.Extension
             {
                 new User
                 {
-                    Id=1,
+                    Id="1",
                     Name="李树生",
                     Gender="F",
                 },
                 new User
                 {
-                    Id=2,
+                    Id="2",
                     Name="李思思",
                     Gender="M",
                 },
                 new User
                 {
-                     Id=3,
+                     Id="3",
                     Name="王语嫣",
                     Gender="M",
                 },
                 new User
                 {
-                     Id=4,
+                     Id="4",
                     Name="赵伟",
                     Gender="F",
                 },

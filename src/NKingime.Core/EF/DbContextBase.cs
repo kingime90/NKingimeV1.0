@@ -6,6 +6,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Infrastructure;
 using System.Data.Common;
 using System.Data.Entity.Core.Objects;
+using System.Linq;
 
 namespace NKingime.Core.EF
 {
@@ -16,6 +17,9 @@ namespace NKingime.Core.EF
     {
         #region 构造函数
 
+        /// <summary>
+        /// 
+        /// </summary>
         protected DbContextBase() : base()
         {
 
@@ -152,7 +156,13 @@ namespace NKingime.Core.EF
         {
             //移除一对多的级联删除
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-
+            var rootType = typeof(IEntityMapper);
+            var types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(type => rootType.IsAssignableFrom(type) && !type.IsAbstract);
+            var entityMappers = types.Select(s => Activator.CreateInstance(s) as IEntityMapper);
+            foreach (IEntityMapper mapper in entityMappers)
+            {
+                mapper.RegistTo(modelBuilder.Configurations);
+            }
         }
 
         #endregion

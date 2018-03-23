@@ -10,7 +10,7 @@ namespace NKingime.Core.EF
         /// <summary>
         /// 
         /// </summary>
-        public DefaultDbContext() : base()
+        public DefaultDbContext() : base("Default")
         {
 
         }

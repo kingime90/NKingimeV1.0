@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NKingime.Core.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,13 +10,8 @@ namespace NKingime.Core.Tests.Model
     /// <summary>
     /// 用户
     /// </summary>
-    public class User
+    public class User : EntityBase
     {
-        /// <summary>
-        /// ID
-        /// </summary>
-        public int Id { get; set; }
-
         /// <summary>
         /// 名字
         /// </summary>
