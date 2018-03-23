@@ -71,6 +71,7 @@
     <Compile Include="EF\EFRepository.cs" />
     <Compile Include="EF\EntityConfigurationBase.cs" />
     <Compile Include="EF\IEntityMapper.cs" />
+    <Compile Include="Extension\ExpressionExtension.cs" />
     <Compile Include="Extension\GeneralExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />
@@ -81,6 +82,7 @@
     <Compile Include="IoC\ITransientDependency.cs" />
     <Compile Include="IoC\ISingletonDependency.cs" />
     <Compile Include="IoC\IDependency.cs" />
+    <Compile Include="Linq\ParameterRebinder.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\TypeConvertUtil.cs" />
   </ItemGroup>

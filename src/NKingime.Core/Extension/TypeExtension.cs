@@ -15,7 +15,7 @@ namespace NKingime.Core.Extension
         /// <returns>是返回true，不是返回false。</returns>
         public static bool IsNullableType(this Type type)
         {
-            return ((type != null) && type.IsGenericType) && (type.GetGenericTypeDefinition() == typeof(Nullable<>));
+            return type.IsNotNull() && type.IsGenericType && type.GetGenericTypeDefinition() == typeof(Nullable<>);
         }
 
         /// <summary>

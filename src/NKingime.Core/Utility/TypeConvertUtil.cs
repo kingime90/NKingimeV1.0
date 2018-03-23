@@ -1,5 +1,6 @@
 ﻿using System;
 using NKingime.Core.Extension;
+using System.ComponentModel;
 
 namespace NKingime.Core.Utility
 {
@@ -43,7 +44,15 @@ namespace NKingime.Core.Utility
                 return null;
             }
             //
-            conversionType = conversionType.GetUnNullableType();
+            if (conversionType.IsNullableType())
+            {
+                if (value == DBNull.Value)
+                {
+                    return null;
+                }
+                //
+                conversionType = new NullableConverter(conversionType).UnderlyingType;
+            }
             //
             if (conversionType.IsEnum)
             {

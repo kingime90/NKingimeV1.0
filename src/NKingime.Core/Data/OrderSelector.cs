@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq.Expressions;
-using NKingime.Core.Flag;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -28,18 +27,18 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 初始化一个<see cref="OrderSelector{TEntity,TKey}"/>新实例。
         /// </summary>
-        /// <param name="keySelector">用于从元素中提取键的函数集合。</param>
-        public OrderSelector(ICollection<Expression<Func<TEntity, dynamic>>> keySelectors)
+        /// <param name="keySelector">用于从元素中提取键的函数列表。</param>
+        public OrderSelector(IList<Expression<Func<TEntity, dynamic>>> keySelectors)
         {
             _keySelectors = keySelectors;
         }
 
-        private ICollection<Expression<Func<TEntity, dynamic>>> _keySelectors;
+        private IList<Expression<Func<TEntity, dynamic>>> _keySelectors;
 
         /// <summary>
-        /// 用于从元素中提取键的函数集合。
+        /// 用于从元素中提取键的函数列表。
         /// </summary>
-        public ICollection<Expression<Func<TEntity, dynamic>>> KeySelectors
+        public IList<Expression<Func<TEntity, dynamic>>> KeySelectors
         {
             get
             {

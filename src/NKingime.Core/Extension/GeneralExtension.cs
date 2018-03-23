@@ -1,10 +1,11 @@
 ﻿using System;
 using NKingime.Core.Flag;
+using NKingime.Core.Utility;
 
 namespace NKingime.Core.Extension
 {
     /// <summary>
-    /// 常规扩展。
+    /// 常规扩展方法（泛型 + object + Nullable<>）。
     /// </summary>
     public static class GeneralExtension
     {
@@ -134,6 +135,34 @@ namespace NKingime.Core.Extension
 
         #endregion
 
+        #region object
+
+        /// <summary>
+        /// 将指定的值转换为指定的类型。
+        /// </summary>
+        /// <typeparam name="T">泛型类型。</typeparam>
+        /// <param name="value">要转换的值。</param>
+        /// <returns></returns>
+        public static T CastTo<T>(this object value)
+        {
+            return TypeConvertUtil.CastTo<T>(value);
+        }
+
+        /// <summary>
+        /// 将指定的值转换为指定的类型。
+        /// </summary>
+        /// <param name="value">要转换的值。</param>
+        /// <param name="conversionType">要转换的类型。</param>
+        /// <returns></returns>
+        public static object CastTo(this object value, Type conversionType)
+        {
+            return TypeConvertUtil.CastTo(value, conversionType);
+        }
+
+        #endregion
+
+        #region 可空类型 Nullable<>
+
         #region 可空布尔值（bool?）
 
 
@@ -156,6 +185,8 @@ namespace NKingime.Core.Extension
         {
             return !IsTrue(value);
         }
+
+        #endregion
 
         #endregion
 

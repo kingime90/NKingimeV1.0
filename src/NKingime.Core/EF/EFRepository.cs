@@ -201,11 +201,12 @@ namespace NKingime.Core.EF
         /// <returns></returns>
         protected IOrderedQueryable<TEntity> OrderBy(IQueryable<TEntity> queryable, params OrderSelector<TEntity>[] orderSelectors)
         {
+            int index;
             bool isAscending;
-            int index = 0;
             IOrderedQueryable<TEntity> orderedQueryable = null;
             foreach (var orderSelector in orderSelectors)
             {
+                index = 0;
                 isAscending = orderSelector.SortDirection == ListSortDirection.Ascending;
                 foreach (var keySelector in orderSelector.KeySelectors)
                 {
