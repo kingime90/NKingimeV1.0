@@ -52,9 +52,12 @@
   <ItemGroup>
     <Compile Include="Data\TestEntityTests.cs" />
     <Compile Include="Data\TestEntity.cs" />
+    <Compile Include="Extension\ExpressionExtensionTests.cs" />
+    <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -62,6 +65,9 @@
       <Project>{25932342-3ae9-4dd7-9d60-b5019b6a0ba8}</Project>
       <Name>NKingime.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="EF\" />
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

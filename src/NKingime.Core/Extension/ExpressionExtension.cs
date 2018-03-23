@@ -20,7 +20,7 @@ namespace NKingime.Core.Extension
         /// <returns></returns>
         public static Expression<T> Compose<T>(this Expression<T> first, Expression<T> second, Func<Expression, Expression, Expression> merge)
         {
-            var parameterSet = first.Parameters.Select((s, i) => new { s, p = second.Parameters[i] }).ToDictionary(s => s.s, s => s.p);
+            var parameterSet = first.Parameters.Select((f, i) => new { f, s = second.Parameters[i] }).ToDictionary(p => p.s, p => p.f);
             Expression secondBody = ParameterRebinder.ReplaceParameters(parameterSet, second.Body);
             return Expression.Lambda<T>(merge(first.Body, secondBody), first.Parameters);
         }

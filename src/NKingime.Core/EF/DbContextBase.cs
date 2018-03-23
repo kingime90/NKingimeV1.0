@@ -3,14 +3,87 @@ using System.Data;
 using System.Data.Entity;
 using NKingime.Core.Data;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.Infrastructure;
+using System.Data.Common;
+using System.Data.Entity.Core.Objects;
 
 namespace NKingime.Core.EF
 {
     /// <summary>
     /// 数据库上下文基类。
     /// </summary>
-    public abstract class DbContextBase<TDbContext> : DbContext, IUnitOfWork where TDbContext : DbContext, IUnitOfWork
+    public abstract class DbContextBase<TDbContext> : DbContext, IUnitOfWork where TDbContext : DbContext, IUnitOfWork, new()
     {
+        #region 构造函数
+
+        protected DbContextBase() : base()
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nameOrConnectionString"></param>
+        protected DbContextBase(string nameOrConnectionString) : base(nameOrConnectionString)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="model"></param>
+        protected DbContextBase(DbCompiledModel model) : base(model)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="nameOrConnectionString"></param>
+        /// <param name="model"></param>
+        protected DbContextBase(string nameOrConnectionString, DbCompiledModel model) : base(nameOrConnectionString, model)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="existingConnection"></param>
+        /// <param name="contextOwnsConnection"></param>
+        protected DbContextBase(DbConnection existingConnection, bool contextOwnsConnection) : base(existingConnection, contextOwnsConnection)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="objectContext"></param>
+        /// <param name="dbContextOwnsObjectContext"></param>
+        public DbContextBase(ObjectContext objectContext, bool dbContextOwnsObjectContext) : base(objectContext, dbContextOwnsObjectContext)
+        {
+
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="existingConnection"></param>
+        /// <param name="model"></param>
+        /// <param name="contextOwnsConnection"></param>
+        public DbContextBase(DbConnection existingConnection, DbCompiledModel model, bool contextOwnsConnection) : base(existingConnection, model, contextOwnsConnection)
+        {
+
+        }
+
+        #endregion
+
+        #region 属性
+
         /// <summary>
         /// 是否开启事务提交。
         /// </summary>
@@ -18,6 +91,10 @@ namespace NKingime.Core.EF
         {
             get { return Database.CurrentTransaction != null; }
         }
+
+        #endregion
+
+        #region Implementation of IUnitOfWork
 
         /// <summary>
         /// 显式开启数据库事物。
@@ -63,6 +140,10 @@ namespace NKingime.Core.EF
             }
         }
 
+        #endregion
+
+        #region Override of DbContext
+
         /// <summary>
         /// 当已初始化派生上下文的模型时，但在模型被锁定并用于初始化Context之前，调用此方法。该方法的默认实现没有任何作用，但可以在派生类中重写该方法，以便在锁定模型之前进一步配置该模型。
         /// </summary>
@@ -73,5 +154,7 @@ namespace NKingime.Core.EF
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
 
         }
+
+        #endregion
     }
 }
