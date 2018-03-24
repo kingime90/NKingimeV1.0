@@ -1,17 +1,19 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace NKingime.Core.Data
 {
     /// <summary>
-    /// 数据实体基类。
+    /// 唯一标识数据实体基类，继承基类 <see cref="AutoIdentity"/>，实现接口 <see cref="ICreateTime"/>。
     /// </summary>
-    public abstract class EntityBase : CreateTimeBase, IIdentify<string>, IGuidIdentify
+    public abstract class EntityBase : AutoIdentity, ICreateTime
     {
         /// <summary>
-        /// 主键ID。
+        /// 创建时间。
         /// </summary>
-        [Key]
-        public string Id { get; set; }
+        public DateTime CreateTime { get; set; }
     }
 }

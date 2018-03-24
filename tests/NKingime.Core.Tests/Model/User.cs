@@ -10,7 +10,7 @@ namespace NKingime.Core.Tests.Model
     /// <summary>
     /// 用户
     /// </summary>
-    public class User : EntityBase
+    public class User : GuidEntity, ICreateTime
     {
         /// <summary>
         /// 名字
@@ -21,5 +21,15 @@ namespace NKingime.Core.Tests.Model
         /// 性别
         /// </summary>
         public string Gender { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public bool IsHappy { get; set; }
+
+        /// <summary>
+        /// 创建时间。
+        /// </summary>
+        public DateTime CreateTime { get; set; }
     }
 }
