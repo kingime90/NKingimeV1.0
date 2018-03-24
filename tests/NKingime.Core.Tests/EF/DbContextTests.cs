@@ -10,6 +10,7 @@ using System.Data.Entity.Core.Objects;
 using System.Data.Entity.Core.Mapping;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Core.Metadata.Edm;
+using NKingime.Core.Migrations;
 
 namespace NKingime.Core.Tests.EF
 {
@@ -38,20 +39,6 @@ namespace NKingime.Core.Tests.EF
                 .MetadataWorkspace.GetItemCollection(DataSpace.CSSpace);
             mappingItemCollection.GenerateViews(new List<EdmSchemaError>());
             context.Dispose();
-        }
-    }
-
-    public class AutoMigrationsConfiguration<TContext> : DbMigrationsConfiguration<TContext>
-       where TContext : DbContext, IUnitOfWork
-    {
-        /// <summary>
-        /// 初始化一个<see cref="AutoMigrationsConfiguration{TContext}"/>类型的新实例
-        /// </summary>
-        public AutoMigrationsConfiguration()
-        {
-            AutomaticMigrationsEnabled = true;
-            AutomaticMigrationDataLossAllowed = true;
-            ContextKey = typeof(TContext).FullName;
         }
     }
 }

@@ -19,9 +19,20 @@ namespace NKingime.Core.Data
             _keySelectors = new List<Expression<Func<TEntity, dynamic>>>();
         }
 
-        public OrderSelector(Expression<Func<TEntity, dynamic>> keySelector) : this()
+        public OrderSelector(params Expression<Func<TEntity, dynamic>>[] keySelectors) : this()
         {
-            _keySelectors.Add(keySelector);
+            if (keySelectors != null)
+            {
+                foreach (var keySelector in keySelectors)
+                {
+                    _keySelectors.Add(keySelector);
+                }
+            }
+        }
+
+        public OrderSelector(ListSortDirection sortDirection, params Expression<Func<TEntity, dynamic>>[] keySelectors) : this(keySelectors)
+        {
+            _sortDirection = sortDirection;
         }
 
         /// <summary>

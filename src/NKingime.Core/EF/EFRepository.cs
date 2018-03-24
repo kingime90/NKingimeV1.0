@@ -15,6 +15,13 @@ namespace NKingime.Core.EF
     /// <typeparam name="TEntity">数据实体类型。</typeparam>
     public class EFRepository<TEntity> : RepositoryBase<TEntity> where TEntity : class, IEntity
     {
+        public EFRepository()
+        {
+            var dbContext = new DefaultDbContext();
+            UnitOfWork = dbContext;
+            _dbSet = dbContext.Set<TEntity>();
+        }
+
         #region 属性
 
         private readonly DbSet<TEntity> _dbSet;
