@@ -9,7 +9,7 @@ namespace NKingime.Core.EF
     /// <summary>
     /// 数据实体映射配置基类。
     /// </summary>
-    public abstract class EntityConfigurationBase<TEntity, TDbContext> : EntityTypeConfiguration<TEntity>, IEntityMapper where TEntity : class, IEntity where TDbContext : DbContext, IUnitOfWork, new()
+    public abstract class EntityMappingBase<TEntity, TDbContext> : EntityTypeConfiguration<TEntity>, IEntityMapper where TEntity : class, IEntity where TDbContext : DbContext, IUnitOfWork, new()
     {
         /// <summary>
         /// 数据库上下文类型。

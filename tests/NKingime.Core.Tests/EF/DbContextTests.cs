@@ -20,7 +20,7 @@ namespace NKingime.Core.Tests.EF
     public class DbContextTests
     {
         [Test]
-        public void Create()
+        public void InitializerDatabase()
         {
             var context = new DefaultDbContext();
             IDatabaseInitializer<DefaultDbContext> initializer;
