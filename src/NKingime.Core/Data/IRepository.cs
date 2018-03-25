@@ -10,7 +10,7 @@ namespace NKingime.Core.Data
     /// 数据仓储泛型接口。
     /// </summary>
     /// <typeparam name="TEntity">数据实体类型。</typeparam>
-    public interface IRepository<TEntity> : IRepository where TEntity : IEntity
+    public interface IRepository<TEntity> : IRepository where TEntity : class, IEntity
     {
         #region 属性
 

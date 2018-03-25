@@ -6,6 +6,7 @@ using NKingime.Core.Tests.Repository;
 using NUnit.Framework;
 using NKingime.Core.Tests.Model;
 using NKingime.Core.Data;
+using NKingime.Core.Utility;
 
 namespace NKingime.Core.Tests.EF
 {
@@ -40,9 +41,9 @@ namespace NKingime.Core.Tests.EF
         public void Query()
         {
             var repository = new UserRepository();
-            var orderSelector = new OrderSelector<User>(s => s.Name, s => s.Gender);
+            var orderSelector = OrderUtil.Ascending<User>(s => s.Name, s => s.Gender);
             var users = repository.Query(p => p.IsHappy, orderSelector);
-
+            
         }
     }
 }

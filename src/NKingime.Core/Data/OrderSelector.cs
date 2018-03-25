@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 
 namespace NKingime.Core.Data
 {
@@ -9,32 +10,8 @@ namespace NKingime.Core.Data
     /// 排序选择器。
     /// </summary>
     /// <typeparam name="TEntity">泛型实体。</typeparam>
-    public class OrderSelector<TEntity>
+    public class OrderSelector<TEntity> where TEntity : class
     {
-        /// <summary>
-        /// 初始化一个<see cref="OrderSelector{TEntity}"/>新实例。
-        /// </summary>
-        public OrderSelector()
-        {
-            _keySelectors = new List<Expression<Func<TEntity, dynamic>>>();
-        }
-
-        public OrderSelector(params Expression<Func<TEntity, dynamic>>[] keySelectors) : this()
-        {
-            if (keySelectors != null)
-            {
-                foreach (var keySelector in keySelectors)
-                {
-                    _keySelectors.Add(keySelector);
-                }
-            }
-        }
-
-        public OrderSelector(ListSortDirection sortDirection, params Expression<Func<TEntity, dynamic>>[] keySelectors) : this(keySelectors)
-        {
-            _sortDirection = sortDirection;
-        }
-
         /// <summary>
         /// 初始化一个<see cref="OrderSelector{TEntity,TKey}"/>新实例。
         /// </summary>
@@ -42,6 +19,37 @@ namespace NKingime.Core.Data
         public OrderSelector(IList<Expression<Func<TEntity, dynamic>>> keySelectors)
         {
             _keySelectors = keySelectors;
+        }
+
+        /// <summary>
+        /// 初始化一个<see cref="OrderSelector{TEntity,TKey}"/>新实例。
+        /// </summary>
+        /// <param name="keySelector">用于从元素中提取键的函数列表。</param>
+        public OrderSelector(ListSortDirection sortDirection, IList<Expression<Func<TEntity, dynamic>>> keySelectors) : this(keySelectors)
+        {
+            _sortDirection = sortDirection;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="keySelectors"></param>
+        public OrderSelector(params Expression<Func<TEntity, dynamic>>[] keySelectors)
+        {
+            if (keySelectors != null)
+            {
+                _keySelectors = keySelectors.ToArray();
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sortDirection"></param>
+        /// <param name="keySelectors"></param>
+        public OrderSelector(ListSortDirection sortDirection, params Expression<Func<TEntity, dynamic>>[] keySelectors) : this(keySelectors)
+        {
+            _sortDirection = sortDirection;
         }
 
         private IList<Expression<Func<TEntity, dynamic>>> _keySelectors;
@@ -67,10 +75,6 @@ namespace NKingime.Core.Data
             get
             {
                 return _sortDirection;
-            }
-            set
-            {
-                _sortDirection = value;
             }
         }
     }

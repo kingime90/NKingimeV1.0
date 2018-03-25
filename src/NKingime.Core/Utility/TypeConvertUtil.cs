@@ -5,7 +5,7 @@ using System.ComponentModel;
 namespace NKingime.Core.Utility
 {
     /// <summary>
-    /// 类型转换工具。
+    /// 类型转换应用。
     /// </summary>
     public static class TypeConvertUtil
     {
