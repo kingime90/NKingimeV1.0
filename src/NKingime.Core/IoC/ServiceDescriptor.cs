@@ -5,7 +5,7 @@ using NKingime.Core.Flag;
 namespace NKingime.Core.IoC
 {
     /// <summary>
-    /// 服务描述信息。
+    /// 依赖注入映射描述信息。
     /// </summary>
     [DebuggerDisplay("Lifetime = {Lifetime}, ServiceType = {ServiceType}, Lifetime = {Lifetime}")]
     public class ServiceDescriptor
