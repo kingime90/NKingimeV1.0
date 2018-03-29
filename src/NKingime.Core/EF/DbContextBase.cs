@@ -18,7 +18,7 @@ namespace NKingime.Core.EF
         #region 构造函数
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="DbContextBase{TDbContext}"/>新实例。
         /// </summary>
         protected DbContextBase() : base()
         {
@@ -26,7 +26,7 @@ namespace NKingime.Core.EF
         }
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="DbContextBase{TDbContext}"/>新实例。
         /// </summary>
         /// <param name="nameOrConnectionString"></param>
         protected DbContextBase(string nameOrConnectionString) : base(nameOrConnectionString)
@@ -35,7 +35,7 @@ namespace NKingime.Core.EF
         }
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="DbContextBase{TDbContext}"/>新实例。
         /// </summary>
         /// <param name="model"></param>
         protected DbContextBase(DbCompiledModel model) : base(model)
@@ -44,7 +44,7 @@ namespace NKingime.Core.EF
         }
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="DbContextBase{TDbContext}"/>新实例。
         /// </summary>
         /// <param name="nameOrConnectionString"></param>
         /// <param name="model"></param>
@@ -54,7 +54,7 @@ namespace NKingime.Core.EF
         }
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="DbContextBase{TDbContext}"/>新实例。
         /// </summary>
         /// <param name="existingConnection"></param>
         /// <param name="contextOwnsConnection"></param>
@@ -64,7 +64,7 @@ namespace NKingime.Core.EF
         }
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="DbContextBase{TDbContext}"/>新实例。
         /// </summary>
         /// <param name="objectContext"></param>
         /// <param name="dbContextOwnsObjectContext"></param>
@@ -74,7 +74,7 @@ namespace NKingime.Core.EF
         }
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="DbContextBase{TDbContext}"/>新实例。
         /// </summary>
         /// <param name="existingConnection"></param>
         /// <param name="model"></param>

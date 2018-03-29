@@ -82,9 +82,11 @@
     <Compile Include="Flag\LifetimeScopeFlag.cs" />
     <Compile Include="Flag\TrimCharFlag.cs" />
     <Compile Include="IoC\IScopedDependency.cs" />
+    <Compile Include="IoC\IServiceCollection.cs" />
     <Compile Include="IoC\ITransientDependency.cs" />
     <Compile Include="IoC\ISingletonDependency.cs" />
     <Compile Include="IoC\IDependency.cs" />
+    <Compile Include="IoC\ServiceCollection.cs" />
     <Compile Include="IoC\ServiceDescriptor.cs" />
     <Compile Include="Linq\ParameterRebinder.cs" />
     <Compile Include="Migrations\AutoMigrationsConfiguration.cs" />

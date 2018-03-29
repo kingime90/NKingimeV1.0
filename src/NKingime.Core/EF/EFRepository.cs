@@ -15,6 +15,9 @@ namespace NKingime.Core.EF
     /// <typeparam name="TEntity">数据实体类型。</typeparam>
     public class EFRepository<TEntity> : RepositoryBase<TEntity> where TEntity : class, IEntity
     {
+        /// <summary>
+        /// 初始化一个<see cref="EFRepository{TEntity}"/>新实例。
+        /// </summary>
         public EFRepository()
         {
             var dbContext = new DefaultDbContext();
