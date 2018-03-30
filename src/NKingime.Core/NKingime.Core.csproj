@@ -81,6 +81,11 @@
     <Compile Include="Flag\CompareFlag.cs" />
     <Compile Include="Flag\LifetimeScopeFlag.cs" />
     <Compile Include="Flag\TrimCharFlag.cs" />
+    <Compile Include="Public\IFinder.cs" />
+    <Compile Include="Reflection\AppDomainAssemblyFinder.cs" />
+    <Compile Include="Reflection\AssemblyFinderBase.cs" />
+    <Compile Include="Reflection\DirectoryAssemblyFinder.cs" />
+    <Compile Include="Reflection\IAssemblyFinder.cs" />
     <Compile Include="IoC\IScopedDependency.cs" />
     <Compile Include="IoC\IServiceCollection.cs" />
     <Compile Include="IoC\ITransientDependency.cs" />

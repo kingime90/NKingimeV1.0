@@ -7,6 +7,7 @@ using NUnit.Framework;
 using NKingime.Core.Tests.Model;
 using NKingime.Core.Data;
 using NKingime.Core.Utility;
+using System.IO;
 
 namespace NKingime.Core.Tests.EF
 {
@@ -40,10 +41,14 @@ namespace NKingime.Core.Tests.EF
         [Test]
         public void Query()
         {
-            var repository = new UserRepository();
-            var orderSelector = OrderUtil.Ascending<User>(s => s.Name, s => s.Gender);
-            var users = repository.Query(p => p.IsHappy, orderSelector);
-            
+            //var repository = new UserRepository();
+            //var orderSelector = OrderUtil.Ascending<User>(s => s.Name, s => s.Gender);
+            //var users = repository.Query(p => p.IsHappy, orderSelector);
+
+            string path = AppDomain.CurrentDomain.BaseDirectory;
+            //string result = path == Path.Combine(Environment.CurrentDirectory, "") ? path : Path.Combine(path, "bin");
+
+            var result = Directory.GetFiles(path, "*.dll", SearchOption.TopDirectoryOnly).Concat(Directory.GetFiles(path, "*.exe", SearchOption.TopDirectoryOnly)).Distinct();
         }
     }
 }

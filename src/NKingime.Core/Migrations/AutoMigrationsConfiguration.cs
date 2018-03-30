@@ -12,7 +12,7 @@ namespace NKingime.Core.Migrations
        where TDbContext : DbContext, IUnitOfWork
     {
         /// <summary>
-        /// 初始化一个<see cref="AutoMigrationsConfiguration{TContext}"/>类型的新实例
+        /// 初始化一个<see cref="AutoMigrationsConfiguration{TContext}"/>类型的新实例。
         /// </summary>
         public AutoMigrationsConfiguration()
         {
