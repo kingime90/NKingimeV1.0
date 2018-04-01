@@ -20,7 +20,7 @@ namespace NKingime.Core.IoC
         /// <summary>
         /// 
         /// </summary>
-        private readonly List<ServiceDescriptor> _descriptors = new List<ServiceDescriptor>();
+        private readonly IList<ServiceDescriptor> _descriptors = new List<ServiceDescriptor>();
 
         /// <summary>
         /// 获取或设置指定索引处的元素。
@@ -161,12 +161,12 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public IServiceCollection Clone()
         {
-            IServiceCollection collection = new ServiceCollection();
+            IServiceCollection descriptors = new ServiceCollection();
             foreach (ServiceDescriptor item in this)
             {
-                collection.Add(item);
+                descriptors.Add(item);
             }
-            return collection;
+            return descriptors;
         }
     }
 }

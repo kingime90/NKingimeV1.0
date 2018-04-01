@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.IO;
+using NKingime.Core.Public;
 
 namespace NKingime.Core.Reflection
 {
     /// <summary>
-    /// 目录程序集查找。
+    /// 目录程序集查找器。
     /// </summary>
-    public class DirectoryAssemblyFinder : AssemblyFinderBase
+    public class DirectoryAssemblyFinder : FinderBase<Assembly>, IAssemblyFinder
     {
         /// <summary>
         /// 程序集集合缓存。

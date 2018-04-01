@@ -62,6 +62,7 @@
     <Compile Include="EF\DbContextTests.cs" />
     <Compile Include="EF\UserRepositoryTests.cs" />
     <Compile Include="Extension\ExpressionExtensionTests.cs" />
+    <Compile Include="IoC\ServiceBuilderTests.cs" />
     <Compile Include="Model\Mapping\UserMapping.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
