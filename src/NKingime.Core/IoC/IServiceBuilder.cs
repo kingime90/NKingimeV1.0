@@ -10,7 +10,7 @@ namespace NKingime.Core.IoC
         /// <summary>
         /// 构建。
         /// </summary>
-        /// <param name="descriptors">依赖注入映射描述信息集合接口。</param>
-        void Build(IServiceCollection descriptors);
+        /// <param name="collection">服务映射信息集合。</param>
+        void Build(IServiceCollection collection);
     }
 }

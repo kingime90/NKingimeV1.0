@@ -14,9 +14,9 @@ namespace NKingime.Core.Tests.IoC
         [Test]
         public void Build()
         {
-            IServiceCollection descriptors = new ServiceCollection();
+            IServiceCollection services = new ServiceCollection();
             IServiceBuilder serviceBuilder = new ServiceBuilder();
-            serviceBuilder.Build(descriptors);
+            serviceBuilder.Build(services);
         }
     }
 }

@@ -76,6 +76,7 @@
     <Compile Include="EF\IEntityMapper.cs" />
     <Compile Include="Extension\ExpressionExtension.cs" />
     <Compile Include="Extension\GeneralExtension.cs" />
+    <Compile Include="Extension\ServiceCollectionExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Flag\CompareFlag.cs" />

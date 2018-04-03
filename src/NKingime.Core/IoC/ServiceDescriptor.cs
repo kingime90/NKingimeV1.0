@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using NKingime.Core.Flag;
+using NKingime.Core.Extension;
 
 namespace NKingime.Core.IoC
 {
@@ -16,7 +17,7 @@ namespace NKingime.Core.IoC
         /// 初始化一个<see cref="ServiceDescriptor"/>新实例。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationType">实现类型。</param>
+        /// <param name="implementationType">服务实现类型。</param>
         /// <param name="lifetime">生命周期。</param>
         public ServiceDescriptor(Type serviceType, Type implementationType, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) : this(serviceType, lifetime)
         {
@@ -27,7 +28,7 @@ namespace NKingime.Core.IoC
         /// 初始化一个<see cref="ServiceDescriptor"/>新实例。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationInstance">实现实例。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
         /// <param name="lifetime">生命周期。</param>
         public ServiceDescriptor(Type serviceType, object implementationInstance, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) : this(serviceType, lifetime)
         {
@@ -38,7 +39,7 @@ namespace NKingime.Core.IoC
         /// 初始化一个<see cref="ServiceDescriptor"/>新实例。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationFactory">实现实例工厂。</param>
+        /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <param name="lifetime">生命周期。</param>
         public ServiceDescriptor(Type serviceType, Func<IServiceProvider, object> implementationFactory, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) : this(serviceType, lifetime)
         {
@@ -71,17 +72,17 @@ namespace NKingime.Core.IoC
         public Type ServiceType { get; private set; }
 
         /// <summary>
-        /// 实现类型。
+        /// 服务实现类型。
         /// </summary>
         public Type ImplementationType { get; private set; }
 
         /// <summary>
-        /// 实现实例。
+        /// 服务实现实例。
         /// </summary>
         public object ImplementationInstance { get; private set; }
 
         /// <summary>
-        /// 实现实例工厂。
+        /// 服务实现实例工厂。
         /// </summary>
         public Func<IServiceProvider, object> ImplementationFactory { get; private set; }
 
@@ -93,7 +94,7 @@ namespace NKingime.Core.IoC
         /// 创建实时模式依赖注入映射描述信息。
         /// </summary>
         /// <typeparam name="TService">泛型服务类型。</typeparam>
-        /// <param name="implementationFactory">实现实例工厂。</param>
+        /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <returns></returns>
         public static ServiceDescriptor Transient<TService>(Func<IServiceProvider, object> implementationFactory) where TService : class
         {
@@ -104,7 +105,7 @@ namespace NKingime.Core.IoC
         /// 创建实时模式依赖注入映射描述信息。
         /// </summary>
         /// <typeparam name="TService">泛型服务类型。</typeparam>
-        /// <param name="implementationInstance">实现实例。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
         /// <returns></returns>
         public static ServiceDescriptor Transient<TService>(object implementationInstance) where TService : class
         {
@@ -126,7 +127,7 @@ namespace NKingime.Core.IoC
         /// 创建实时模式依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationType">实现类型。</param>
+        /// <param name="implementationType">服务实现类型。</param>
         /// <returns></returns>
         public static ServiceDescriptor Transient(Type serviceType, Type implementationType)
         {
@@ -137,7 +138,7 @@ namespace NKingime.Core.IoC
         /// 创建实时模式依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationInstance">实现实例。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
         /// <returns></returns>
         public static ServiceDescriptor Transient(Type serviceType, object implementationInstance)
         {
@@ -148,7 +149,7 @@ namespace NKingime.Core.IoC
         /// 创建实时模式依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationFactory">实现实例工厂。</param>
+        /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <returns></returns>
         public static ServiceDescriptor Transient(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
@@ -159,7 +160,7 @@ namespace NKingime.Core.IoC
         /// 创建局部模式依赖注入映射描述信息。
         /// </summary>
         /// <typeparam name="TService">泛型服务类型。</typeparam>
-        /// <param name="implementationFactory">实现实例工厂。</param>
+        /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <returns></returns>
         public static ServiceDescriptor Scoped<TService>(Func<IServiceProvider, object> implementationFactory) where TService : class
         {
@@ -170,7 +171,7 @@ namespace NKingime.Core.IoC
         /// 创建局部模式依赖注入映射描述信息。
         /// </summary>
         /// <typeparam name="TService">泛型服务类型。</typeparam>
-        /// <param name="implementationInstance">实现实例。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
         /// <returns></returns>
         public static ServiceDescriptor Scoped<TService>(object implementationInstance) where TService : class
         {
@@ -192,7 +193,7 @@ namespace NKingime.Core.IoC
         /// 创建局部模式依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationType">实现类型。</param>
+        /// <param name="implementationType">服务实现类型。</param>
         /// <returns></returns>
         public static ServiceDescriptor Scoped(Type serviceType, Type implementationType)
         {
@@ -203,7 +204,7 @@ namespace NKingime.Core.IoC
         /// 创建局部模式依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationInstance">实现实例。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
         /// <returns></returns>
         public static ServiceDescriptor Scoped(Type serviceType, object implementationInstance)
         {
@@ -214,7 +215,7 @@ namespace NKingime.Core.IoC
         /// 创建局部模式依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationFactory">实现实例工厂。</param>
+        /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <returns></returns>
         public static ServiceDescriptor Scoped(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
@@ -225,7 +226,7 @@ namespace NKingime.Core.IoC
         /// 创建单例模式依赖注入映射描述信息。
         /// </summary>
         /// <typeparam name="TService">泛型服务类型。</typeparam>
-        /// <param name="implementationFactory">实现实例工厂。</param>
+        /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <returns></returns>
         public static ServiceDescriptor Singleton<TService>(Func<IServiceProvider, object> implementationFactory) where TService : class
         {
@@ -236,7 +237,7 @@ namespace NKingime.Core.IoC
         /// 创建单例模式依赖注入映射描述信息。
         /// </summary>
         /// <typeparam name="TService">泛型服务类型。</typeparam>
-        /// <param name="implementationInstance">实现实例。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
         /// <returns></returns>
         public static ServiceDescriptor Singleton<TService>(object implementationInstance) where TService : class
         {
@@ -258,7 +259,7 @@ namespace NKingime.Core.IoC
         /// 创建单例模式依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationType">实现类型。</param>
+        /// <param name="implementationType">服务实现类型。</param>
         /// <returns></returns>
         public static ServiceDescriptor Singleton(Type serviceType, Type implementationType)
         {
@@ -269,7 +270,7 @@ namespace NKingime.Core.IoC
         /// 创建单例模式依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationInstance">实现实例。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
         /// <returns></returns>
         public static ServiceDescriptor Singleton(Type serviceType, object implementationInstance)
         {
@@ -280,7 +281,7 @@ namespace NKingime.Core.IoC
         /// 创建单例模式依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationFactory">实现实例工厂。</param>
+        /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <returns></returns>
         public static ServiceDescriptor Singleton(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
@@ -291,7 +292,7 @@ namespace NKingime.Core.IoC
         /// 创建依赖注入映射描述信息。
         /// </summary>
         /// <typeparam name="TService">泛型服务类型。</typeparam>
-        /// <param name="implementationFactory">实现实例工厂。</param>
+        /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
         public static ServiceDescriptor Descriptor<TService>(Func<IServiceProvider, object> implementationFactory, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) where TService : class
@@ -303,7 +304,7 @@ namespace NKingime.Core.IoC
         /// 创建依赖注入映射描述信息。
         /// </summary>
         /// <typeparam name="TService">泛型服务类型。</typeparam>
-        /// <param name="implementationInstance">实现实例。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
         public static ServiceDescriptor Descriptor<TService>(object implementationInstance, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) where TService : class
@@ -327,7 +328,7 @@ namespace NKingime.Core.IoC
         /// 创建依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationType">实现类型。</param>
+        /// <param name="implementationType">服务实现类型。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
         public static ServiceDescriptor Descriptor(Type serviceType, Type implementationType, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient)
@@ -339,7 +340,7 @@ namespace NKingime.Core.IoC
         /// 创建依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationInstance">实现实例。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
         public static ServiceDescriptor Descriptor(Type serviceType, object implementationInstance, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient)
@@ -351,7 +352,7 @@ namespace NKingime.Core.IoC
         /// 创建依赖注入映射描述信息。
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
-        /// <param name="implementationFactory">实现实例工厂。</param>
+        /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
         public static ServiceDescriptor Descriptor(Type serviceType, Func<IServiceProvider, object> implementationFactory, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient)
@@ -360,5 +361,26 @@ namespace NKingime.Core.IoC
         }
 
         #endregion
+
+        /// <summary>
+        /// 确定指定的 System.Object 是否等于当前的 System.Object。
+        /// </summary>
+        /// <param name="obj">与当前的 System.Object 进行比较的 System.Object。</param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if (this.IsNull() || obj.IsNull())
+            {
+                return false;
+            }
+            //
+            var descriptor = obj as ServiceDescriptor;
+            if (descriptor.IsNull())
+            {
+                return false;
+            }
+            //
+            return this.ServiceType == descriptor.ServiceType && (this.ImplementationType == descriptor.ImplementationType || this.ImplementationInstance == descriptor.ImplementationInstance || this.ImplementationFactory == descriptor.ImplementationFactory);
+        }
     }
 }

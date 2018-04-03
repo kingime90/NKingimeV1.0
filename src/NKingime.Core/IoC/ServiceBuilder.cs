@@ -12,13 +12,20 @@ namespace NKingime.Core.IoC
     public class ServiceBuilder : IServiceBuilder
     {
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="ServiceBuilder"/>类型的新实例。
         /// </summary>
         public ServiceBuilder()
         {
             TransientTypeFinder = new TypeFinder<ITransientDependency>();
             ScopedTypeFinder = new TypeFinder<IScopedDependency>();
             SingletonTypeFinder = new TypeFinder<ISingletonDependency>();
+            ExceptInterfaceTypes = new Type[]
+            {
+                typeof(IDependency),
+                typeof(ITransientDependency),
+                typeof(IScopedDependency),
+                typeof(ISingletonDependency),
+            };
         }
 
         /// <summary>
@@ -37,38 +44,70 @@ namespace NKingime.Core.IoC
         public ITypeFinder<ISingletonDependency> SingletonTypeFinder { get; private set; }
 
         /// <summary>
+        /// 排除的接口类型数组。
+        /// </summary>
+        public Type[] ExceptInterfaceTypes { get; private set; }
+
+        /// <summary>
         /// 构建。
         /// </summary>
-        /// <param name="services">依赖注入映射描述信息集合接口。</param>
-        public void Build(IServiceCollection descriptors)
+        /// <param name="collection">服务映射信息集合。</param>
+        public void Build(IServiceCollection collection)
         {
             var implementationTypes = TransientTypeFinder.FindAll();
-            AddServiceDescriptor(descriptors, implementationTypes, LifetimeScopeFlag.Transient);
+            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeFlag.Transient);
 
             implementationTypes = ScopedTypeFinder.FindAll();
-            AddServiceDescriptor(descriptors, implementationTypes, LifetimeScopeFlag.Scoped);
+            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeFlag.Scoped);
 
             implementationTypes = SingletonTypeFinder.FindAll();
-            AddServiceDescriptor(descriptors, implementationTypes, LifetimeScopeFlag.Singleton);
+            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeFlag.Singleton);
         }
 
         /// <summary>
         /// 添加依赖注入映射描述信息。
         /// </summary>
-        /// <param name="descriptors">依赖注入映射描述信息集合。</param>
-        /// <param name="implementationTypes">实现类型集合。</param>
+        /// <param name="collection">服务映射信息集合。</param>
+        /// <param name="implementationTypes">服务实现类型集合。</param>
         /// <param name="lifetime">生命周期。</param>
-        protected void AddServiceDescriptor(IServiceCollection descriptors, IEnumerable<Type> implementationTypes, LifetimeScopeFlag lifetime)
+        protected void AddServiceDescriptor(IServiceCollection collection, IEnumerable<Type> implementationTypes, LifetimeScopeFlag lifetime)
         {
-            foreach (var type in implementationTypes)
+            Type[] interfaceTypes;
+            foreach (var implementationType in implementationTypes)
             {
-                if (type.IsAbstract || type.IsInterface)
+                if (implementationType.IsAbstract || implementationType.IsInterface)
                 {
                     continue;
                 }
                 //
+                interfaceTypes = GetImplementedInterfaces(implementationType);
+                if (interfaceTypes.Length == 1)
+                {
 
+                    continue;
+                }
             }
+        }
+
+        /// <summary>
+        /// 获取指定类型实现或继承的接口数组。
+        /// </summary>
+        /// <param name="implementationType">服务实现类型。</param>
+        /// <returns></returns>
+        protected Type[] GetImplementedInterfaces(Type implementationType)
+        {
+            var interfaceTypes = implementationType.GetInterfaces().Where(p => !ExceptInterfaceTypes.Contains(p)).ToArray();
+            int length = interfaceTypes.Length;
+            Type interfaceType;
+            for (int i = 0; i < length; i++)
+            {
+                interfaceType = interfaceTypes[i];
+                if (interfaceType.IsGenericType && !interfaceType.IsGenericTypeDefinition && interfaceType.FullName == null)
+                {
+                    interfaceTypes[i] = interfaceType.GetGenericTypeDefinition();
+                }
+            }
+            return interfaceTypes;
         }
     }
 }

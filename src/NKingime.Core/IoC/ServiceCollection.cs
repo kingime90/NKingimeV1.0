@@ -161,12 +161,12 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public IServiceCollection Clone()
         {
-            IServiceCollection descriptors = new ServiceCollection();
+            IServiceCollection services = new ServiceCollection();
             foreach (ServiceDescriptor item in this)
             {
-                descriptors.Add(item);
+                services.Add(item);
             }
-            return descriptors;
+            return services;
         }
     }
 }
