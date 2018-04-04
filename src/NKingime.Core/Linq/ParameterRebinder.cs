@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 namespace NKingime.Core.Linq
 {
     /// <summary>
-    /// 重新绑定参数。
+    /// 参数绑定。
     /// </summary>
     public class ParameterRebinder : ExpressionVisitor
     {

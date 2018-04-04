@@ -8,7 +8,7 @@ namespace NKingime.Core.IoC
     /// <summary>
     /// 依赖注入映射描述信息。
     /// </summary>
-    [DebuggerDisplay("Lifetime = {Lifetime}, ServiceType = {ServiceType}, Lifetime = {Lifetime}")]
+    [DebuggerDisplay("Lifetime = {Lifetime}, ServiceType = {ServiceType}, ImplementationType = {ImplementationType}")]
     public class ServiceDescriptor
     {
         #region 构造函数
@@ -362,6 +362,8 @@ namespace NKingime.Core.IoC
 
         #endregion
 
+        #region 重写
+
         /// <summary>
         /// 确定指定的 System.Object 是否等于当前的 System.Object。
         /// </summary>
@@ -380,7 +382,9 @@ namespace NKingime.Core.IoC
                 return false;
             }
             //
-            return this.ServiceType == descriptor.ServiceType && (this.ImplementationType == descriptor.ImplementationType || this.ImplementationInstance == descriptor.ImplementationInstance || this.ImplementationFactory == descriptor.ImplementationFactory);
+            return this.ServiceType == descriptor.ServiceType && this.ImplementationType == descriptor.ImplementationType;
         }
+
+        #endregion
     }
 }

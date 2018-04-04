@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using NKingime.Core.Reflection;
 using NKingime.Core.Flag;
+using NKingime.Core.Extension;
 
 namespace NKingime.Core.IoC
 {
@@ -81,10 +82,14 @@ namespace NKingime.Core.IoC
                 }
                 //
                 interfaceTypes = GetImplementedInterfaces(implementationType);
-                if (interfaceTypes.Length == 1)
+                if (interfaceTypes.Length == 0)
                 {
-
+                    collection.Add(implementationType, implementationType, lifetime);
                     continue;
+                }
+                foreach (var interfaceType in interfaceTypes)
+                {
+                    collection.Add(interfaceType, implementationType, lifetime);
                 }
             }
         }
