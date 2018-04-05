@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
+using NKingime.Core.Generic;
 
 namespace NKingime.Core.Data
 {
@@ -13,16 +13,16 @@ namespace NKingime.Core.Data
     public class OrderSelector<TEntity> where TEntity : class
     {
         /// <summary>
-        /// 初始化一个<see cref="OrderSelector{TEntity,TKey}"/>新实例。
+        /// 初始化一个<see cref="OrderSelector{TEntity}"/>新实例。
         /// </summary>
         /// <param name="keySelector">用于从元素中提取键的函数列表。</param>
         public OrderSelector(IList<Expression<Func<TEntity, dynamic>>> keySelectors)
         {
-            _keySelectors = keySelectors;
+            _keySelectors = new ReadOnlyList<Expression<Func<TEntity, dynamic>>>(keySelectors);
         }
 
         /// <summary>
-        /// 初始化一个<see cref="OrderSelector{TEntity,TKey}"/>新实例。
+        /// 初始化一个<see cref="OrderSelector{TEntity}"/>新实例。
         /// </summary>
         /// <param name="keySelector">用于从元素中提取键的函数列表。</param>
         public OrderSelector(ListSortDirection sortDirection, IList<Expression<Func<TEntity, dynamic>>> keySelectors) : this(keySelectors)
@@ -31,19 +31,19 @@ namespace NKingime.Core.Data
         }
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="OrderSelector{TEntity}"/>新实例。
         /// </summary>
         /// <param name="keySelectors"></param>
         public OrderSelector(params Expression<Func<TEntity, dynamic>>[] keySelectors)
         {
             if (keySelectors != null)
             {
-                _keySelectors = keySelectors.ToArray();
+                _keySelectors = new ReadOnlyList<Expression<Func<TEntity, dynamic>>>(keySelectors);
             }
         }
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="OrderSelector{TEntity}"/>新实例。
         /// </summary>
         /// <param name="sortDirection"></param>
         /// <param name="keySelectors"></param>
@@ -52,12 +52,12 @@ namespace NKingime.Core.Data
             _sortDirection = sortDirection;
         }
 
-        private IList<Expression<Func<TEntity, dynamic>>> _keySelectors;
+        private ReadOnlyList<Expression<Func<TEntity, dynamic>>> _keySelectors;
 
         /// <summary>
         /// 用于从元素中提取键的函数列表。
         /// </summary>
-        public IList<Expression<Func<TEntity, dynamic>>> KeySelectors
+        public IReadOnlyList<Expression<Func<TEntity, dynamic>>> KeySelectors
         {
             get
             {

@@ -82,6 +82,7 @@
     <Compile Include="Flag\CompareFlag.cs" />
     <Compile Include="Flag\LifetimeScopeFlag.cs" />
     <Compile Include="Flag\TrimCharFlag.cs" />
+    <Compile Include="Generic\ReadOnlyList.cs" />
     <Compile Include="IoC\EntityMapper.cs" />
     <Compile Include="IoC\IServiceBuilder.cs" />
     <Compile Include="IoC\ServiceBuilder.cs" />

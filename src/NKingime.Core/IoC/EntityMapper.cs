@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NKingime.Core.IoC
 {
-    public class EntityMapper
+    public class EntityMapperManage
     {
 
     }
