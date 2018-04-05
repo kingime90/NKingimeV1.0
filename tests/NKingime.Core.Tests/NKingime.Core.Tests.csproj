@@ -63,7 +63,7 @@
     <Compile Include="EF\UserRepositoryTests.cs" />
     <Compile Include="Extension\ExpressionExtensionTests.cs" />
     <Compile Include="IoC\ServiceBuilderTests.cs" />
-    <Compile Include="Model\Mapping\UserMapping.cs" />
+    <Compile Include="Model\Mapper\UserMapper.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\UserRepository.cs" />

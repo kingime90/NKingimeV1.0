@@ -12,11 +12,21 @@ namespace NKingime.Core.Reflection
     public class TypeFinder<T> : FinderBase<Type>, ITypeFinder<T>
     {
         /// <summary>
+        /// 类型集合缓存。
+        /// </summary>
+        private static readonly IDictionary<Type, IEnumerable<Type>> TypeSet;
+
+        static TypeFinder()
+        {
+            TypeSet = new Dictionary<Type, IEnumerable<Type>>();
+        }
+
+        /// <summary>
         /// 初始化一个<see cref="TypeFinder{T}"/>类型的新实例。
         /// </summary>
-        public TypeFinder()
+        public TypeFinder() : this(GetAssemblyFinder())
         {
-            AssemblyFinder = new DirectoryAssemblyFinder();
+
         }
 
         /// <summary>
@@ -26,6 +36,7 @@ namespace NKingime.Core.Reflection
         public TypeFinder(IAssemblyFinder assemblyFinder)
         {
             AssemblyFinder = assemblyFinder;
+            FinderType = typeof(T);
         }
 
         /// <summary>
@@ -34,14 +45,34 @@ namespace NKingime.Core.Reflection
         public IAssemblyFinder AssemblyFinder { get; private set; }
 
         /// <summary>
+        /// 查找的类型。
+        /// </summary>
+        public Type FinderType { get; private set; }
+
+        /// <summary>
         /// 查找所有。
         /// </summary>
         /// <returns></returns>
         public override IEnumerable<Type> FindAll()
         {
-            var type = typeof(T);
+            IEnumerable<Type> types;
+            if (TypeSet.TryGetValue(FinderType, out types))
+            {
+                return types;
+            }
             var assemblys = AssemblyFinder.FindAll();
-            return assemblys.SelectMany(assembly => assembly.GetTypes()).Where(p => type.IsAssignableFrom(p)).Distinct();
+            types = assemblys.SelectMany(assembly => assembly.GetTypes()).Where(p => FinderType.IsAssignableFrom(p)).Distinct();
+            TypeSet.Add(FinderType, types);
+            return types;
+        }
+
+        /// <summary>
+        /// 获取程序集查找器。
+        /// </summary>
+        /// <returns></returns>
+        private static IAssemblyFinder GetAssemblyFinder()
+        {
+            return new DirectoryAssemblyFinder();
         }
     }
 }

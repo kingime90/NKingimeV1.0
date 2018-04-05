@@ -70,9 +70,9 @@
     <Compile Include="Data\RepositoryBase.cs" />
     <Compile Include="EF\DefaultDbContext.cs" />
     <Compile Include="EF\DbContextBase.cs" />
-    <Compile Include="EF\DefaultEntityMapping.cs" />
+    <Compile Include="EF\DefaultEntityMapper.cs" />
     <Compile Include="EF\EFRepository.cs" />
-    <Compile Include="EF\EntityMappingBase.cs" />
+    <Compile Include="EF\EntityMapperBase.cs" />
     <Compile Include="EF\IEntityMapper.cs" />
     <Compile Include="Extension\ExpressionExtension.cs" />
     <Compile Include="Extension\GeneralExtension.cs" />
@@ -82,6 +82,7 @@
     <Compile Include="Flag\CompareFlag.cs" />
     <Compile Include="Flag\LifetimeScopeFlag.cs" />
     <Compile Include="Flag\TrimCharFlag.cs" />
+    <Compile Include="IoC\EntityMapper.cs" />
     <Compile Include="IoC\IServiceBuilder.cs" />
     <Compile Include="IoC\ServiceBuilder.cs" />
     <Compile Include="Public\FinderBase.cs" />

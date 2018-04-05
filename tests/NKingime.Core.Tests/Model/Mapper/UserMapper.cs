@@ -5,12 +5,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace NKingime.Core.Tests.Model.Mapping
+namespace NKingime.Core.Tests.Model.Mapper
 {
     /// <summary>
     /// 
     /// </summary>
-    public class UserMapping : DefaultEntityMapping<User>
+    public class UserMapper : DefaultEntityMapper<User>
     {
 
     }
