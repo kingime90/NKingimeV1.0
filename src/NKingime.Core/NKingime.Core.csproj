@@ -48,6 +48,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -57,6 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\DbContextInitializerElement.cs" />
+    <Compile Include="Config\DbContextElement.cs" />
+    <Compile Include="Config\DbContextCollection.cs" />
+    <Compile Include="Config\ContextSection.cs" />
     <Compile Include="Data\AutoIdentity.cs" />
     <Compile Include="Data\EntityBase.cs" />
     <Compile Include="Data\GuidEntity.cs" />
@@ -83,7 +88,6 @@
     <Compile Include="Flag\LifetimeScopeFlag.cs" />
     <Compile Include="Flag\TrimCharFlag.cs" />
     <Compile Include="Generic\ReadOnlyList.cs" />
-    <Compile Include="IoC\EntityMapper.cs" />
     <Compile Include="IoC\IServiceBuilder.cs" />
     <Compile Include="IoC\ServiceBuilder.cs" />
     <Compile Include="Public\FinderBase.cs" />
