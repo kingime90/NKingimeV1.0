@@ -31,7 +31,7 @@ namespace NKingime.Core.Tests.EF
             }
             else
             {
-                initializer = new MigrateDatabaseToLatestVersion<DefaultDbContext, AutoMigrationsConfiguration<DefaultDbContext>>();
+                initializer = new MigrateDatabaseToLatestVersion<DefaultDbContext, AutoMigrationConfiguration<DefaultDbContext>>();
             }
             Database.SetInitializer(initializer);
             ObjectContext objectContext = ((IObjectContextAdapter)context).ObjectContext;

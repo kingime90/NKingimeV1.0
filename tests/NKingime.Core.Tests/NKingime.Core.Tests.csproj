@@ -60,6 +60,15 @@
     <Otherwise />
   </Choose>
   <ItemGroup>
+    <Compile Include="Caching\ConcurrentDictionary.cs" />
+    <Compile Include="Caching\DictionaryCache.cs" />
+    <Compile Include="Caching\CacheB.cs" />
+    <Compile Include="Caching\CacheA.cs" />
+    <Compile Include="Caching\CacheACache.cs" />
+    <Compile Include="Caching\CacheBase.cs" />
+    <Compile Include="Caching\CacheBCache.cs" />
+    <Compile Include="Caching\CacheTest.cs" />
+    <Compile Include="Caching\ICache.cs" />
     <Compile Include="Config\ContextSectionTest.cs" />
     <Compile Include="EF\DbContextTests.cs" />
     <Compile Include="EF\UserRepositoryTests.cs" />

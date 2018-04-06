@@ -104,7 +104,7 @@
     <Compile Include="IoC\ServiceCollection.cs" />
     <Compile Include="IoC\ServiceDescriptor.cs" />
     <Compile Include="Linq\ParameterRebinder.cs" />
-    <Compile Include="Migrations\AutoMigrationsConfiguration.cs" />
+    <Compile Include="Migration\AutoMigrationConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\TypeFinder.cs" />
     <Compile Include="Utility\OrderUtil.cs" />
