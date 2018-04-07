@@ -1,5 +1,4 @@
-﻿using NKingime.Core.Extension;
-using System;
+﻿using System;
 using System.Configuration;
 
 namespace NKingime.Core.Config
@@ -53,27 +52,10 @@ namespace NKingime.Core.Config
         /// 是否启用值。
         /// </summary>
         [ConfigurationProperty(EnabledKey)]
-        protected string EnabledValue
+        public string EnabledValue
         {
             get { return Convert.ToString(this[EnabledKey]); }
             set { this[EnabledKey] = value; }
-        }
-
-        private bool? _enabled;
-
-        /// <summary>
-        /// 是否启用。
-        /// </summary>
-        public bool Enabled
-        {
-            get
-            {
-                if (!_enabled.HasValue)
-                {
-                    _enabled = EnabledValue.CastTo<bool?>().GetOrDefault(false).Value;
-                }
-                return _enabled.Value;
-            }
         }
 
         /// <summary>

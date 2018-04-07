@@ -19,6 +19,13 @@ namespace NKingime.Core.Tests.IoC
         {
             const string SectionName = "custom.config/context";
             var contextSection = (ContextSection)ConfigurationManager.GetSection(SectionName);
+            var dbContexts = contextSection.DbContexts.OfType<DbContextElement>().Select(s => new DbContextConfig(s)).ToList();
+        }
+
+        [Test]
+        public void TestContextConfig()
+        {
+            var contextConfig = ContextConfig.Instance;
 
         }
     }

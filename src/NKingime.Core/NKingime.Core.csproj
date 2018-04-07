@@ -58,6 +58,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Config\ContextConfig.cs" />
+    <Compile Include="Config\DbContextConfig.cs" />
+    <Compile Include="Config\DbContextInitializerConfig.cs" />
     <Compile Include="Config\DbContextInitializerElement.cs" />
     <Compile Include="Config\DbContextElement.cs" />
     <Compile Include="Config\DbContextCollection.cs" />
