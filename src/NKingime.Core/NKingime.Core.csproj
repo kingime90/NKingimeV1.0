@@ -92,6 +92,7 @@
     <Compile Include="Flag\TrimCharFlag.cs" />
     <Compile Include="Generic\ReadOnlyList.cs" />
     <Compile Include="Initializer\DatabaseInitializer.cs" />
+    <Compile Include="Initializer\DbContextInitializerBase.cs" />
     <Compile Include="Initializer\IDatabaseInitializer.cs" />
     <Compile Include="Initializer\ContextInitializer.cs" />
     <Compile Include="Initializer\IContextInitializer.cs" />
