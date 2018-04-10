@@ -12,7 +12,7 @@ namespace NKingime.Core.Config
 
         private const string TypeKey = "type";
 
-        private const string NameOrConnectionStringKey = "nameOrConnectionString";
+        private const string ConnectionStringNameKey = "connectionStringName";
 
         private const string EnabledKey = "enabled";
 
@@ -39,13 +39,13 @@ namespace NKingime.Core.Config
         }
 
         /// <summary>
-        /// 数据库连接名称或字符串。
+        /// 数据库连接字符串名称。
         /// </summary>
-        [ConfigurationProperty(NameOrConnectionStringKey)]
-        public string NameOrConnectionString
+        [ConfigurationProperty(ConnectionStringNameKey)]
+        public string ConnectionStringName
         {
-            get { return Convert.ToString(this[NameOrConnectionStringKey]); }
-            set { this[NameOrConnectionStringKey] = value; }
+            get { return Convert.ToString(this[ConnectionStringNameKey]); }
+            set { this[ConnectionStringNameKey] = value; }
         }
 
         /// <summary>

@@ -4,7 +4,7 @@ using NKingime.Core.Extension;
 namespace NKingime.Core.Config
 {
     /// <summary>
-    /// 数据上下文配置。
+    /// 数据库上下文配置。
     /// </summary>
     public class DbContextConfig
     {
@@ -20,7 +20,7 @@ namespace NKingime.Core.Config
             {
                 //异常处理
             }
-            NameOrConnectionString = element.NameOrConnectionString;
+            ConnectionStringName = element.ConnectionStringName;
             Enabled = element.EnabledValue.CastTo<bool?>().GetOrDefault(false).Value;
             DbContextInitializer = new DbContextInitializerConfig(element.DbContextInitializer);
         }
@@ -36,9 +36,9 @@ namespace NKingime.Core.Config
         public Type ContextType { get; private set; }
 
         /// <summary>
-        /// 数据库连接名称或字符串。
+        /// 数据库连接字符串名称。
         /// </summary>
-        public string NameOrConnectionString { get; private set; }
+        public string ConnectionStringName { get; private set; }
 
         /// <summary>
         /// 是否启用。

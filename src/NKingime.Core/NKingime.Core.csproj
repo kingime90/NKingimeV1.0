@@ -91,6 +91,10 @@
     <Compile Include="Flag\LifetimeScopeFlag.cs" />
     <Compile Include="Flag\TrimCharFlag.cs" />
     <Compile Include="Generic\ReadOnlyList.cs" />
+    <Compile Include="Initializer\DatabaseInitializer.cs" />
+    <Compile Include="Initializer\IDatabaseInitializer.cs" />
+    <Compile Include="Initializer\ContextInitializer.cs" />
+    <Compile Include="Initializer\IContextInitializer.cs" />
     <Compile Include="IoC\IServiceBuilder.cs" />
     <Compile Include="IoC\ServiceBuilder.cs" />
     <Compile Include="Public\FinderBase.cs" />
