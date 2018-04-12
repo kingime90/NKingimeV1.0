@@ -48,7 +48,7 @@ namespace NKingime.Core.Config
         /// 获取数据库上下文集合。
         /// </summary>
         /// <returns></returns>
-        private static ICollection<DbContextConfig> GetDbContexts()
+        private static IEnumerable<DbContextConfig> GetDbContexts()
         {
             var contextSection = (ContextSection)ConfigurationManager.GetSection(ContextSectionName);
             return contextSection.DbContexts.OfType<DbContextElement>().Select(s => new DbContextConfig(s)).ToList();
@@ -57,6 +57,6 @@ namespace NKingime.Core.Config
         /// <summary>
         /// 数据库上下文集合。
         /// </summary>
-        public ICollection<DbContextConfig> DbContexts { get; private set; }
+        public IEnumerable<DbContextConfig> DbContexts { get; private set; }
     }
 }

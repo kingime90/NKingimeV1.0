@@ -53,7 +53,7 @@ namespace NKingime.Core.Reflection
                 return assemblys;
             }
             var files = Directory.GetFiles(_path, "*.dll", SearchOption.TopDirectoryOnly).Concat(Directory.GetFiles(_path, "*.exe", SearchOption.TopDirectoryOnly)).Distinct();
-            assemblys = files.Select(s => Assembly.LoadFile(s)).Distinct();
+            assemblys = files.Select(s => Assembly.LoadFile(s)).Distinct().ToList();
             AssemblySet.Add(_path, assemblys);
             return assemblys;
         }

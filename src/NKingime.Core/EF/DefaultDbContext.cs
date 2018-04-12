@@ -10,7 +10,7 @@ namespace NKingime.Core.EF
         /// <summary>
         /// 初始化一个<see cref="DefaultDbContext"/>新实例。
         /// </summary>
-        public DefaultDbContext() : base("Default")
+        public DefaultDbContext()
         {
 
         }

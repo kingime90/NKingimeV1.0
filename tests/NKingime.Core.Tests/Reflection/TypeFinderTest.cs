@@ -19,7 +19,7 @@ namespace NKingime.Core.Tests.IoC
         {
             ITypeFinder<IEntityMapper> typeFinder = new TypeFinder<IEntityMapper>();
             var entityMapperTypes = typeFinder.Find(p => !p.IsAbstract);
-            IEnumerable<IEntityMapper> entityMappers = entityMapperTypes.Select(s => Activator.CreateInstance(s) as IEntityMapper);
+            IEnumerable<IEntityMapper> entityMappers = entityMapperTypes.Select(s => Activator.CreateInstance(s) as IEntityMapper).ToList();
             Type genericType = typeof(EntityMapperBase<,>);
             Type mapperType, baseType;
             var mapperSet = new Dictionary<Type, Type>();

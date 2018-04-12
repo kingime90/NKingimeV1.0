@@ -6,7 +6,9 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Infrastructure;
 using System.Data.Common;
 using System.Data.Entity.Core.Objects;
+using NKingime.Core.Config;
 using System.Linq;
+using System.Configuration;
 
 namespace NKingime.Core.EF
 {
@@ -15,12 +17,22 @@ namespace NKingime.Core.EF
     /// </summary>
     public abstract class DbContextBase<TDbContext> : DbContext, IUnitOfWork where TDbContext : DbContext, IUnitOfWork, new()
     {
+        /// <summary>
+        /// 数据库上下文配置。
+        /// </summary>
+        private static readonly DbContextConfig _dbContextConfig;
+
         #region 构造函数
+
+        static DbContextBase()
+        {
+            _dbContextConfig = ContextConfig.Instance.DbContexts.FirstOrDefault(p => p.ContextType == DbContextType);
+        }
 
         /// <summary>
         /// 初始化一个<see cref="DbContextBase{TDbContext}"/>新实例。
         /// </summary>
-        protected DbContextBase() : base()
+        protected DbContextBase() : base(GetConnectionStringName())
         {
 
         }
@@ -87,6 +99,19 @@ namespace NKingime.Core.EF
         #endregion
 
         #region 属性
+
+        private static readonly Type _dbContextType = typeof(TDbContext);
+
+        /// <summary>
+        /// 获取数据库上下文类型。
+        /// </summary>
+        public static Type DbContextType
+        {
+            get
+            {
+                return _dbContextType;
+            }
+        }
 
         /// <summary>
         /// 是否开启事务提交。
@@ -156,13 +181,29 @@ namespace NKingime.Core.EF
         {
             //移除一对多的级联删除
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
-            var rootType = typeof(IEntityMapper);
-            var types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(s => s.GetTypes()).Where(type => rootType.IsAssignableFrom(type) && !type.IsAbstract);
-            var entityMappers = types.Select(s => Activator.CreateInstance(s) as IEntityMapper);
+            var entityMappers = DbContextManage.Instance.GetEntityMappers(DbContextType);
             foreach (IEntityMapper mapper in entityMappers)
             {
                 mapper.RegistTo(modelBuilder.Configurations);
             }
+        }
+
+        #endregion
+
+        #region 辅助方法
+
+        /// <summary>
+        /// 获取数据库连接字符串名称。
+        /// </summary>
+        /// <returns></returns>
+        private static string GetConnectionStringName()
+        {
+            var connectionStringName = _dbContextConfig.ConnectionStringName;
+            if (ConfigurationManager.ConnectionStrings[connectionStringName] == null)
+            {
+
+            }
+            return connectionStringName;
         }
 
         #endregion

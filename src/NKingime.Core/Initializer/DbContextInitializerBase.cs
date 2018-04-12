@@ -93,10 +93,10 @@ namespace NKingime.Core.Initializer
         /// <summary>
         /// 映射程序集集合。
         /// </summary>
-        public ICollection<Assembly> MapperAssemblys { get; set; }
+        public IEnumerable<Assembly> MapperAssemblys { get; set; }
 
         /// <summary>
-        /// 当前上下文数据实体映射集合。
+        /// 当前上下文数据实体映射实例集合。
         /// </summary>
         public IReadOnlyDictionary<Type, IEntityMapper> EntityMappers { get; private set; }
 
@@ -124,9 +124,9 @@ namespace NKingime.Core.Initializer
 
             }
             var baseType = typeof(IEntityMapper);
-            var mapperTypes = MapperAssemblys.SelectMany(assembly => assembly.GetTypes()).Where(p => baseType.IsAssignableFrom(p) && !p.IsAbstract).Distinct();
-            var entityMappers = mapperTypes.Select(mapperType => Activator.CreateInstance(mapperType) as IEntityMapper);
-            entityMappers = EntityMappersFilter(entityMappers);
+            var mapperTypes = MapperAssemblys.SelectMany(assembly => assembly.GetTypes()).Where(p => baseType.IsAssignableFrom(p) && !p.IsAbstract).Distinct().ToArray();
+            IEnumerable<IEntityMapper> entityMappers = mapperTypes.Select(mapperType => Activator.CreateInstance(mapperType) as IEntityMapper);
+            entityMappers = EntityMappersFilter(entityMappers).ToList();
             Type genericType, mapperBaseType, entityType;
             genericType = typeof(EntityMapperBase<,>);
             var entityMapperSet = new Dictionary<Type, IEntityMapper>();

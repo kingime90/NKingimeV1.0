@@ -17,7 +17,7 @@ namespace NKingime.Core.Config
         private DbContextInitializerConfig()
         {
             AssemblyFinder = new DirectoryAssemblyFinder();
-            MapperAssemblys = new List<Assembly>();
+            _mapperAssemblys = new List<Assembly>();
         }
 
         /// <summary>
@@ -39,8 +39,9 @@ namespace NKingime.Core.Config
                 {
                     //异常处理
                 }
-                MapperAssemblys.Add(assemblySet[assemblyName]);
+                _mapperAssemblys.Add(assemblySet[assemblyName]);
             }
+
         }
 
         /// <summary>
@@ -48,10 +49,18 @@ namespace NKingime.Core.Config
         /// </summary>
         public Type InitializerType { get; private set; }
 
+        private List<Assembly> _mapperAssemblys;
+
         /// <summary>
         /// 映射程序集集合。
         /// </summary>
-        public ICollection<Assembly> MapperAssemblys { get; private set; }
+        public IEnumerable<Assembly> MapperAssemblys
+        {
+            get
+            {
+                return _mapperAssemblys;
+            }
+        }
 
         /// <summary>
         /// 程序集查找器。

@@ -1,5 +1,6 @@
 ﻿using System;
 using NKingime.Core.Config;
+using NKingime.Core.EF;
 
 namespace NKingime.Core.Initializer
 {
@@ -32,7 +33,7 @@ namespace NKingime.Core.Initializer
             }
             //
             var dbContextInitializer = CreateDbContextInitializer(contextConfig.InitializerConfig);
-
+            DbContextManage.Instance.RegisterInitializer(contextConfig.ContextType, dbContextInitializer);
         }
 
         /// <summary>
