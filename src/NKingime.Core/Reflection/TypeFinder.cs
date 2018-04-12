@@ -36,7 +36,6 @@ namespace NKingime.Core.Reflection
         public TypeFinder(IAssemblyFinder assemblyFinder)
         {
             AssemblyFinder = assemblyFinder;
-            FinderType = typeof(T);
         }
 
         /// <summary>
@@ -44,10 +43,18 @@ namespace NKingime.Core.Reflection
         /// </summary>
         public IAssemblyFinder AssemblyFinder { get; private set; }
 
+        private readonly Type _finderType= typeof(T);
+
         /// <summary>
         /// 查找的类型。
         /// </summary>
-        public Type FinderType { get; private set; }
+        public Type FinderType
+        {
+            get
+            {
+                return _finderType;
+            }
+        }
 
         /// <summary>
         /// 查找所有。

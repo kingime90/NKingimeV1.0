@@ -15,7 +15,7 @@ namespace NKingime.Core.Initializer
         private static bool IsDatabaseInitializer;
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="ContextInitializer"/>新实例。
         /// </summary>
         public ContextInitializer()
         {
@@ -23,9 +23,9 @@ namespace NKingime.Core.Initializer
         }
 
         /// <summary>
-        /// 
+        /// 初始化一个<see cref="ContextInitializer"/>新实例。
         /// </summary>
-        /// <param name="databaseInitializer"></param>
+        /// <param name="databaseInitializer">数据库初始化接口。</param>
         public ContextInitializer(IDatabaseInitializer databaseInitializer)
         {
             DatabaseInitializer = databaseInitializer;
@@ -39,12 +39,12 @@ namespace NKingime.Core.Initializer
         /// <summary>
         /// 初始化上下文。
         /// </summary>
-        /// <param name="config">上下文配置。</param>
-        public void Initialize(ContextConfig config)
+        /// <param name="contextConfig">上下文配置。</param>
+        public void Initialize(ContextConfig contextConfig)
         {
             if (!IsDatabaseInitializer)
             {
-                DatabaseInitializer.Initialize(config.DbContexts.ToArray());
+                DatabaseInitializer.Initialize(contextConfig.DbContexts.ToArray());
                 IsDatabaseInitializer = true;
             }
         }

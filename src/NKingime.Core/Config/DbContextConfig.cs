@@ -22,7 +22,7 @@ namespace NKingime.Core.Config
             }
             ConnectionStringName = element.ConnectionStringName;
             Enabled = element.EnabledValue.CastTo<bool?>().GetOrDefault(false).Value;
-            DbContextInitializer = new DbContextInitializerConfig(element.DbContextInitializer);
+            InitializerConfig = new DbContextInitializerConfig(element.DbContextInitializer);
         }
 
         /// <summary>
@@ -46,8 +46,8 @@ namespace NKingime.Core.Config
         public bool Enabled { get; private set; }
 
         /// <summary>
-        /// 数据库上下文初始化。
+        /// 数据库上下文初始化配置。
         /// </summary>
-        public DbContextInitializerConfig DbContextInitializer { get; private set; }
+        public DbContextInitializerConfig InitializerConfig { get; private set; }
     }
 }

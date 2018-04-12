@@ -11,6 +11,8 @@ namespace NKingime.Core.EF
     /// </summary>
     public abstract class EntityMapperBase<TEntity, TDbContext> : EntityTypeConfiguration<TEntity>, IEntityMapper where TEntity : class, IEntity where TDbContext : DbContext, IUnitOfWork, new()
     {
+        private readonly Type _dbContextType = typeof(TDbContext);
+
         /// <summary>
         /// 数据库上下文类型。
         /// </summary>
@@ -18,7 +20,7 @@ namespace NKingime.Core.EF
         {
             get
             {
-                return typeof(TDbContext);
+                return _dbContextType;
             }
         }
 

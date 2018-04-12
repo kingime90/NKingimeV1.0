@@ -11,7 +11,7 @@ namespace NKingime.Core.Initializer
         /// <summary>
         /// 初始化。
         /// </summary>
-        /// <param name="config">上下文配置。</param>
-        void Initialize(ContextConfig config);
+        /// <param name="contextConfig">上下文配置。</param>
+        void Initialize(ContextConfig contextConfig);
     }
 }
