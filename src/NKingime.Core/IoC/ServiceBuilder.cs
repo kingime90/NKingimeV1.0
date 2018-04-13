@@ -55,13 +55,13 @@ namespace NKingime.Core.IoC
         /// <param name="collection">服务映射信息集合。</param>
         public void Build(IServiceCollection collection)
         {
-            var implementationTypes = TransientTypeFinder.FindAll();
+            var implementationTypes = TransientTypeFinder.FindAll().ToList();
             AddServiceDescriptor(collection, implementationTypes, LifetimeScopeFlag.Transient);
 
-            implementationTypes = ScopedTypeFinder.FindAll();
+            implementationTypes = ScopedTypeFinder.FindAll().ToList();
             AddServiceDescriptor(collection, implementationTypes, LifetimeScopeFlag.Scoped);
 
-            implementationTypes = SingletonTypeFinder.FindAll();
+            implementationTypes = SingletonTypeFinder.FindAll().ToList();
             AddServiceDescriptor(collection, implementationTypes, LifetimeScopeFlag.Singleton);
         }
 

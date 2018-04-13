@@ -12,16 +12,6 @@ namespace NKingime.Core.Reflection
     public class TypeFinder<T> : FinderBase<Type>, ITypeFinder<T>
     {
         /// <summary>
-        /// 类型集合缓存。
-        /// </summary>
-        private static readonly IDictionary<Type, IEnumerable<Type>> TypeSet;
-
-        static TypeFinder()
-        {
-            TypeSet = new Dictionary<Type, IEnumerable<Type>>();
-        }
-
-        /// <summary>
         /// 初始化一个<see cref="TypeFinder{T}"/>类型的新实例。
         /// </summary>
         public TypeFinder() : this(GetAssemblyFinder())
@@ -43,7 +33,7 @@ namespace NKingime.Core.Reflection
         /// </summary>
         public IAssemblyFinder AssemblyFinder { get; private set; }
 
-        private readonly Type _finderType= typeof(T);
+        private readonly Type _finderType = typeof(T);
 
         /// <summary>
         /// 查找的类型。
@@ -62,15 +52,8 @@ namespace NKingime.Core.Reflection
         /// <returns></returns>
         public override IEnumerable<Type> FindAll()
         {
-            IEnumerable<Type> types;
-            if (TypeSet.TryGetValue(FinderType, out types))
-            {
-                return types;
-            }
             var assemblys = AssemblyFinder.FindAll();
-            types = assemblys.SelectMany(assembly => assembly.GetTypes()).Where(p => FinderType.IsAssignableFrom(p)).Distinct();
-            TypeSet.Add(FinderType, types);
-            return types;
+            return assemblys.SelectMany(assembly => assembly.GetTypes()).Where(p => FinderType.IsAssignableFrom(p)).Distinct();
         }
 
         /// <summary>

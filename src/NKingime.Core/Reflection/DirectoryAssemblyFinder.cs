@@ -15,13 +15,13 @@ namespace NKingime.Core.Reflection
         /// <summary>
         /// 程序集集合缓存。
         /// </summary>
-        private static readonly IDictionary<string, IEnumerable<Assembly>> AssemblySet;
+        private static readonly IDictionary<string, IEnumerable<Assembly>> AssemblyCache;
 
         private readonly string _path;
 
         static DirectoryAssemblyFinder()
         {
-            AssemblySet = new Dictionary<string, IEnumerable<Assembly>>();
+            AssemblyCache = new Dictionary<string, IEnumerable<Assembly>>();
         }
 
         /// <summary>
@@ -48,13 +48,13 @@ namespace NKingime.Core.Reflection
         public override IEnumerable<Assembly> FindAll()
         {
             IEnumerable<Assembly> assemblys;
-            if (AssemblySet.TryGetValue(_path, out assemblys))
+            if (AssemblyCache.TryGetValue(_path, out assemblys))
             {
                 return assemblys;
             }
             var files = Directory.GetFiles(_path, "*.dll", SearchOption.TopDirectoryOnly).Concat(Directory.GetFiles(_path, "*.exe", SearchOption.TopDirectoryOnly)).Distinct();
             assemblys = files.Select(s => Assembly.LoadFile(s)).Distinct().ToList();
-            AssemblySet.Add(_path, assemblys);
+            AssemblyCache.Add(_path, assemblys);
             return assemblys;
         }
 

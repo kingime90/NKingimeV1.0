@@ -35,7 +35,7 @@ namespace NKingime.Core.EF
         public override IUnitOfWork UnitOfWork { get; }
 
         /// <summary>
-        /// 
+        /// 无跟踪查询，查询出来的对象将不能用于修改。
         /// </summary>
         public override IQueryable<TEntity> Entities
         {
