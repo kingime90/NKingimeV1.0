@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace NKingime.Core.Public
 {
@@ -7,7 +8,7 @@ namespace NKingime.Core.Public
     /// 分页结果。
     /// </summary>
     /// <typeparam name="T">分页实体类型。</typeparam>
-    public class PagedResult<T> where T : class
+    public class PagedResult<T> : IPagedResult<T>
     {
         /// <summary>
         /// 默认页大小（默认10）。
@@ -15,9 +16,9 @@ namespace NKingime.Core.Public
         public static readonly int DefaultPageSize = 10;
 
         /// <summary>
-        /// 默认页码（默认1）。
+        /// 起始页页码（默认1）。
         /// </summary>
-        public static readonly int DefaultPageIndex = 1;
+        public static readonly int StartPageIndex = 1;
 
         /// <summary>
         /// 初始化一个<see cref="PagedResult{T}"/>类型的新实例。
@@ -35,7 +36,7 @@ namespace NKingime.Core.Public
             //
             if (pageIndex <= 0)
             {
-                pageIndex = DefaultPageIndex;
+                pageIndex = StartPageIndex;
             }
             //
             if (totalRecord < 0)
@@ -55,7 +56,38 @@ namespace NKingime.Core.Public
             PageIndex = pageIndex;
             TotalRecord = totalRecord;
             TotalPage = totalPage;
+            if (pageList == null)
+            {
+                pageList = Enumerable.Empty<T>();
+            }
             PageList = pageList;
+            //
+            IsStartPage = PageIndex == StartPageIndex;
+            IsEndPage = PageIndex == TotalPage;
+            IsEmpty = TotalRecord == 0;
+            HasPreviousPage = PageIndex > StartPageIndex;
+            HasNextPage = PageIndex < TotalPage;
+        }
+
+        /// <summary>
+        /// 初始化一个<see cref="PagedResult{T}"/>类型的新实例。
+        /// </summary>
+        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageIndex">页码。</param>
+        /// <param name="totalRecord">总记录。</param>
+        public PagedResult(int pageSize, int pageIndex, int totalRecord) : this(pageSize, pageIndex, totalRecord, null)
+        {
+
+        }
+
+        /// <summary>
+        /// 初始化一个<see cref="PagedResult{T}"/>类型的新实例。
+        /// </summary>
+        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageIndex">页码。</param>
+        public PagedResult(int pageSize, int pageIndex) : this(pageSize, pageIndex, 0, null)
+        {
+
         }
 
         /// <summary>
@@ -81,6 +113,44 @@ namespace NKingime.Core.Public
         /// <summary>
         /// 分页实体列表。
         /// </summary>
-        public IEnumerable<T> PageList { get; }
+        public IEnumerable<T> PageList { get; private set; }
+
+        /// <summary>
+        /// 是否起始页。
+        /// </summary>
+        public bool IsStartPage { get; }
+
+        /// <summary>
+        /// 是否尾页。
+        /// </summary>
+        public bool IsEndPage { get; }
+
+        /// <summary>
+        /// 是否空列表。
+        /// </summary>
+        public bool IsEmpty { get; }
+
+        /// <summary>
+        /// 是否有上一页。
+        /// </summary>
+        public bool HasPreviousPage { get; }
+
+        /// <summary>
+        /// 是否有下一页。
+        /// </summary>
+        public bool HasNextPage { get; }
+
+        /// <summary>
+        /// 设置分页实体列表。
+        /// </summary>
+        /// <param name="pageList">分页实体列表。</param>
+        public void SetPageList(IEnumerable<T> pageList)
+        {
+            if (pageList == null)
+            {
+                pageList = Enumerable.Empty<T>();
+            }
+            PageList = pageList;
+        }
     }
 }

@@ -6,6 +6,8 @@ using NKingime.Core.Data;
 using System.Data.Entity;
 using EntityFramework.Extensions;
 using System.ComponentModel;
+using NKingime.Core.Public;
+using NKingime.Core.Utility;
 
 namespace NKingime.Core.EF
 {
@@ -197,6 +199,55 @@ namespace NKingime.Core.EF
             }
             //
             return queryable.ToList();
+        }
+
+        #endregion
+
+        #region 分页
+
+        /// <summary>
+        /// 分页列表。
+        /// </summary>
+        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageIndex">页码。</param>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <returns></returns>
+        public override IPagedResult<TEntity> PagedList(int pageSize, int pageIndex, Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
+        {
+            var totalRecord = Count(predicate);
+            var pagedResult = PagedResultUtil.BuildResult<TEntity>(pageSize, pageIndex, totalRecord);
+            if (pagedResult.IsEmpty)
+            {
+                return pagedResult;
+            }
+            IQueryable<TEntity> queryable = _dbSet;
+            if (predicate != null)
+            {
+                queryable = queryable.Where(predicate);
+            }
+            //
+            if (orderSelectors != null)
+            {
+                queryable = OrderBy(queryable, orderSelectors);
+            }
+            queryable = queryable.Skip(pagedResult.PageSize * (pagedResult.PageIndex - 1)).Take(pagedResult.PageSize);
+            pagedResult.SetPageList(queryable.ToList());
+            return pagedResult;
+        }
+
+        #endregion
+
+        #region 函数
+
+        /// <summary>
+        /// 返回实体集合中满足条件的的元素数量。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <returns></returns>
+        public override int Count(Expression<Func<TEntity, bool>> predicate = null)
+        {
+            return predicate != null ? _dbSet.Count(predicate) : _dbSet.Count();
         }
 
         #endregion

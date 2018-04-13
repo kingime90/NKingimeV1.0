@@ -3,6 +3,7 @@ using NKingime.Core.IoC;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using NKingime.Core.Public;
 
 namespace NKingime.Core.Data
 {
@@ -181,6 +182,57 @@ namespace NKingime.Core.Data
         /// <param name="orderSelectors">排序选择器集合。</param>
         /// <returns></returns>
         List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
+
+        #endregion
+
+        #region 分页
+
+        /// <summary>
+        /// 分页列表。
+        /// </summary>
+        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageIndex">页码。</param>
+        /// <returns></returns>
+        IPagedResult<TEntity> PagedList(int pageSize, int pageIndex);
+
+        /// <summary>
+        /// 分页列表。
+        /// </summary>
+        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageIndex">页码。</param>
+        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <returns></returns>
+        IPagedResult<TEntity> PagedList(int pageSize, int pageIndex, params OrderSelector<TEntity>[] orderSelectors);
+
+        /// <summary>
+        /// 分页列表。
+        /// </summary>
+        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageIndex">页码。</param>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <returns></returns>
+        IPagedResult<TEntity> PagedList(int pageSize, int pageIndex, Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 分页列表。
+        /// </summary>
+        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageIndex">页码。</param>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <returns></returns>
+        IPagedResult<TEntity> PagedList(int pageSize, int pageIndex, Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
+
+        #endregion
+
+        #region 函数
+
+        /// <summary>
+        /// 返回实体集合中满足条件的的元素数量。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <returns></returns>
+        int Count(Expression<Func<TEntity, bool>> predicate);
 
         #endregion
     }

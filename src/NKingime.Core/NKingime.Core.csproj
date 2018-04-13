@@ -102,6 +102,7 @@
     <Compile Include="IoC\ServiceBuilder.cs" />
     <Compile Include="Public\FinderBase.cs" />
     <Compile Include="Public\IFinder.cs" />
+    <Compile Include="Public\IPagedResult.cs" />
     <Compile Include="Public\PagedResult.cs" />
     <Compile Include="Reflection\AppDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\ITypeFinder.cs" />
