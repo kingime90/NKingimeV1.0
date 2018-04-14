@@ -216,7 +216,7 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 分页列表。
         /// </summary>
-        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
         /// <returns></returns>
         public virtual IPagedResult<TEntity> PagedList(int pageSize, int pageIndex)
@@ -227,7 +227,7 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 分页列表。
         /// </summary>
-        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>
         /// <returns></returns>
@@ -239,7 +239,7 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 分页列表。
         /// </summary>
-        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns></returns>
@@ -251,7 +251,7 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 分页列表。
         /// </summary>
-        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>

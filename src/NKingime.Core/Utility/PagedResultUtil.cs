@@ -13,7 +13,7 @@ namespace NKingime.Core.Utility
         /// 构建分页结果。
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
         /// <param name="totalRecord">总记录。</param>
         /// <param name="pageList">分页实体列表。</param>
@@ -27,12 +27,12 @@ namespace NKingime.Core.Utility
         /// 构建分页结果空列表。
         /// </summary>
         /// <typeparam name="T"></typeparam>
-        /// <param name="pageSize">页大小。</param>
+        /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
         /// <returns></returns>
         public static PagedResult<T> BuildEmptyResult<T>(int pageSize, int pageIndex)
         {
-            return BuildResult<T>(pageSize, pageIndex, 0, null);
+            return BuildResult<T>(pageSize, pageIndex, 0);
         }
     }
 }

@@ -104,6 +104,7 @@
     <Compile Include="Public\IFinder.cs" />
     <Compile Include="Public\IPagedResult.cs" />
     <Compile Include="Public\PagedResult.cs" />
+    <Compile Include="Public\PagedResultBase.cs" />
     <Compile Include="Reflection\AppDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\ITypeFinder.cs" />
     <Compile Include="Reflection\DirectoryAssemblyFinder.cs" />

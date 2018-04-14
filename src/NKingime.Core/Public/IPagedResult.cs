@@ -10,7 +10,7 @@ namespace NKingime.Core.Public
     public interface IPagedResult<T>
     {
         /// <summary>
-        /// 页大小。
+        /// 每页多少条。
         /// </summary>
         int PageSize { get; }
 
@@ -20,9 +20,9 @@ namespace NKingime.Core.Public
         int PageIndex { get; }
 
         /// <summary>
-        /// 总记录。
+        /// 总记录数。
         /// </summary>
-        int TotalRecord { get; }
+        int TotalCount { get; }
 
         /// <summary>
         /// 总页码。
@@ -30,19 +30,19 @@ namespace NKingime.Core.Public
         int TotalPage { get; }
 
         /// <summary>
-        /// 分页实体列表。
+        /// 分页结果列表。
         /// </summary>
-        IEnumerable<T> PageList { get; }
+        IEnumerable<T> ResultList { get; }
 
         /// <summary>
         /// 是否起始页。
         /// </summary>
-        bool IsStartPage { get; }
+        bool IsStart { get; }
 
         /// <summary>
         /// 是否尾页。
         /// </summary>
-        bool IsEndPage { get; }
+        bool IsEnd { get; }
 
         /// <summary>
         /// 是否空列表。
@@ -52,17 +52,17 @@ namespace NKingime.Core.Public
         /// <summary>
         /// 是否有上一页。
         /// </summary>
-        bool HasPreviousPage { get; }
+        bool HasPrevious { get; }
 
         /// <summary>
         /// 是否有下一页。
         /// </summary>
-        bool HasNextPage { get; }
+        bool HasNext { get; }
 
         /// <summary>
-        /// 设置分页实体列表。
+        /// 设置分页结果列表。
         /// </summary>
-        /// <param name="pageList">分页实体列表。</param>
-        void SetPageList(IEnumerable<T> pageList);
+        /// <param name="resultList">分页结果列表。</param>
+        void SetResultList(IEnumerable<T> resultList);
     }
 }
