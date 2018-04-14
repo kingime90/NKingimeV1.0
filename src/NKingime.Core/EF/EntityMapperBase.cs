@@ -30,14 +30,14 @@ namespace NKingime.Core.EF
         /// <param name="configurations">实体映射配置注册器。</param>
         public void RegistTo(ConfigurationRegistrar configurations)
         {
-            RegistMapping();
+            EntityMapping();
             configurations.Add(this);
         }
 
         /// <summary>
-        /// 注册映射。
+        /// 实体映射。
         /// </summary>
-        protected virtual void RegistMapping()
+        protected virtual void EntityMapping()
         {
 
         }

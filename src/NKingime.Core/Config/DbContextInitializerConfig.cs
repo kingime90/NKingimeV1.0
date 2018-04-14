@@ -41,15 +41,14 @@ namespace NKingime.Core.Config
                 }
                 _mapperAssemblys.Add(assemblySet[assemblyName]);
             }
-
         }
 
         /// <summary>
         /// 初始化类型。
         /// </summary>
-        public Type InitializerType { get; private set; }
+        public Type InitializerType { get; }
 
-        private List<Assembly> _mapperAssemblys;
+        private readonly List<Assembly> _mapperAssemblys;
 
         /// <summary>
         /// 映射程序集集合。
@@ -65,6 +64,6 @@ namespace NKingime.Core.Config
         /// <summary>
         /// 程序集查找器。
         /// </summary>
-        protected IAssemblyFinder AssemblyFinder { get; private set; }
+        protected IAssemblyFinder AssemblyFinder { get; }
     }
 }

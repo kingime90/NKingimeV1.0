@@ -32,26 +32,26 @@ namespace NKingime.Core.Config
         /// <summary>
         /// 节点名称。
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; }
 
         /// <summary>
         /// 数据库上下文类型。
         /// </summary>
-        public Type ContextType { get; private set; }
+        public Type ContextType { get; }
 
         /// <summary>
         /// 数据库连接字符串名称。
         /// </summary>
-        public string ConnectionStringName { get; private set; }
+        public string ConnectionStringName { get; }
 
         /// <summary>
         /// 是否启用。
         /// </summary>
-        public bool Enabled { get; private set; }
+        public bool Enabled { get; }
 
         /// <summary>
         /// 数据库上下文初始化配置。
         /// </summary>
-        public DbContextInitializerConfig InitializerConfig { get; private set; }
+        public DbContextInitializerConfig InitializerConfig { get; }
     }
 }
