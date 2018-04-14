@@ -111,17 +111,17 @@ namespace NKingime.Core.Data
         /// </summary>
         /// <param name="entities">数据实体数组。</param>
         /// <returns>返回受影响的行数。</returns>
-        public virtual int Update(params TEntity[] entities)
-        {
-            return Update(entities.ToList());
-        }
+        public abstract int Update(params TEntity[] entities);
 
         /// <summary>
         /// 更新数据实体集合。
         /// </summary>
         /// <param name="entities">数据实体集合。</param>
         /// <returns>返回受影响的行数。</returns>
-        public abstract int Update(IEnumerable<TEntity> entities);
+        public virtual int Update(IEnumerable<TEntity> entities)
+        {
+            return Update(entities.ToArray());
+        }
 
         #endregion
 

@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Data;
 using System.Data.Entity;
-using NKingime.Core.Data;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Data.Entity.Infrastructure;
 using System.Data.Common;
 using System.Data.Entity.Core.Objects;
-using NKingime.Core.Config;
 using System.Linq;
 using System.Configuration;
+using NKingime.Core.Config;
+using NKingime.Core.Data;
 
 namespace NKingime.Core.EF
 {

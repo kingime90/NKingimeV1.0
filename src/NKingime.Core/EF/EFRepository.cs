@@ -8,6 +8,7 @@ using EntityFramework.Extensions;
 using System.ComponentModel;
 using NKingime.Core.Public;
 using NKingime.Core.Utility;
+using NKingime.Core.Extension;
 
 namespace NKingime.Core.EF
 {
@@ -82,7 +83,7 @@ namespace NKingime.Core.EF
         /// <returns>返回受影响的行数。</returns>
         public override int DeleteByKey<TKey>(TKey key)
         {
-            var entity = _dbSet.Find(key);
+            var entity = GetByKey(key);
             return entity == null ? 0 : Delete(entity);
         }
 
@@ -115,7 +116,8 @@ namespace NKingime.Core.EF
         /// <returns>返回受影响的行数。</returns>
         public override int Delete(Expression<Func<TEntity, bool>> predicate)
         {
-            return _dbSet.Where(predicate).Delete();
+            var entities = _dbSet.Where(predicate).ToList();
+            return entities.Count() == 0 ? 0 : Delete(entities);
         }
 
         #endregion
@@ -129,17 +131,19 @@ namespace NKingime.Core.EF
         /// <returns>返回受影响的行数。</returns>
         public override int Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            ((DbContext)UnitOfWork).Update(entity);
+            return UnitOfWork.SaveChanges();
         }
 
         /// <summary>
-        /// 更新数据实体集合。
+        /// 更新数据实体数组。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体数组。</param>
         /// <returns>返回受影响的行数。</returns>
-        public override int Update(IEnumerable<TEntity> entities)
+        public override int Update(params TEntity[] entities)
         {
-            throw new NotImplementedException();
+            ((DbContext)UnitOfWork).Update(entities);
+            return UnitOfWork.SaveChanges();
         }
 
         #endregion

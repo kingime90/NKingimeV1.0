@@ -74,7 +74,7 @@
     <Compile Include="Data\IIdentify.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
-    <Compile Include="Data\OrderSelector.cs" />
+    <Compile Include="Public\OrderSelector.cs" />
     <Compile Include="Data\RepositoryBase.cs" />
     <Compile Include="EF\DbContextManage.cs" />
     <Compile Include="EF\DefaultDbContext.cs" />
@@ -87,6 +87,7 @@
     <Compile Include="Extension\GeneralExtension.cs" />
     <Compile Include="Extension\ServiceCollectionExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
+    <Compile Include="Extension\DbContextExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Flag\CompareFlag.cs" />
     <Compile Include="Flag\LifetimeScopeFlag.cs" />

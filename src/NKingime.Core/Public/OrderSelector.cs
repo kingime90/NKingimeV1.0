@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using NKingime.Core.Generic;
 
-namespace NKingime.Core.Data
+namespace NKingime.Core.Public
 {
     /// <summary>
     /// 排序选择器。
@@ -52,7 +52,7 @@ namespace NKingime.Core.Data
             _sortDirection = sortDirection;
         }
 
-        private ReadOnlyList<Expression<Func<TEntity, dynamic>>> _keySelectors;
+        private readonly ReadOnlyList<Expression<Func<TEntity, dynamic>>> _keySelectors;
 
         /// <summary>
         /// 用于从元素中提取键的函数列表。
@@ -65,7 +65,7 @@ namespace NKingime.Core.Data
             }
         }
 
-        private ListSortDirection _sortDirection = ListSortDirection.Ascending;
+        private readonly ListSortDirection _sortDirection = ListSortDirection.Ascending;
 
         /// <summary>
         /// 排序方向。
