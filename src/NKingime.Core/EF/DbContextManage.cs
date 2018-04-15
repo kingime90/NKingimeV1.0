@@ -8,7 +8,7 @@ namespace NKingime.Core.EF
     /// <summary>
     /// 数据库上下文管理。
     /// </summary>
-    public class DbContextManage
+    public sealed class DbContextManage
     {
         /// <summary>
         /// 线程安全延迟加载实例。
@@ -16,7 +16,7 @@ namespace NKingime.Core.EF
         private static readonly Lazy<DbContextManage> LazyInstance = new Lazy<DbContextManage>(() => new DbContextManage());
 
         /// <summary>
-        /// 数据库上下初始化集合。
+        /// 数据库上下文初始化缓存。
         /// </summary>
         private readonly IDictionary<Type, DbContextInitializerBase> _dbContextInitializerCache = new Dictionary<Type, DbContextInitializerBase>();
 

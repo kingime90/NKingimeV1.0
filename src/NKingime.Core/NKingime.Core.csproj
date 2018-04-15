@@ -74,6 +74,13 @@
     <Compile Include="Data\IIdentify.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
+    <Compile Include="Extension\ValidationExtension.cs" />
+    <Compile Include="I18n\Context\ZH-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ZH-CN.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Public\OrderSelector.cs" />
     <Compile Include="Data\RepositoryBase.cs" />
     <Compile Include="EF\DbContextManage.cs" />
@@ -121,6 +128,8 @@
     <Compile Include="Migrations\AutoMigrationsConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\TypeFinder.cs" />
+    <Compile Include="Resource\I18nResourceManager.cs" />
+    <Compile Include="Utility\ExceptionUtil.cs" />
     <Compile Include="Utility\OrderUtil.cs" />
     <Compile Include="Utility\PagedResultUtil.cs" />
     <Compile Include="Utility\TypeConvertUtil.cs" />
@@ -129,7 +138,16 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Exceptions\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="I18n\Context\ZH-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>ZH-CN.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -73,13 +73,20 @@
     <Compile Include="EF\DbContextTests.cs" />
     <Compile Include="EF\UserRepositoryTests.cs" />
     <Compile Include="Extension\ExpressionExtensionTests.cs" />
+    <Compile Include="I18n\Context-ZH-CN.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Context-ZH-CN.resx</DependentUpon>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Compile>
     <Compile Include="Initializer\ContextInitializerTest.cs" />
+    <Compile Include="Internationalization\InternationalizationTests.cs" />
     <Compile Include="IoC\ServiceBuilderTests.cs" />
     <Compile Include="Model\Mapper\UserMapper.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\TypeFinderTest.cs" />
-    <Compile Include="Repository\UserRepository.cs" />
+    <Compile Include="Model\Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -100,6 +107,13 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="I18n\Context-ZH-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Context-ZH-CN.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

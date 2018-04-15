@@ -14,10 +14,7 @@ namespace NKingime.Core.Config
         /// <param name="element"></param>
         public DbContextConfig(DbContextElement element)
         {
-            if (element == null)
-            {
-                return;
-            }
+            element.CheckNotNull(() => nameof(element));
             Name = element.Name;
             ContextType = Type.GetType(element.ContextTypeName);
             if (ContextType == null)
