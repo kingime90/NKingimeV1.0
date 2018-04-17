@@ -11,6 +11,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CB0AEE51
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKingime.Core.Tests", "tests\NKingime.Core.Tests\NKingime.Core.Tests.csproj", "{51EF4CF8-DA72-4B32-BA83-E143B6101382}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKingime.Entity", "src\NKingime.Entity\NKingime.Entity.csproj", "{BAE87870-AF64-4A6C-9319-5A483A07B513}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{51EF4CF8-DA72-4B32-BA83-E143B6101382}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{51EF4CF8-DA72-4B32-BA83-E143B6101382}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{51EF4CF8-DA72-4B32-BA83-E143B6101382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAE87870-AF64-4A6C-9319-5A483A07B513}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAE87870-AF64-4A6C-9319-5A483A07B513}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAE87870-AF64-4A6C-9319-5A483A07B513}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAE87870-AF64-4A6C-9319-5A483A07B513}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -32,5 +38,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{25932342-3AE9-4DD7-9D60-B5019B6A0BA8} = {1F99E5D7-BAC4-4DAB-9577-CE6F5324F14F}
 		{51EF4CF8-DA72-4B32-BA83-E143B6101382} = {CB0AEE51-F32E-422A-A104-0E04862CCAC5}
+		{BAE87870-AF64-4A6C-9319-5A483A07B513} = {1F99E5D7-BAC4-4DAB-9577-CE6F5324F14F}
 	EndGlobalSection
 EndGlobal

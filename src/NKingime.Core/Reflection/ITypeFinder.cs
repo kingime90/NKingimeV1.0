@@ -1,5 +1,5 @@
 ﻿using System;
-using NKingime.Core.Public;
+using NKingime.Core.Generic;
 
 namespace NKingime.Core.Reflection
 {

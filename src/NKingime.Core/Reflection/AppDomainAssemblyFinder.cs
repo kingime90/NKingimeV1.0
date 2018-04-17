@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Reflection;
-using NKingime.Core.Public;
+using NKingime.Core.Generic;
 
 namespace NKingime.Core.Reflection
 {

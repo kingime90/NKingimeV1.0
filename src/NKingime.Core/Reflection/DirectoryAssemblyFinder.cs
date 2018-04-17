@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.IO;
-using NKingime.Core.Public;
+using NKingime.Core.Generic;
 
 namespace NKingime.Core.Reflection
 {

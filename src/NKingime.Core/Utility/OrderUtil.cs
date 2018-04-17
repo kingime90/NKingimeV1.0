@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq.Expressions;
-using NKingime.Core.Public;
+using NKingime.Core.Generic;
 
 namespace NKingime.Core.Utility
 {

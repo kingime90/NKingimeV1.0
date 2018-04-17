@@ -30,18 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -82,20 +70,12 @@
       <DependentUpon>ZH-CN.resx</DependentUpon>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Include="Public\OrderSelector.cs" />
+    <Compile Include="Generic\OrderSelector.cs" />
     <Compile Include="Data\RepositoryBase.cs" />
-    <Compile Include="EF\DbContextManage.cs" />
-    <Compile Include="EF\DefaultDbContext.cs" />
-    <Compile Include="EF\DbContextBase.cs" />
-    <Compile Include="EF\DefaultEntityMapper.cs" />
-    <Compile Include="EF\EFRepository.cs" />
-    <Compile Include="EF\EntityMapperBase.cs" />
-    <Compile Include="EF\IEntityMapper.cs" />
     <Compile Include="Extension\ExpressionExtension.cs" />
     <Compile Include="Extension\GeneralExtension.cs" />
     <Compile Include="Extension\ServiceCollectionExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
-    <Compile Include="Extension\DbContextExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Flag\CompareFlag.cs" />
     <Compile Include="Flag\LifetimeScopeFlag.cs" />
@@ -109,11 +89,11 @@
     <Compile Include="Initializer\IContextInitializer.cs" />
     <Compile Include="IoC\IServiceBuilder.cs" />
     <Compile Include="IoC\ServiceBuilder.cs" />
-    <Compile Include="Public\FinderBase.cs" />
-    <Compile Include="Public\IFinder.cs" />
-    <Compile Include="Public\IPagedResult.cs" />
-    <Compile Include="Public\PagedResult.cs" />
-    <Compile Include="Public\PagedResultBase.cs" />
+    <Compile Include="Generic\FinderBase.cs" />
+    <Compile Include="Generic\IFinder.cs" />
+    <Compile Include="Generic\IPagedResult.cs" />
+    <Compile Include="Generic\PagedResult.cs" />
+    <Compile Include="Generic\PagedResultBase.cs" />
     <Compile Include="Reflection\AppDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\ITypeFinder.cs" />
     <Compile Include="Reflection\DirectoryAssemblyFinder.cs" />
@@ -126,17 +106,15 @@
     <Compile Include="IoC\ServiceCollection.cs" />
     <Compile Include="IoC\ServiceDescriptor.cs" />
     <Compile Include="Linq\ParameterRebinder.cs" />
-    <Compile Include="Migrations\AutoMigrationsConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\TypeFinder.cs" />
-    <Compile Include="Resource\I18nResourceManager.cs" />
+    <Compile Include="I18n\I18nManager.cs" />
     <Compile Include="Utility\ExceptionUtil.cs" />
     <Compile Include="Utility\OrderUtil.cs" />
     <Compile Include="Utility\PagedResultUtil.cs" />
     <Compile Include="Utility\TypeConvertUtil.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
