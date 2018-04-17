@@ -1,16 +1,12 @@
 ﻿using NKingime.Core.Data;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace NKingime.Core.Tests.Model
 {
     /// <summary>
     /// 用户
     /// </summary>
-    public class User : GuidEntity, ICreateTime
+    public class User : GuidIdentity, ICreateTime
     {
         /// <summary>
         /// 名字

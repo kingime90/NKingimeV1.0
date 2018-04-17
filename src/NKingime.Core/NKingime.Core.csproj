@@ -55,10 +55,9 @@
     <Compile Include="Config\ContextSection.cs" />
     <Compile Include="Data\AutoIdentity.cs" />
     <Compile Include="Data\EntityBase.cs" />
-    <Compile Include="Data\GuidEntity.cs" />
+    <Compile Include="Data\GuidIdentity.cs" />
     <Compile Include="Data\ICreateTime.cs" />
     <Compile Include="Data\IEntity.cs" />
-    <Compile Include="Data\IGuidIdentify.cs" />
     <Compile Include="Data\IIdentify.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
