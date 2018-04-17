@@ -119,7 +119,7 @@ namespace NKingime.Core.Initializer
         /// </summary>
         protected virtual void EntityMappersInitialize()
         {
-            if (MapperAssemblys == null)
+            if (MapperAssemblys.IsNull())
             {
 
             }

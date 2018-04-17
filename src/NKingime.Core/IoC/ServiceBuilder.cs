@@ -107,7 +107,7 @@ namespace NKingime.Core.IoC
             for (int i = 0; i < length; i++)
             {
                 interfaceType = interfaceTypes[i];
-                if (interfaceType.IsGenericType && !interfaceType.IsGenericTypeDefinition && interfaceType.FullName == null)
+                if (interfaceType.IsGenericType && !interfaceType.IsGenericTypeDefinition && interfaceType.FullName.IsNull())
                 {
                     interfaceTypes[i] = interfaceType.GetGenericTypeDefinition();
                 }

@@ -288,7 +288,7 @@ namespace NKingime.Core.Extension
         public static void TryAdd(this IServiceCollection collection, ServiceDescriptor descriptor)
         {
             var service = collection.FirstOrDefault(p => p.Equals(descriptor));
-            if (service != null)
+            if (service.IsNotNull())
             {
                 collection.Remove(service);
             }

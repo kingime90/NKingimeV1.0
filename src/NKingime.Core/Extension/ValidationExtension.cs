@@ -23,7 +23,7 @@ namespace NKingime.Core.Extension
                 return;
             }
             string paramNameValue;
-            if (paramName == null || (paramNameValue = paramName()).IsNullOrWhiteSpace())
+            if (paramName.IsNull() || (paramNameValue = paramName()).IsNullOrWhiteSpace())
             {
                 throw new ArgumentNullException(nameof(paramName));
             }
@@ -77,7 +77,7 @@ namespace NKingime.Core.Extension
             {
                 return;
             }
-            if (args == null)
+            if (args.IsNull())
             {
                 throw new ArgumentNullException(nameof(args));
             }

@@ -26,7 +26,7 @@ namespace NKingime.Core.Extension
         /// <returns> </returns>
         public static Type GetUnNullableType(this Type type)
         {
-            if (IsNullableType(type))
+            if (type.IsNullableType())
             {
                 var nullableConverter = new NullableConverter(type);
                 return nullableConverter.UnderlyingType;

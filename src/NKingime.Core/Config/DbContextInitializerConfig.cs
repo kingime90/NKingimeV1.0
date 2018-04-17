@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Reflection;
 using System.Linq;
 using NKingime.Core.Reflection;
+using NKingime.Core.Extension;
 
 namespace NKingime.Core.Config
 {
@@ -27,7 +28,7 @@ namespace NKingime.Core.Config
         public DbContextInitializerConfig(DbContextInitializerElement element) : this()
         {
             InitializerType = Type.GetType(element.InitializerTypeName);
-            if (InitializerType == null)
+            if (InitializerType.IsNull())
             {
                 //异常处理
             }

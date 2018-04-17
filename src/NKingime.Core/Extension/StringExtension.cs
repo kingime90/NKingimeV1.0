@@ -48,7 +48,7 @@ namespace NKingime.Core.Extension
         /// <returns></returns>
         public static string GetString(this string value, TrimCharFlag trimFlag, params char[] trimChars)
         {
-            return GetString(value, string.Empty, trimFlag, trimChars);
+            return value.GetString(string.Empty, trimFlag, trimChars);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace NKingime.Core.Extension
                     return value.TrimStart(trimChars);
                 case TrimCharFlag.End:
                     return value.TrimEnd(trimChars);
-                case TrimCharFlag.All:
+                case TrimCharFlag.None:
                     return value.Trim(trimChars);
             }
             return value;

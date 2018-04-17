@@ -7,6 +7,11 @@ namespace NKingime.Core.Flag
     public enum TrimCharFlag
     {
         /// <summary>
+        /// 首部+尾部。
+        /// </summary>
+        None,
+
+        /// <summary>
         /// 首部。
         /// </summary>
         Start,
@@ -15,10 +20,5 @@ namespace NKingime.Core.Flag
         /// 尾部。
         /// </summary>
         End,
-
-        /// <summary>
-        /// 全部（首部+尾部）。
-        /// </summary>
-        All,
     }
 }

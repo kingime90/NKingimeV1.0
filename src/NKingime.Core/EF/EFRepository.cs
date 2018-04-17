@@ -84,7 +84,7 @@ namespace NKingime.Core.EF
         public override int DeleteByKey<TKey>(TKey key)
         {
             var entity = GetByKey(key);
-            return entity == null ? 0 : Delete(entity);
+            return entity.IsNull() ? 0 : Delete(entity);
         }
 
         /// <summary>
@@ -170,12 +170,12 @@ namespace NKingime.Core.EF
         public override TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
         {
             IQueryable<TEntity> queryable = _dbSet;
-            if (predicate != null)
+            if (predicate.IsNotNull())
             {
                 queryable = queryable.Where(predicate);
             }
             //
-            if (orderSelectors != null)
+            if (orderSelectors.IsNotNull())
             {
                 queryable = OrderBy(queryable, orderSelectors);
             }
@@ -192,12 +192,12 @@ namespace NKingime.Core.EF
         public override List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
         {
             IQueryable<TEntity> queryable = _dbSet;
-            if (predicate != null)
+            if (predicate.IsNotNull())
             {
                 queryable = queryable.Where(predicate);
             }
             //
-            if (orderSelectors != null)
+            if (orderSelectors.IsNotNull())
             {
                 queryable = OrderBy(queryable, orderSelectors);
             }
@@ -226,12 +226,12 @@ namespace NKingime.Core.EF
                 return pagedResult;
             }
             IQueryable<TEntity> queryable = _dbSet;
-            if (predicate != null)
+            if (predicate.IsNotNull())
             {
                 queryable = queryable.Where(predicate);
             }
             //
-            if (orderSelectors != null)
+            if (orderSelectors.IsNotNull())
             {
                 queryable = OrderBy(queryable, orderSelectors);
             }
@@ -251,7 +251,7 @@ namespace NKingime.Core.EF
         /// <returns></returns>
         public override int Count(Expression<Func<TEntity, bool>> predicate = null)
         {
-            return predicate != null ? _dbSet.Count(predicate) : _dbSet.Count();
+            return predicate.IsNotNull() ? _dbSet.Count(predicate) : _dbSet.Count();
         }
 
         #endregion

@@ -9,6 +9,7 @@ using System.Linq;
 using System.Configuration;
 using NKingime.Core.Config;
 using NKingime.Core.Data;
+using NKingime.Core.Extension;
 
 namespace NKingime.Core.EF
 {
@@ -118,7 +119,7 @@ namespace NKingime.Core.EF
         /// </summary>
         public bool TransactionEnabled
         {
-            get { return Database.CurrentTransaction != null; }
+            get { return Database.CurrentTransaction.IsNotNull(); }
         }
 
         #endregion
@@ -131,7 +132,7 @@ namespace NKingime.Core.EF
         /// <param name="isolationLevel">指定连接的事务锁定行为，默认<see cref="IsolationLevel.Unspecified"/>。</param>
         public void BeginTransaction(IsolationLevel isolationLevel = IsolationLevel.Unspecified)
         {
-            if (Database.CurrentTransaction == null)
+            if (Database.CurrentTransaction.IsNull())
             {
                 Database.BeginTransaction(isolationLevel);
             }
@@ -143,7 +144,7 @@ namespace NKingime.Core.EF
         public void Commit()
         {
             var transaction = Database.CurrentTransaction;
-            if (transaction != null)
+            if (transaction.IsNotNull())
             {
                 try
                 {
@@ -163,7 +164,7 @@ namespace NKingime.Core.EF
         public void Rollback()
         {
             var transaction = Database.CurrentTransaction;
-            if (transaction != null)
+            if (transaction.IsNotNull())
             {
                 transaction.Rollback();
             }
@@ -199,7 +200,7 @@ namespace NKingime.Core.EF
         private static string GetConnectionStringName()
         {
             var connectionStringName = _dbContextConfig.ConnectionStringName;
-            if (ConfigurationManager.ConnectionStrings[connectionStringName] == null)
+            if (ConfigurationManager.ConnectionStrings[connectionStringName].IsNull())
             {
 
             }

@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using System.Collections.Generic;
 using System.ComponentModel;
 using NKingime.Core.Generic;
+using NKingime.Core.Extension;
 
 namespace NKingime.Core.Public
 {
@@ -36,7 +37,7 @@ namespace NKingime.Core.Public
         /// <param name="keySelectors"></param>
         public OrderSelector(params Expression<Func<TEntity, dynamic>>[] keySelectors)
         {
-            if (keySelectors != null)
+            if (keySelectors.IsNotNull())
             {
                 _keySelectors = new ReadOnlyList<Expression<Func<TEntity, dynamic>>>(keySelectors);
             }

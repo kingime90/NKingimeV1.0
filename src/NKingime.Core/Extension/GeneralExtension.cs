@@ -30,7 +30,7 @@ namespace NKingime.Core.Extension
         /// <returns>如果 t 参数不为 null，则为 true；否则为 false。</returns>
         public static bool IsNotNull<T>(this T t)
         {
-            return !IsNull(t);
+            return !t.IsNull();
         }
 
         /// <summary>
@@ -42,12 +42,12 @@ namespace NKingime.Core.Extension
         /// <returns>如果 t 参数不为 null，则为 t；如果 defVal 参数不为 null，则为 defVal；否则为 default(T)。</returns>
         public static T GetOrDefault<T>(this T t, T defVal)
         {
-            if (IsNotNull(t))
+            if (t.IsNotNull())
             {
                 return t;
             }
             //
-            if (IsNotNull(defVal))
+            if (defVal.IsNotNull())
             {
                 return defVal;
             }
@@ -70,16 +70,16 @@ namespace NKingime.Core.Extension
             switch (compareFlag)
             {
                 case CompareFlag.GreaterAndLess:
-                    result = IsGreater(value, minValue) && IsLess(value, maxValue);
+                    result = value.IsGreater(minValue) && value.IsLess(maxValue);
                     break;
                 case CompareFlag.GreaterEqualAndLessEqual:
-                    result = IsGreaterEqual(value, maxValue) && IsLessEqual(value, maxValue);
+                    result = value.IsGreaterEqual(maxValue) && value.IsLessEqual(maxValue);
                     break;
                 case CompareFlag.GreaterAndLessEqual:
-                    result = IsGreater(value, minValue) && IsLessEqual(value, maxValue);
+                    result = value.IsGreater(minValue) && value.IsLessEqual(maxValue);
                     break;
                 case CompareFlag.GreaterEqualAndLess:
-                    result = IsGreaterEqual(value, maxValue) && IsLess(value, maxValue);
+                    result = value.IsGreaterEqual(maxValue) && value.IsLess(maxValue);
                     break;
             }
             return result;
@@ -171,7 +171,7 @@ namespace NKingime.Core.Extension
         /// </summary>
         /// <param name="value">要测试的可空布尔值。</param>
         /// <returns></returns>
-        public static bool IsTrue(bool? value)
+        public static bool IsTrue(this bool? value)
         {
             return value.HasValue && value.Value;
         }
@@ -181,9 +181,9 @@ namespace NKingime.Core.Extension
         /// </summary>
         /// <param name="value">要测试的可空布尔值。</param>
         /// <returns></returns>
-        public static bool IsFalse(bool? value)
+        public static bool IsFalse(this bool? value)
         {
-            return !IsTrue(value);
+            return !value.IsTrue();
         }
 
         #endregion
