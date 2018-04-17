@@ -71,7 +71,7 @@ namespace NKingime.Core.Extension
         /// <typeparam name="TException">异常类型。</typeparam>
         /// <param name="assertion">要验证的断言。</param>
         /// <param name="args">与要调用构造函数的参数数量、顺序和类型匹配的参数数组。如果 args 为空数组或 null，则调用不带任何参数的构造函数（默认构造函数）。</param>
-        public static void Require<TException>(bool assertion, params object[] args) where TException : Exception
+        public static void Require<TException>(this bool assertion, params object[] args) where TException : Exception
         {
             if (assertion)
             {

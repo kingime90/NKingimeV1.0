@@ -74,6 +74,7 @@
     <Compile Include="Data\IIdentify.cs" />
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
+    <Compile Include="Extension\ValueTypeExtension.cs" />
     <Compile Include="Extension\ValidationExtension.cs" />
     <Compile Include="I18n\Context\ZH-CN.Designer.cs">
       <AutoGen>True</AutoGen>
