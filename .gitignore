@@ -4,5 +4,7 @@
 /tests/NKingime.Core.Tests/obj
 /packages
 /.vs
-/src/NKingime.Entity/obj
 /src/NKingime.Entity/bin
+/src/NKingime.Entity/obj
+/tests/NKingime.Entity.Tests/bin
+/tests/NKingime.Entity.Tests/obj
