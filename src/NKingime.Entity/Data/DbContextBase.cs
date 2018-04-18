@@ -200,10 +200,10 @@ namespace NKingime.Entity.Data
         private static string GetConnectionStringName()
         {
             var connectionStringName = _dbContextConfig.ConnectionStringName;
-            //if (ConfigurationManager.ConnectionStrings[connectionStringName].IsNull())
-            //{
+            if (ConfigurationManager.ConnectionStrings[connectionStringName].IsNull())
+            {
 
-            //}
+            }
             return connectionStringName;
         }
 

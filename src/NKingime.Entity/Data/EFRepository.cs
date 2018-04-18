@@ -57,6 +57,10 @@ namespace NKingime.Entity.Data
         /// <returns>返回受影响的行数。</returns>
         public override int Save(TEntity entity)
         {
+            if (entity is ICreateTime)
+            {
+                ((ICreateTime)entity).CreateTime = DateTime.Now;
+            }
             _dbSet.Add(entity);
             return UnitOfWork.SaveChanges();
         }
@@ -267,12 +271,11 @@ namespace NKingime.Entity.Data
         /// <returns></returns>
         protected IOrderedQueryable<TEntity> OrderBy(IQueryable<TEntity> queryable, params OrderSelector<TEntity>[] orderSelectors)
         {
-            int index;
+            int index = 0;
             bool isAscending;
             IOrderedQueryable<TEntity> orderedQueryable = null;
             foreach (var orderSelector in orderSelectors)
             {
-                index = 0;
                 isAscending = orderSelector.SortDirection == ListSortDirection.Ascending;
                 foreach (var keySelector in orderSelector.KeySelectors)
                 {

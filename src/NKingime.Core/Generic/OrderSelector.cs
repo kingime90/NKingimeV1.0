@@ -17,16 +17,16 @@ namespace NKingime.Core.Generic
         /// 初始化一个<see cref="OrderSelector{TEntity}"/>新实例。
         /// </summary>
         /// <param name="keySelector">用于从元素中提取键的函数列表。</param>
-        public OrderSelector(IList<Expression<Func<TEntity, dynamic>>> keySelectors)
+        public OrderSelector(IList<Expression<Func<TEntity, object>>> keySelectors)
         {
-            _keySelectors = new ReadOnlyList<Expression<Func<TEntity, dynamic>>>(keySelectors);
+            _keySelectors = new ReadOnlyList<Expression<Func<TEntity, object>>>(keySelectors);
         }
 
         /// <summary>
         /// 初始化一个<see cref="OrderSelector{TEntity}"/>新实例。
         /// </summary>
         /// <param name="keySelector">用于从元素中提取键的函数列表。</param>
-        public OrderSelector(ListSortDirection sortDirection, IList<Expression<Func<TEntity, dynamic>>> keySelectors) : this(keySelectors)
+        public OrderSelector(ListSortDirection sortDirection, IList<Expression<Func<TEntity, object>>> keySelectors) : this(keySelectors)
         {
             _sortDirection = sortDirection;
         }
@@ -35,11 +35,11 @@ namespace NKingime.Core.Generic
         /// 初始化一个<see cref="OrderSelector{TEntity}"/>新实例。
         /// </summary>
         /// <param name="keySelectors"></param>
-        public OrderSelector(params Expression<Func<TEntity, dynamic>>[] keySelectors)
+        public OrderSelector(params Expression<Func<TEntity, object>>[] keySelectors)
         {
             if (keySelectors.IsNotNull())
             {
-                _keySelectors = new ReadOnlyList<Expression<Func<TEntity, dynamic>>>(keySelectors);
+                _keySelectors = new ReadOnlyList<Expression<Func<TEntity, object>>>(keySelectors);
             }
         }
 
@@ -48,17 +48,17 @@ namespace NKingime.Core.Generic
         /// </summary>
         /// <param name="sortDirection"></param>
         /// <param name="keySelectors"></param>
-        public OrderSelector(ListSortDirection sortDirection, params Expression<Func<TEntity, dynamic>>[] keySelectors) : this(keySelectors)
+        public OrderSelector(ListSortDirection sortDirection, params Expression<Func<TEntity, object>>[] keySelectors) : this(keySelectors)
         {
             _sortDirection = sortDirection;
         }
 
-        private readonly ReadOnlyList<Expression<Func<TEntity, dynamic>>> _keySelectors;
+        private readonly ReadOnlyList<Expression<Func<TEntity, object>>> _keySelectors;
 
         /// <summary>
         /// 用于从元素中提取键的函数列表。
         /// </summary>
-        public IReadOnlyList<Expression<Func<TEntity, dynamic>>> KeySelectors
+        public IReadOnlyList<Expression<Func<TEntity, object>>> KeySelectors
         {
             get
             {
