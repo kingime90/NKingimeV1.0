@@ -61,6 +61,10 @@
     <Compile Include="Data\EntityMapperBase.cs" />
     <Compile Include="Data\IEntityMapper.cs" />
     <Compile Include="Extension\DbContextExtension.cs" />
+    <Compile Include="Initializer\ContextInitializer.cs" />
+    <Compile Include="Initializer\DatabaseInitializer.cs" />
+    <Compile Include="Initializer\DbContextInitializerBase.cs" />
+    <Compile Include="Initializer\DefaultDbContextInitializer.cs" />
     <Compile Include="Migrations\AutoMigrationsConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

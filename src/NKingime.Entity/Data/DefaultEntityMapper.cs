@@ -1,13 +1,13 @@
-﻿//using NKingime.Core.Data;
+﻿using NKingime.Core.Data;
 
-//namespace NKingime.Entity.Data
-//{
-//    /// <summary>
-//    /// 默认数据实体映射配置基类。
-//    /// </summary>
-//    /// <typeparam name="TEntity"></typeparam>
-//    public abstract class DefaultEntityMapper<TEntity> : EntityMapperBase<TEntity, DefaultDbContext> where TEntity : class, IEntity
-//    {
+namespace NKingime.Entity.Data
+{
+    /// <summary>
+    /// 默认数据实体映射配置基类。
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    public abstract class DefaultEntityMapper<TEntity> : EntityMapperBase<TEntity, DefaultDbContext> where TEntity : class, IEntity
+    {
 
-//    }
-//}
+    }
+}
