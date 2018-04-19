@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKingime.Core.Data
+namespace NKingime.Core.Entity
 {
     /// <summary>
     /// 创建时间数据实体接口。

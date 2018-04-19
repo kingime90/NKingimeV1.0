@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKingime.Core.Data
+namespace NKingime.Core.Entity
 {
     /// <summary>
     /// 唯一标识数据实体接口。

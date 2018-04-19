@@ -1,6 +1,10 @@
 ﻿using System;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Collections.Generic;
 using NKingime.Core.Flag;
 using NKingime.Core.Utility;
+using System.Linq;
 
 namespace NKingime.Core.Extension
 {
@@ -131,6 +135,36 @@ namespace NKingime.Core.Extension
         public static bool IsLessEqual<T>(this T value, T compareValue) where T : struct, IComparable
         {
             return value.CompareTo(compareValue) <= 0;
+        }
+
+        /// <summary>
+        /// 序列是否为空。
+        /// </summary>
+        /// <typeparam name="TSource">source 中的元素的类型。</typeparam>
+        /// <param name="entities">要测试的序列。</param>
+        /// <returns></returns>
+        public static bool IsEmpty<TSource>(this IEnumerable<TSource> entities)
+        {
+            return entities.IsNull() || Enumerable.Count(entities) == 0;
+        }
+
+        /// <summary>
+        /// 如果指定属性存在，则设置指定类型的属性的值。
+        /// </summary>
+        /// <typeparam name="TSource">source 类型。</typeparam>
+        /// <typeparam name="TElement">source 类型的基类型。</typeparam>
+        /// <typeparam name="TProperty">source 类型的基类型的属性类型。</typeparam>
+        /// <param name="source">要设置的类型的实例。</param>
+        /// <param name="propertySelector">用于从元素中提取属性的函数。</param>
+        /// <param name="value">设置的值。</param>
+        public static void SetPropertyValueIfExist<TSource, TElement, TProperty>(this TSource source, Expression<Func<TElement, TProperty>> propertySelector, TProperty value) where TSource : class where TElement : class
+        {
+            if (!(source is TElement))
+            {
+                return;
+            }
+            var propertyInfo = (PropertyInfo)(propertySelector.Body as MemberExpression).Member;
+            propertyInfo.SetValue(source, value);
         }
 
         #endregion

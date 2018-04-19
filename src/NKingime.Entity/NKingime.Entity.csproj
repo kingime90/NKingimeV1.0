@@ -62,7 +62,6 @@
     <Compile Include="Data\EntityMapperBase.cs" />
     <Compile Include="Data\IEntityMapper.cs" />
     <Compile Include="Extension\DbContextExtension.cs" />
-    <Compile Include="Extension\Repository.cs" />
     <Compile Include="Initializer\ContextInitializer.cs" />
     <Compile Include="Initializer\DatabaseInitializer.cs" />
     <Compile Include="Initializer\DbContextInitializerBase.cs" />

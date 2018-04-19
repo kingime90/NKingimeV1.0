@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using NKingime.Core.Data;
 using System.Data.Entity;
-using EntityFramework.Extensions;
 using System.ComponentModel;
+using EntityFramework.Extensions;
+using NKingime.Core.Data;
 using NKingime.Core.Utility;
 using NKingime.Core.Extension;
 using NKingime.Core.Generic;
 using NKingime.Entity.Extension;
+using NKingime.Core.Entity;
 
 namespace NKingime.Entity.Data
 {
@@ -57,10 +58,7 @@ namespace NKingime.Entity.Data
         /// <returns>返回受影响的行数。</returns>
         public override int Save(TEntity entity)
         {
-            if (entity is ICreateTime)
-            {
-                ((ICreateTime)entity).CreateTime = DateTime.Now;
-            }
+            CheckCreateTime(entity, DateTime.Now);
             _dbSet.Add(entity);
             return UnitOfWork.SaveChanges();
         }
@@ -72,6 +70,11 @@ namespace NKingime.Entity.Data
         /// <returns>返回受影响的行数。</returns>
         public override int Save(IEnumerable<TEntity> entities)
         {
+            var createTime = DateTime.Now;
+            foreach (var entity in entities)
+            {
+                CheckCreateTime(entity, createTime);
+            }
             _dbSet.AddRange(entities);
             return UnitOfWork.SaveChanges();
         }
@@ -145,9 +148,9 @@ namespace NKingime.Entity.Data
         /// </summary>
         /// <param name="entities">数据实体数组。</param>
         /// <returns>返回受影响的行数。</returns>
-        public override int Update(params TEntity[] entities)
+        public override int Update(IEnumerable<TEntity> entities)
         {
-            ((DbContext)UnitOfWork).Update(entities);
+            ((DbContext)UnitOfWork).Update(entities.ToArray());
             return UnitOfWork.SaveChanges();
         }
 

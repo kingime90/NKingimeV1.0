@@ -1,4 +1,4 @@
-﻿using NKingime.Core.Data;
+﻿using NKingime.Core.Entity;
 
 namespace NKingime.Entity.Data
 {

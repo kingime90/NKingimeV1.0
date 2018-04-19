@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using NKingime.Core.Generic;
+using NKingime.Core.Entity;
+using NKingime.Core.Extension;
 
 namespace NKingime.Core.Data
 {
@@ -36,16 +38,6 @@ namespace NKingime.Core.Data
         public abstract int Save(TEntity entity);
 
         /// <summary>
-        /// 保存数据实体数组。
-        /// </summary>
-        /// <param name="entities">数据实体数组。</param>
-        /// <returns>返回受影响的行数。</returns>
-        public virtual int Save(params TEntity[] entities)
-        {
-            return Save(entities.ToList());
-        }
-
-        /// <summary>
         /// 保存数据实体集合。
         /// </summary>
         /// <param name="entities">数据实体集合。</param>
@@ -70,16 +62,6 @@ namespace NKingime.Core.Data
         /// <param name="entity">数据实体。</param>
         /// <returns>返回受影响的行数。</returns>
         public abstract int Delete(TEntity entity);
-
-        /// <summary>
-        /// 删除数据实体数组。
-        /// </summary>
-        /// <param name="entities">数据实体数组。</param>
-        /// <returns>返回受影响的行数。</returns>
-        public virtual int Delete(params TEntity[] entities)
-        {
-            return Delete(entities.ToList());
-        }
 
         /// <summary>
         /// 删除数据实体集合。
@@ -107,20 +89,106 @@ namespace NKingime.Core.Data
         public abstract int Update(TEntity entity);
 
         /// <summary>
-        /// 更新数据实体数组。
-        /// </summary>
-        /// <param name="entities">数据实体数组。</param>
-        /// <returns>返回受影响的行数。</returns>
-        public abstract int Update(params TEntity[] entities);
-
-        /// <summary>
         /// 更新数据实体集合。
         /// </summary>
         /// <param name="entities">数据实体集合。</param>
         /// <returns>返回受影响的行数。</returns>
-        public virtual int Update(IEnumerable<TEntity> entities)
+        public abstract int Update(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// 根据主键逻辑删除数据实体。
+        /// </summary>
+        /// <typeparam name="TKey">主键类型。</typeparam>
+        /// <param name="key">主键。</param>
+        /// <returns>返回受影响的行数。</returns>
+        public virtual int RecycleByKey<TKey>(TKey key) where TKey : IEquatable<TKey>
         {
-            return Update(entities.ToArray());
+            TEntity entity = GetByKey(key);
+            return entity.IsNull() ? 0 : Recycle(entity);
+        }
+
+        /// <summary>
+        /// 逻辑删除数据实体。
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public virtual int Recycle(TEntity entity)
+        {
+            LogicDelete(entity);
+            return Update(entity);
+        }
+
+        /// <summary>
+        /// 逻辑删除数据实体。
+        /// </summary>
+        /// <param name="entities">数据实体集合。</param>
+        /// <returns>返回受影响的行数。</returns>
+        public virtual int Recycle(IEnumerable<TEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                LogicDelete(entity);
+            }
+            return Update(entities);
+        }
+
+        /// <summary>
+        /// 逻辑删除所有符合条件的数据实体。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <returns>返回受影响的行数。</returns>
+        public virtual int Recycle(Expression<Func<TEntity, bool>> predicate)
+        {
+            var entities = Query(predicate);
+            return entities.IsEmpty() ? 0 : Recycle(entities);
+        }
+
+        /// <summary>
+        /// 根据主键逻辑还原数据实体。
+        /// </summary>
+        /// <typeparam name="TKey">主键类型。</typeparam>
+        /// <param name="key">主键。</param>
+        /// <returns>返回受影响的行数。</returns>
+        public virtual int RestoreByKey<TKey>(TKey key) where TKey : IEquatable<TKey>
+        {
+            TEntity entity = GetByKey(key);
+            return entity.IsNull() ? 0 : Restore(entity);
+        }
+
+        /// <summary>
+        /// 逻辑还原数据实体。
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        public virtual int Restore(TEntity entity)
+        {
+            LogicRestore(entity);
+            return Update(entity);
+        }
+
+        /// <summary>
+        /// 逻辑还原数据实体。
+        /// </summary>
+        /// <param name="entities">数据实体集合。</param>
+        /// <returns>返回受影响的行数。</returns>
+        public virtual int Restore(IEnumerable<TEntity> entities)
+        {
+            foreach (var entity in entities)
+            {
+                LogicRestore(entity);
+            }
+            return Update(entities);
+        }
+
+        /// <summary>
+        /// 逻辑还原所有符合条件的数据实体。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <returns>返回受影响的行数。</returns>
+        public virtual int Restore(Expression<Func<TEntity, bool>> predicate)
+        {
+            var entities = Query(predicate);
+            return entities.IsEmpty() ? 0 : Restore(entities);
         }
 
         #endregion
@@ -268,6 +336,48 @@ namespace NKingime.Core.Data
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns></returns>
         public abstract int Count(Expression<Func<TEntity, bool>> predicate);
+
+        #endregion
+
+        #region 辅助方法
+
+        /// <summary>
+        /// 检查创建时间，如果实现创建时间数据实体接口，则更新创建时间。
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="createTime"></param>
+        protected virtual void CheckCreateTime(TEntity entity, DateTime createTime)
+        {
+            entity.SetPropertyValueIfExist<TEntity, ICreateTime, DateTime>(s => s.CreateTime, createTime);
+        }
+
+        /// <summary>
+        /// 检查逻辑删除，如果实现逻辑删除数据实体接口，则更新是否已删除。
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <param name="isDeleted"></param>
+        private void CheckLogicDelete(TEntity entity, bool isDeleted)
+        {
+            entity.SetPropertyValueIfExist<TEntity, ILogicDelete, bool>(s => s.IsDeleted, isDeleted);
+        }
+
+        /// <summary>
+        /// 逻辑删除。
+        /// </summary>
+        /// <param name="entity"></param>
+        protected virtual void LogicDelete(TEntity entity)
+        {
+            CheckLogicDelete(entity, true);
+        }
+
+        /// <summary>
+        /// 逻辑还原。
+        /// </summary>
+        /// <param name="entity"></param>
+        protected virtual void LogicRestore(TEntity entity)
+        {
+            CheckLogicDelete(entity, false);
+        }
 
         #endregion
     }

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace NKingime.Core.Data
+namespace NKingime.Core.Entity
 {
     /// <summary>
     /// 自增唯一标识数据实体基类。

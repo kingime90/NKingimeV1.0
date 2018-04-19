@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace NKingime.Core.Data
+namespace NKingime.Core.Entity
 {
     /// <summary>
     /// Guid唯一标识基类。

@@ -3,6 +3,7 @@ using NKingime.Core.Data;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
+using NKingime.Core.Entity;
 
 namespace NKingime.Entity.Data
 {

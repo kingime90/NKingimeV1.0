@@ -49,7 +49,8 @@ namespace NKingime.Entity.Tests.Data
         [Test]
         public void GetByKey()
         {
-            int id = 4;
+            var sds= string.Equals(null, "", StringComparison.OrdinalIgnoreCase);
+            int id = 1;
             var user = userRepository.GetByKey(id);
             Assert.IsNotNull(user);
         }
@@ -60,10 +61,32 @@ namespace NKingime.Entity.Tests.Data
         [Test]
         public void Update()
         {
-            int id = 4;
+            int id = 1;
             var user = userRepository.GetByKey(id);
-            user.Mobile = "13690000009";
+            user.Mobile = "13690000008";
             var result = userRepository.Update(user);
+            Assert.IsTrue(result > 0);
+        }
+
+        /// <summary>
+        /// 根据主键逻辑删除数据实体测试。
+        /// </summary>
+        [Test]
+        public void RecycleByKey()
+        {
+            int id = 1;
+            var result = userRepository.RecycleByKey(id);
+            Assert.IsTrue(result > 0);
+        }
+
+        /// <summary>
+        /// 根据主键逻辑还原数据实体测试。
+        /// </summary>
+        [Test]
+        public void RestoreByKey()
+        {
+            int id = 1;
+            var result = userRepository.RestoreByKey(id);
             Assert.IsTrue(result > 0);
         }
 

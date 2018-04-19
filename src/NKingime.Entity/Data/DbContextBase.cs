@@ -182,6 +182,9 @@ namespace NKingime.Entity.Data
         {
             //移除一对多的级联删除
             modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+            //移除实体类型名称的复数版本的约定（表名）
+            modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
+
             var entityMappers = DbContextManage.Instance.GetEntityMappers(DbContextType);
             foreach (IEntityMapper mapper in entityMappers)
             {

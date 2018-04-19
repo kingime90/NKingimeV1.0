@@ -1,9 +1,10 @@
 ﻿using System;
-using NKingime.Core.IoC;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using NKingime.Core.Generic;
+using NKingime.Core.IoC;
+using NKingime.Core.Entity;
 
 namespace NKingime.Core.Data
 {
@@ -37,13 +38,6 @@ namespace NKingime.Core.Data
         int Save(TEntity entity);
 
         /// <summary>
-        /// 保存数据实体数组。
-        /// </summary>
-        /// <param name="entities">数据实体数组。</param>
-        /// <returns>返回受影响的行数。</returns>
-        int Save(params TEntity[] entities);
-
-        /// <summary>
         /// 保存数据实体集合。
         /// </summary>
         /// <param name="entities">数据实体集合。</param>
@@ -68,13 +62,6 @@ namespace NKingime.Core.Data
         /// <param name="entity">数据实体。</param>
         /// <returns>返回受影响的行数。</returns>
         int Delete(TEntity entity);
-
-        /// <summary>
-        /// 删除数据实体数组。
-        /// </summary>
-        /// <param name="entities">数据实体数组。</param>
-        /// <returns>返回受影响的行数。</returns>
-        int Delete(params TEntity[] entities);
 
         /// <summary>
         /// 删除数据实体集合。
@@ -102,18 +89,69 @@ namespace NKingime.Core.Data
         int Update(TEntity entity);
 
         /// <summary>
-        /// 更新数据实体数组。
-        /// </summary>
-        /// <param name="entities">数据实体数组。</param>
-        /// <returns>返回受影响的行数。</returns>
-        int Update(params TEntity[] entities);
-
-        /// <summary>
         /// 更新数据实体集合。
         /// </summary>
         /// <param name="entities">数据实体集合。</param>
         /// <returns>返回受影响的行数。</returns>
         int Update(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// 根据主键逻辑删除数据实体。
+        /// </summary>
+        /// <typeparam name="TKey">主键类型。</typeparam>
+        /// <param name="key">主键。</param>
+        /// <returns>返回受影响的行数。</returns>
+        int RecycleByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+
+        /// <summary>
+        /// 逻辑删除数据实体。
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        int Recycle(TEntity entity);
+
+        /// <summary>
+        /// 逻辑删除数据实体。
+        /// </summary>
+        /// <param name="entities">数据实体集合。</param>
+        /// <returns>返回受影响的行数。</returns>
+        int Recycle(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// 逻辑删除所有符合条件的数据实体。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <returns>返回受影响的行数。</returns>
+        int Recycle(Expression<Func<TEntity, bool>> predicate);
+
+        /// <summary>
+        /// 根据主键逻辑还原数据实体。
+        /// </summary>
+        /// <typeparam name="TKey">主键类型。</typeparam>
+        /// <param name="key">主键。</param>
+        /// <returns>返回受影响的行数。</returns>
+        int RestoreByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+
+        /// <summary>
+        /// 逻辑还原数据实体。
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        int Restore(TEntity entity);
+
+        /// <summary>
+        /// 逻辑还原数据实体。
+        /// </summary>
+        /// <param name="entities">数据实体集合。</param>
+        /// <returns>返回受影响的行数。</returns>
+        int Restore(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// 逻辑还原所有符合条件的数据实体。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <returns>返回受影响的行数。</returns>
+        int Restore(Expression<Func<TEntity, bool>> predicate);
 
         #endregion
 

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
-using NKingime.Core.Data;
 using System.Data.Entity.Infrastructure;
+using NKingime.Core.Entity;
+using NKingime.Core.Extension;
 
 namespace NKingime.Entity.Extension
 {
@@ -20,14 +21,19 @@ namespace NKingime.Entity.Extension
         {
             var dbSet = dbContext.Set<TEntity>();
             DbEntityEntry<TEntity> entry;
+            var lastUpdateTime = DateTime.Now;
             foreach (TEntity entity in entities)
             {
                 entry = dbContext.Entry(entity);
                 if (entry.State == EntityState.Detached)
                 {
                     dbSet.Attach(entity);
+                    entry.State = EntityState.Modified;
                 }
-                entry.State = EntityState.Modified;
+                if (entry.State == EntityState.Modified)
+                {
+                    entity.SetPropertyValueIfExist<TEntity, ILastUpdateTime, DateTime?>(s => s.LastUpdateTime, lastUpdateTime);
+                }
             }
         }
     }
