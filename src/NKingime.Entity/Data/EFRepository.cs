@@ -192,25 +192,25 @@ namespace NKingime.Entity.Data
         }
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表。
+        /// 根据指定筛选表达式获取数据实体列表（无跟踪）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>
         /// <returns></returns>
         public override List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
         {
-            IQueryable<TEntity> queryable = Entities;
-            if (predicate.IsNotNull())
-            {
-                queryable = queryable.Where(predicate);
-            }
-            //
-            if (orderSelectors.IsNotEmpty())
-            {
-                queryable = OrderBy(queryable, orderSelectors);
-            }
-            //
-            return queryable.ToList();
+            return Query(false, predicate, orderSelectors);
+        }
+
+        /// <summary>
+        /// 根据指定筛选表达式获取数据实体列表（跟踪）。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <returns></returns>
+        public override List<TEntity> QueryTrack(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
+        {
+            return Query(true, predicate, orderSelectors);
         }
 
         #endregion
@@ -295,6 +295,29 @@ namespace NKingime.Entity.Data
                 }
             }
             return orderedQueryable;
+        }
+
+        /// <summary>
+        /// 根据指定筛选表达式获取数据实体列表。
+        /// </summary>
+        /// <param name="isTrack">是否跟踪查询。</param>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <returns></returns>
+        private List<TEntity> Query(bool isTrack, Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
+        {
+            IQueryable<TEntity> queryable = isTrack.IfElse(_dbSet, Entities);
+            if (predicate.IsNotNull())
+            {
+                queryable = queryable.Where(predicate);
+            }
+            //
+            if (orderSelectors.IsNotEmpty())
+            {
+                queryable = OrderBy(queryable, orderSelectors);
+            }
+            //
+            return queryable.ToList();
         }
 
         #endregion

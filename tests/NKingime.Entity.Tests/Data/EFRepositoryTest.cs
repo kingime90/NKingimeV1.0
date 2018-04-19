@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using NUnit.Framework;
 using NKingime.Entity.Tests.Initializer;
 using NKingime.Entity.Tests.Model;
@@ -130,6 +131,7 @@ namespace NKingime.Entity.Tests.Data
         public void QueryAll()
         {
             var users = userRepository.Query();
+            userRepository.Update(users.FirstOrDefault());
             Assert.IsTrue(users != null && users.Count > 0);
         }
 
