@@ -25,13 +25,16 @@ namespace NKingime.Entity.Extension
             foreach (TEntity entity in entities)
             {
                 entry = dbContext.Entry(entity);
+                //实体未由上下文跟踪
                 if (entry.State == EntityState.Detached)
                 {
+                    //将给定实体附加到集的基础上下文中，将更新之前未由上下文跟踪的实体
                     dbSet.Attach(entity);
                     entry.State = EntityState.Modified;
                 }
                 if (entry.State == EntityState.Modified)
                 {
+                    //设置最后更新时间
                     entity.SetPropertyValueIfExist<TEntity, ILastUpdateTime, DateTime?>(s => s.LastUpdateTime, lastUpdateTime);
                 }
             }

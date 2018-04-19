@@ -70,6 +70,19 @@ namespace NKingime.Entity.Tests.Data
         }
 
         /// <summary>
+        /// 更新未跟踪的数据。
+        /// </summary>
+        [Test]
+        public void UpdateNoTracking()
+        {
+            var users = userRepository.Query();
+            var firstUser = users.FirstOrDefault();
+            firstUser.Mobile = "13509098765";
+            var result = userRepository.Update(firstUser);
+            Assert.IsTrue(result > 0);
+        }
+
+        /// <summary>
         /// 根据主键逻辑删除数据实体测试。
         /// </summary>
         [Test]
@@ -131,7 +144,6 @@ namespace NKingime.Entity.Tests.Data
         public void QueryAll()
         {
             var users = userRepository.Query();
-            userRepository.Update(users.FirstOrDefault());
             Assert.IsTrue(users != null && users.Count > 0);
         }
 
