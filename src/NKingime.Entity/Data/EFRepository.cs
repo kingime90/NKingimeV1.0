@@ -183,7 +183,7 @@ namespace NKingime.Entity.Data
                 queryable = queryable.Where(predicate);
             }
             //
-            if (orderSelectors.IsNotNull())
+            if (orderSelectors.IsNotEmpty())
             {
                 queryable = OrderBy(queryable, orderSelectors);
             }
@@ -199,13 +199,13 @@ namespace NKingime.Entity.Data
         /// <returns></returns>
         public override List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
         {
-            IQueryable<TEntity> queryable = _dbSet;
+            IQueryable<TEntity> queryable = Entities;
             if (predicate.IsNotNull())
             {
                 queryable = queryable.Where(predicate);
             }
             //
-            if (orderSelectors.IsNotNull())
+            if (orderSelectors.IsNotEmpty())
             {
                 queryable = OrderBy(queryable, orderSelectors);
             }
@@ -233,13 +233,13 @@ namespace NKingime.Entity.Data
             {
                 return pagedResult;
             }
-            IQueryable<TEntity> queryable = _dbSet;
+            IQueryable<TEntity> queryable = Entities;
             if (predicate.IsNotNull())
             {
                 queryable = queryable.Where(predicate);
             }
             //
-            if (orderSelectors.IsNotNull())
+            if (orderSelectors.IsNotEmpty())
             {
                 queryable = OrderBy(queryable, orderSelectors);
             }

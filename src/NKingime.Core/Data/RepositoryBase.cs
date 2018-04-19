@@ -243,18 +243,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 查询所有数据实体列表。
         /// </summary>
-        /// <returns></returns>
-        public virtual List<TEntity> QueryAll()
-        {
-            return QueryAll(null);
-        }
-
-        /// <summary>
-        /// 查询所有数据实体列表。
-        /// </summary>
         /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
-        public virtual List<TEntity> QueryAll(params OrderSelector<TEntity>[] orderSelectors)
+        public virtual List<TEntity> Query(params OrderSelector<TEntity>[] orderSelectors)
         {
             return Query(null, orderSelectors);
         }

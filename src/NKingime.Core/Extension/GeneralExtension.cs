@@ -138,14 +138,47 @@ namespace NKingime.Core.Extension
         }
 
         /// <summary>
-        /// 序列是否为空。
+        /// 序列是否为null或空。
         /// </summary>
         /// <typeparam name="TSource">source 中的元素的类型。</typeparam>
-        /// <param name="entities">要测试的序列。</param>
+        /// <param name="source">要测试的序列。</param>
         /// <returns></returns>
-        public static bool IsEmpty<TSource>(this IEnumerable<TSource> entities)
+        public static bool IsEmpty<TSource>(this IEnumerable<TSource> source)
         {
-            return entities.IsNull() || Enumerable.Count(entities) == 0;
+            return source.IsNull() || Enumerable.Count(source) == 0;
+        }
+
+        /// <summary>
+        /// 序列是否不为null或空。
+        /// </summary>
+        /// <typeparam name="TSource">source 中的元素的类型。</typeparam>
+        /// <param name="source">要测试的序列。</param>
+        /// <returns></returns>
+        public static bool IsNotEmpty<TSource>(this IEnumerable<TSource> source)
+        {
+            return !source.IsEmpty();
+        }
+
+        /// <summary>
+        /// 数组是否为null或空。
+        /// </summary>
+        /// <typeparam name="TSource">source 中的元素的类型。</typeparam>
+        /// <param name="source">要测试的数组。</param>
+        /// <returns></returns>
+        public static bool IsEmpty<TSource>(this TSource[] source)
+        {
+            return source.IsNull() || source.Length == 0;
+        }
+
+        /// <summary>
+        /// 数组是否不为null或空。
+        /// </summary>
+        /// <typeparam name="TSource">source 中的元素的类型。</typeparam>
+        /// <param name="source">要测试的数组。</param>
+        /// <returns></returns>
+        public static bool IsNotEmpty<TSource>(this TSource[] source)
+        {
+            return !source.IsEmpty();
         }
 
         /// <summary>

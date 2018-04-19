@@ -129,7 +129,7 @@ namespace NKingime.Entity.Tests.Data
         [Test]
         public void QueryAll()
         {
-            var users = userRepository.QueryAll();
+            var users = userRepository.Query();
             Assert.IsTrue(users != null && users.Count > 0);
         }
 

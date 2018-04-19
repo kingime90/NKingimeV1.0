@@ -196,15 +196,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 查询所有数据实体列表。
         /// </summary>
-        /// <returns></returns>
-        List<TEntity> QueryAll();
-
-        /// <summary>
-        /// 查询所有数据实体列表。
-        /// </summary>
         /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
-        List<TEntity> QueryAll(params OrderSelector<TEntity>[] orderSelectors);
+        List<TEntity> Query(params OrderSelector<TEntity>[] orderSelectors);
 
         /// <summary>
         /// 根据指定筛选表达式获取数据实体列表。
