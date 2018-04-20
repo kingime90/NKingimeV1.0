@@ -139,7 +139,7 @@ namespace NKingime.Core.Data
         /// <returns>返回受影响的行数。</returns>
         public virtual int Recycle(Expression<Func<TEntity, bool>> predicate)
         {
-            var entities = Query(predicate);
+            var entities = QueryTrack(predicate);
             return entities.IsEmpty() ? 0 : Recycle(entities);
         }
 
@@ -187,7 +187,7 @@ namespace NKingime.Core.Data
         /// <returns>返回受影响的行数。</returns>
         public virtual int Restore(Expression<Func<TEntity, bool>> predicate)
         {
-            var entities = Query(predicate);
+            var entities = QueryTrack(predicate);
             return entities.IsEmpty() ? 0 : Restore(entities);
         }
 
@@ -241,7 +241,7 @@ namespace NKingime.Core.Data
         public abstract TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
         /// <summary>
-        /// 查询所有数据实体列表（无跟踪）。
+        /// 查询所有数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
@@ -251,7 +251,7 @@ namespace NKingime.Core.Data
         }
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（无跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns></returns>
@@ -261,7 +261,7 @@ namespace NKingime.Core.Data
         }
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（无跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>
@@ -269,7 +269,7 @@ namespace NKingime.Core.Data
         public abstract List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
         /// <summary>
-        /// 查询所有数据实体列表（跟踪）。
+        /// 查询所有数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
@@ -279,7 +279,7 @@ namespace NKingime.Core.Data
         }
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns></returns>
@@ -289,7 +289,7 @@ namespace NKingime.Core.Data
         }
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>
@@ -367,7 +367,7 @@ namespace NKingime.Core.Data
         /// <param name="createTime"></param>
         protected virtual void CheckCreateTime(TEntity entity, DateTime createTime)
         {
-            entity.SetPropertyValueIfExist<TEntity, ICreateTime, DateTime>(s => s.CreateTime, createTime);
+            entity.SetPropertyValue<TEntity, ICreateTime, DateTime>(s => s.CreateTime, createTime);
         }
 
         /// <summary>
@@ -377,7 +377,7 @@ namespace NKingime.Core.Data
         /// <param name="isDeleted"></param>
         private void CheckLogicDelete(TEntity entity, bool isDeleted)
         {
-            entity.SetPropertyValueIfExist<TEntity, ILogicDelete, bool>(s => s.IsDeleted, isDeleted);
+            entity.SetPropertyValue<TEntity, ILogicDelete, bool>(s => s.IsDeleted, isDeleted);
         }
 
         /// <summary>

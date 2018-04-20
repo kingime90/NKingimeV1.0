@@ -138,7 +138,7 @@ namespace NKingime.Core.Extension
         }
 
         /// <summary>
-        /// 序列是否为null或空。
+        /// 序列是否为 null 或 空。
         /// </summary>
         /// <typeparam name="TSource">source 中的元素的类型。</typeparam>
         /// <param name="source">要测试的序列。</param>
@@ -149,7 +149,7 @@ namespace NKingime.Core.Extension
         }
 
         /// <summary>
-        /// 序列是否不为null或空。
+        /// 序列是否不为 null 或 空。
         /// </summary>
         /// <typeparam name="TSource">source 中的元素的类型。</typeparam>
         /// <param name="source">要测试的序列。</param>
@@ -160,7 +160,7 @@ namespace NKingime.Core.Extension
         }
 
         /// <summary>
-        /// 数组是否为null或空。
+        /// 数组是否为 null 或 空。
         /// </summary>
         /// <typeparam name="TSource">source 中的元素的类型。</typeparam>
         /// <param name="source">要测试的数组。</param>
@@ -171,7 +171,7 @@ namespace NKingime.Core.Extension
         }
 
         /// <summary>
-        /// 数组是否不为null或空。
+        /// 数组是否不为 null 或 空。
         /// </summary>
         /// <typeparam name="TSource">source 中的元素的类型。</typeparam>
         /// <param name="source">要测试的数组。</param>
@@ -190,7 +190,7 @@ namespace NKingime.Core.Extension
         /// <param name="source">要设置的类型的实例。</param>
         /// <param name="propertySelector">用于从元素中提取属性的函数。</param>
         /// <param name="value">设置的值。</param>
-        public static void SetPropertyValueIfExist<TSource, TElement, TProperty>(this TSource source, Expression<Func<TElement, TProperty>> propertySelector, TProperty value) where TSource : class where TElement : class
+        public static void SetPropertyValue<TSource, TElement, TProperty>(this TSource source, Expression<Func<TElement, TProperty>> propertySelector, TProperty value) where TSource : class where TElement : class
         {
             if (!(source is TElement))
             {

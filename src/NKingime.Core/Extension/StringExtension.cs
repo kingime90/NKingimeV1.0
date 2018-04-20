@@ -43,12 +43,12 @@ namespace NKingime.Core.Extension
         /// 获取移除数组中指定的一组字符后的字符串。
         /// </summary>
         /// <param name="value">要获取的字符串。</param>
-        /// <param name="trimFlag">移除字符标识。</param>
+        /// <param name="removeFlag">字符移除标识。</param>
         /// <param name="trimChars">要删除的 Unicode 字符的数组，或 null。</param>
         /// <returns></returns>
-        public static string GetString(this string value, TrimCharFlag trimFlag, params char[] trimChars)
+        public static string GetString(this string value, StingRemoveFlag removeFlag, params char[] trimChars)
         {
-            return value.GetString(string.Empty, trimFlag, trimChars);
+            return value.GetString(string.Empty, removeFlag, trimChars);
         }
 
         /// <summary>
@@ -56,33 +56,77 @@ namespace NKingime.Core.Extension
         /// </summary>
         /// <param name="value">要获取的字符串。</param>
         /// <param name="defVal">默认字符串。</param>
-        /// <param name="trimFlag">移除字符标识。</param>
+        /// <param name="removeFlag">字符移除标识。</param>
         /// <param name="trimChars">要删除的 Unicode 字符的数组，或 null。</param>
         /// <returns></returns>
-        public static string GetString(this string value, string defVal, TrimCharFlag trimFlag, params char[] trimChars)
+        public static string GetString(this string value, string defVal, StingRemoveFlag removeFlag, params char[] trimChars)
         {
-            return value.GetOrDefault(defVal).Trim(trimFlag, trimChars);
+            return value.GetOrDefault(defVal).Trim(removeFlag, trimChars);
         }
 
         /// <summary>
         /// 从当前 System.String 对象移除数组中指定的一组字符。
         /// </summary>
         /// <param name="value">目标字符串。</param>
-        /// <param name="trimFlag">移除字符标识。</param>
+        /// <param name="removeFlag">字符移除标识。</param>
         /// <param name="trimChars">要删除的 Unicode 字符的数组，或 null。</param>
         /// <returns></returns>
-        public static string Trim(this string value, TrimCharFlag trimFlag, params char[] trimChars)
+        public static string Trim(this string value, StingRemoveFlag removeFlag, params char[] trimChars)
         {
-            switch (trimFlag)
+            switch (removeFlag)
             {
-                case TrimCharFlag.Start:
+                case StingRemoveFlag.Start:
                     return value.TrimStart(trimChars);
-                case TrimCharFlag.End:
+                case StingRemoveFlag.End:
                     return value.TrimEnd(trimChars);
-                case TrimCharFlag.None:
+                case StingRemoveFlag.None:
                     return value.Trim(trimChars);
             }
             return value;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="comparisonType"></param>
+        /// <returns></returns>
+        public static string ReplaceStart(this string value, string oldValue, string newValue, StringComparison? comparisonType = null)
+        {
+            if (value.IsNullOrWhiteSpace() || oldValue.IsNullOrEmpty())
+            {
+                return value;
+            }
+            int index = comparisonType.HasValue.IfElse(value.IndexOf(oldValue, comparisonType.Value), value.IndexOf(oldValue));
+            if (index == -1)
+            {
+                return value;
+            }
+            return newValue + value.Remove(0, oldValue.Length);
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="oldValue"></param>
+        /// <param name="newValue"></param>
+        /// <param name="comparisonType"></param>
+        /// <returns></returns>
+        public static string ReplaceEnd(this string value, string oldValue, string newValue, StringComparison? comparisonType = null)
+        {
+            if (value.IsNullOrWhiteSpace() || oldValue.IsNullOrEmpty())
+            {
+                return value;
+            }
+            int index = comparisonType.HasValue.IfElse(value.LastIndexOf(oldValue, comparisonType.Value), value.LastIndexOf(oldValue));
+            if (index == -1)
+            {
+                return value;
+            }
+            return value.Substring(0, value.Length - oldValue.Length) + newValue;
         }
     }
 }

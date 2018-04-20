@@ -40,7 +40,7 @@ namespace NKingime.Entity.Data
         public override IUnitOfWork UnitOfWork { get; }
 
         /// <summary>
-        /// 无跟踪查询，查询出来的对象将不能用于修改。
+        /// 非跟踪查询，查询出来的对象将不能用于修改。
         /// </summary>
         public override IQueryable<TEntity> Entities
         {
@@ -192,7 +192,7 @@ namespace NKingime.Entity.Data
         }
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（无跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>
@@ -203,7 +203,7 @@ namespace NKingime.Entity.Data
         }
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>

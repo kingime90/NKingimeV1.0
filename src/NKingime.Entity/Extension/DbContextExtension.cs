@@ -35,7 +35,7 @@ namespace NKingime.Entity.Extension
                 if (entry.State == EntityState.Modified)
                 {
                     //设置最后更新时间
-                    entity.SetPropertyValueIfExist<TEntity, ILastUpdateTime, DateTime?>(s => s.LastUpdateTime, lastUpdateTime);
+                    entity.SetPropertyValue<TEntity, ILastUpdateTime, DateTime?>(s => s.LastUpdateTime, lastUpdateTime);
                 }
             }
         }

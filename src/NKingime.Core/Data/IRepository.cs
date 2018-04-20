@@ -194,21 +194,21 @@ namespace NKingime.Core.Data
         TEntity FirstOrDefault(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
         /// <summary>
-        /// 查询所有数据实体列表（无跟踪）。
+        /// 查询所有数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         List<TEntity> Query(params OrderSelector<TEntity>[] orderSelectors);
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（无跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns></returns>
         List<TEntity> Query(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（无跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>
@@ -216,21 +216,21 @@ namespace NKingime.Core.Data
         List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
         /// <summary>
-        /// 查询所有数据实体列表（跟踪）。
+        /// 查询所有数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         List<TEntity> QueryTrack(params OrderSelector<TEntity>[] orderSelectors);
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns></returns>
         List<TEntity> QueryTrack(Expression<Func<TEntity, bool>> predicate);
 
         /// <summary>
-        /// 根据指定筛选表达式获取数据实体列表（跟踪）。
+        /// 根据指定筛选表达式获取数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <param name="orderSelectors">排序选择器集合。</param>

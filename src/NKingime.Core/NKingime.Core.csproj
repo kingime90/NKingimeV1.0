@@ -80,7 +80,7 @@
     <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Flag\CompareFlag.cs" />
     <Compile Include="Flag\LifetimeScopeFlag.cs" />
-    <Compile Include="Flag\TrimCharFlag.cs" />
+    <Compile Include="Flag\StingRemoveFlag.cs" />
     <Compile Include="Generic\ReadOnlyList.cs" />
     <Compile Include="Initializer\IDatabaseInitializer.cs" />
     <Compile Include="Initializer\IContextInitializer.cs" />
