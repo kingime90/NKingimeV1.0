@@ -128,7 +128,7 @@ namespace NKingime.Entity.Initializer
             IEnumerable<IEntityMapper> entityMappers = mapperTypes.Select(mapperType => Activator.CreateInstance(mapperType) as IEntityMapper);
             entityMappers = EntityMappersFilter(entityMappers).ToList();
             Type genericType, mapperBaseType, entityType;
-            genericType = typeof(EntityMapperBase<,>);
+            genericType = typeof(EntityMapperBase<,,>);
             var entityMapperSet = new Dictionary<Type, IEntityMapper>();
             foreach (var entityMapper in entityMappers)
             {

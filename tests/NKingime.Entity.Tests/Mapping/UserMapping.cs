@@ -4,7 +4,7 @@ using NKingime.Entity.Tests.Model;
 
 namespace NKingime.Entity.Tests.Mapping
 {
-    public class UserMapping : DefaultEntityMapper<User>
+    public class UserMapping : DefaultEntityMapper<User, int>
     {
 
     }

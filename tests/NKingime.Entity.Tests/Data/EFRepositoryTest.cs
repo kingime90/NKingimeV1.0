@@ -15,7 +15,7 @@ namespace NKingime.Entity.Tests.Data
     [TestFixture]
     public class EFRepositoryTest
     {
-        private static IRepository<User> userRepository;
+        private static IRepository<User, int> userRepository;
 
         /// <summary>
         /// 初始化。
@@ -24,7 +24,7 @@ namespace NKingime.Entity.Tests.Data
         public static void Initialize()
         {
             new DatabaseInitializerTest().Initialize();
-            userRepository = new EFRepository<User>();
+            userRepository = new EFRepository<User, int>();
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace NKingime.Entity.Tests.Data
         [Test]
         public void GetByKey()
         {
-            var sds= string.Equals(null, "", StringComparison.OrdinalIgnoreCase);
+            var sds = string.Equals(null, "", StringComparison.OrdinalIgnoreCase);
             int id = 1;
             var user = userRepository.GetByKey(id);
             Assert.IsNotNull(user);

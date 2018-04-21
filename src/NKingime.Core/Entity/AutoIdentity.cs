@@ -7,7 +7,7 @@ namespace NKingime.Core.Entity
     /// <summary>
     /// 自增唯一标识数据实体基类。
     /// </summary>
-    public abstract class AutoIdentity : IIdentify<int>
+    public abstract class AutoIdentity : IEntity<int>
     {
         /// <summary>
         /// 主键ID（自增）。

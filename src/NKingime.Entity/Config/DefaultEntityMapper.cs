@@ -1,4 +1,5 @@
-﻿using NKingime.Core.Entity;
+﻿using System;
+using NKingime.Core.Entity;
 using NKingime.Entity.Data;
 
 namespace NKingime.Entity.Config
@@ -7,7 +8,7 @@ namespace NKingime.Entity.Config
     /// 默认数据实体映射配置基类。
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
-    public abstract class DefaultEntityMapper<TEntity> : EntityMapperBase<TEntity, DefaultDbContext> where TEntity : class, IEntity
+    public abstract class DefaultEntityMapper<TEntity, TKey> : EntityMapperBase<TEntity, TKey, DefaultDbContext> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
 
     }

@@ -10,7 +10,7 @@ namespace NKingime.Entity.Config
     /// <summary>
     /// 数据实体映射配置基类。
     /// </summary>
-    public abstract class EntityMapperBase<TEntity, TDbContext> : EntityTypeConfiguration<TEntity>, IEntityMapper where TEntity : class, IEntity where TDbContext : DbContext, IUnitOfWork, new()
+    public abstract class EntityMapperBase<TEntity, TKey, TDbContext> : EntityTypeConfiguration<TEntity>, IEntityMapper where TEntity : class, IEntity<TKey> where TDbContext : DbContext, IUnitOfWork, new() where TKey : IEquatable<TKey>
     {
         private readonly Type _dbContextType = typeof(TDbContext);
 

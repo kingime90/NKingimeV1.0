@@ -12,7 +12,7 @@ namespace NKingime.Core.Data
     /// 数据仓储泛型接口基类。
     /// </summary>
     /// <typeparam name="TEntity">数据实体类型。</typeparam>
-    public abstract class RepositoryBase<TEntity> : IRepository<TEntity> where TEntity : class, IEntity
+    public abstract class RepositoryBase<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
         #region 属性
 
@@ -56,10 +56,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 根据主键删除数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>返回受影响的行数。</returns>
-        public abstract int DeleteByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+        public abstract int DeleteByKey(TKey key);
 
         /// <summary>
         /// 删除数据实体。
@@ -103,10 +102,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 根据主键逻辑删除数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>返回受影响的行数。</returns>
-        public virtual int RecycleByKey<TKey>(TKey key) where TKey : IEquatable<TKey>
+        public virtual int RecycleByKey(TKey key)
         {
             TEntity entity = GetByKey(key);
             return entity.IsNull() ? 0 : Recycle(entity);
@@ -151,10 +149,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 根据主键逻辑还原数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>返回受影响的行数。</returns>
-        public virtual int RestoreByKey<TKey>(TKey key) where TKey : IEquatable<TKey>
+        public virtual int RestoreByKey(TKey key)
         {
             TEntity entity = GetByKey(key);
             return entity.IsNull() ? 0 : Restore(entity);
@@ -211,10 +208,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 根据主键获取数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>如果检索到记录，则返回数据实体，否则返回null。</returns>
-        public abstract TEntity GetByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+        public abstract TEntity GetByKey(TKey key);
 
         /// <summary>
         /// 获取第一个或默认的数据实体。

@@ -18,7 +18,7 @@ namespace NKingime.Entity.Data
     /// EntityFramework数据仓储。
     /// </summary>
     /// <typeparam name="TEntity">数据实体类型。</typeparam>
-    public class EFRepository<TEntity> : RepositoryBase<TEntity> where TEntity : class, IEntity
+    public class EFRepository<TEntity, TKey> : RepositoryBase<TEntity, TKey> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
         /// <summary>
         /// 初始化一个<see cref="EFRepository{TEntity}"/>新实例。
@@ -94,10 +94,9 @@ namespace NKingime.Entity.Data
         /// <summary>
         /// 根据主键删除数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>返回受影响的行数。</returns>
-        public override int DeleteByKey<TKey>(TKey key)
+        public override int DeleteByKey(TKey key)
         {
             var entity = GetByKey(key);
             return entity.IsNull() ? 0 : Delete(entity);
@@ -147,7 +146,7 @@ namespace NKingime.Entity.Data
         /// <returns>返回受影响的行数。</returns>
         public override int Update(TEntity entity)
         {
-            ((DbContext)UnitOfWork).Update(entity);
+            ((DbContext)UnitOfWork).Update<TEntity, TKey>(entity);
             return UnitOfWork.SaveChanges();
         }
 
@@ -158,7 +157,7 @@ namespace NKingime.Entity.Data
         /// <returns>返回受影响的行数。</returns>
         public override int Update(IEnumerable<TEntity> entities)
         {
-            ((DbContext)UnitOfWork).Update(entities as TEntity[] ?? entities.ToArray());
+            ((DbContext)UnitOfWork).Update<TEntity, TKey>(entities as TEntity[] ?? entities.ToArray());
             return UnitOfWork.SaveChanges();
         }
 
@@ -180,10 +179,9 @@ namespace NKingime.Entity.Data
         /// <summary>
         /// 根据主键获取数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>如果检索到记录，则返回数据实体，否则返回null。</returns>
-        public override TEntity GetByKey<TKey>(TKey key)
+        public override TEntity GetByKey(TKey key)
         {
             return _dbSet.Find(key);
         }

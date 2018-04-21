@@ -17,7 +17,7 @@ namespace NKingime.Entity.Extension
         /// <typeparam name="TEntity">数据实体类型。</typeparam>
         /// <param name="dbContext">数据库上下文实例。</param>
         /// <param name="entities">数据实体数组。</param>
-        public static void Update<TEntity>(this DbContext dbContext, params TEntity[] entities) where TEntity : class, IEntity
+        public static void Update<TEntity, TKey>(this DbContext dbContext, params TEntity[] entities) where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
         {
             var dbSet = dbContext.Set<TEntity>();
             DbEntityEntry<TEntity> entry;

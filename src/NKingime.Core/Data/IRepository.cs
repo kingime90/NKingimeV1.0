@@ -12,7 +12,7 @@ namespace NKingime.Core.Data
     /// 数据仓储泛型接口。
     /// </summary>
     /// <typeparam name="TEntity">数据实体类型。</typeparam>
-    public interface IRepository<TEntity> : IRepository where TEntity : class, IEntity
+    public interface IRepository<TEntity, TKey> : IRepository where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
         #region 属性
 
@@ -56,10 +56,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 根据主键删除数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>返回受影响的行数。</returns>
-        int DeleteByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+        int DeleteByKey(TKey key);
 
         /// <summary>
         /// 删除数据实体。
@@ -111,10 +110,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 根据主键逻辑删除数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>返回受影响的行数。</returns>
-        int RecycleByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+        int RecycleByKey(TKey key);
 
         /// <summary>
         /// 逻辑删除数据实体。
@@ -140,10 +138,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 根据主键逻辑还原数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>返回受影响的行数。</returns>
-        int RestoreByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+        int RestoreByKey(TKey key);
 
         /// <summary>
         /// 逻辑还原数据实体。
@@ -173,10 +170,9 @@ namespace NKingime.Core.Data
         /// <summary>
         /// 根据主键获取数据实体。
         /// </summary>
-        /// <typeparam name="TKey">主键类型。</typeparam>
         /// <param name="key">主键。</param>
         /// <returns>如果检索到记录，则返回数据实体，否则返回null。</returns>
-        TEntity GetByKey<TKey>(TKey key) where TKey : IEquatable<TKey>;
+        TEntity GetByKey(TKey key);
 
         /// <summary>
         /// 获取第一个或默认的数据实体。
