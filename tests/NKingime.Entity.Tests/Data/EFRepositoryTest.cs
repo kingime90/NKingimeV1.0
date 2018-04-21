@@ -50,7 +50,6 @@ namespace NKingime.Entity.Tests.Data
         [Test]
         public void GetByKey()
         {
-            var sds = string.Equals(null, "", StringComparison.OrdinalIgnoreCase);
             int id = 1;
             var user = userRepository.GetByKey(id);
             Assert.IsNotNull(user);
@@ -153,7 +152,7 @@ namespace NKingime.Entity.Tests.Data
         [Test]
         public void Query()
         {
-            var users = userRepository.Query(p => p.IsHappy.HasValue && p.IsHappy.Value);
+            var users = userRepository.Query(p => p.IsHappy.Value);
             Assert.IsTrue(users != null && users.Count > 0);
         }
 
@@ -183,6 +182,20 @@ namespace NKingime.Entity.Tests.Data
             pageIndex = 1;
             var pagedResult = userRepository.PagedList(pageSize, pageIndex, p => p.IsHappy.HasValue && p.IsHappy.Value, createTimeDescending);
             Assert.IsTrue(pagedResult != null && !pagedResult.IsEmpty);
+        }
+
+        /// <summary>
+        /// 是否存在符合指定筛选表达式的数据。
+        /// </summary>
+        [Test]
+        public void Exists()
+        {
+            var mobile = "13509098765";
+            var result = userRepository.Exists(p => p.Mobile == mobile);
+            Assert.IsTrue(result);
+
+            result = userRepository.Exists(p => p.Mobile == mobile, 4);
+            Assert.IsFalse(result);
         }
     }
 }

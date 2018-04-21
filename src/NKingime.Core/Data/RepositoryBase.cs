@@ -12,6 +12,7 @@ namespace NKingime.Core.Data
     /// 数据仓储泛型接口基类。
     /// </summary>
     /// <typeparam name="TEntity">数据实体类型。</typeparam>
+    /// <typeparam name="TKey">主键类型。</typeparam>
     public abstract class RepositoryBase<TEntity, TKey> : IRepository<TEntity, TKey> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
         #region 属性
@@ -204,6 +205,14 @@ namespace NKingime.Core.Data
         #endregion
 
         #region 查询
+
+        /// <summary>
+        /// 是否存在符合指定筛选表达式的数据。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <param name="key">排除的主键值。</param>
+        /// <returns></returns>
+        public abstract bool Exists(Expression<Func<TEntity, bool>> predicate, TKey key = default(TKey));
 
         /// <summary>
         /// 根据主键获取数据实体。
