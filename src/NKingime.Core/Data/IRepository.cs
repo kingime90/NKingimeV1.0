@@ -22,9 +22,14 @@ namespace NKingime.Core.Data
         IUnitOfWork UnitOfWork { get; }
 
         /// <summary>
-        /// 
+        /// 获取 当前数据实体类型的查询数据集，数据将使用不跟踪变化的方式来查询，当数据用于展现时，推荐使用此数据集，如果用于新增，更新，删除时，请使用<see cref="TrackEntities"/>数据集。
         /// </summary>
         IQueryable<TEntity> Entities { get; }
+
+        /// <summary>
+        /// 获取 当前数据实体类型的查询数据集，当数据用于新增，更新，删除时，使用此数据集，如果数据用于展现，推荐使用<see cref="Entities"/>数据集。
+        /// </summary>
+        IQueryable<TEntity> TrackEntities { get; }
 
         #endregion
 
@@ -94,6 +99,14 @@ namespace NKingime.Core.Data
         /// <param name="entities">数据实体集合。</param>
         /// <returns>返回受影响的行数。</returns>
         int Update(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// 更新所有符合条件的数据实体。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <param name="updateExpression">更新实体表达式。</param>
+        /// <returns></returns>
+        int Update(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateExpression);
 
         /// <summary>
         /// 根据主键逻辑删除数据实体。

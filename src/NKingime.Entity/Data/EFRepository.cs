@@ -40,11 +40,19 @@ namespace NKingime.Entity.Data
         public override IUnitOfWork UnitOfWork { get; }
 
         /// <summary>
-        /// 非跟踪查询，查询出来的对象将不能用于修改。
+        /// 获取 当前数据实体类型的查询数据集，数据将使用不跟踪变化的方式来查询，当数据用于展现时，推荐使用此数据集，如果用于新增，更新，删除时，请使用<see cref="TrackEntities"/>数据集。
         /// </summary>
         public override IQueryable<TEntity> Entities
         {
             get { return _dbSet.AsNoTracking(); }
+        }
+
+        /// <summary>
+        /// 获取 当前数据实体类型的查询数据集，当数据用于新增，更新，删除时，使用此数据集，如果数据用于展现，推荐使用<see cref="Entities"/>数据集。
+        /// </summary>
+        public override IQueryable<TEntity> TrackEntities
+        {
+            get { return _dbSet; }
         }
 
         #endregion
@@ -150,8 +158,19 @@ namespace NKingime.Entity.Data
         /// <returns>返回受影响的行数。</returns>
         public override int Update(IEnumerable<TEntity> entities)
         {
-            ((DbContext)UnitOfWork).Update(entities.ToArray());
+            ((DbContext)UnitOfWork).Update(entities as TEntity[] ?? entities.ToArray());
             return UnitOfWork.SaveChanges();
+        }
+
+        /// <summary>
+        /// 更新所有符合条件的数据实体。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <param name="updateExpression">更新实体表达式。</param>
+        /// <returns></returns>
+        public override int Update(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateExpression)
+        {
+            return _dbSet.Where(predicate).Update(updateExpression);
         }
 
         #endregion

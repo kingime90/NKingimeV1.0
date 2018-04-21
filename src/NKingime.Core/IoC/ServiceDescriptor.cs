@@ -382,7 +382,7 @@ namespace NKingime.Core.IoC
                 return false;
             }
             //
-            return this.ServiceType == descriptor.ServiceType && this.ImplementationType == descriptor.ImplementationType;
+            return ServiceType == descriptor.ServiceType && ImplementationType == descriptor.ImplementationType;
         }
 
         #endregion
