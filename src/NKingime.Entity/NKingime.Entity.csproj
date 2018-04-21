@@ -57,10 +57,10 @@
     <Compile Include="Data\DbContextBase.cs" />
     <Compile Include="Data\DbContextManage.cs" />
     <Compile Include="Data\DefaultDbContext.cs" />
-    <Compile Include="Data\DefaultEntityMapper.cs" />
+    <Compile Include="Config\DefaultEntityMapper.cs" />
     <Compile Include="Data\EFRepository.cs" />
-    <Compile Include="Data\EntityMapperBase.cs" />
-    <Compile Include="Data\IEntityMapper.cs" />
+    <Compile Include="Config\EntityMapperBase.cs" />
+    <Compile Include="Config\IEntityMapper.cs" />
     <Compile Include="Extension\DbContextExtension.cs" />
     <Compile Include="Initializer\ContextInitializer.cs" />
     <Compile Include="Initializer\DatabaseInitializer.cs" />

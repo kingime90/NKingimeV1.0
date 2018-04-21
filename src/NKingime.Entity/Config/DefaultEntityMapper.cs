@@ -1,6 +1,7 @@
 ﻿using NKingime.Core.Entity;
+using NKingime.Entity.Data;
 
-namespace NKingime.Entity.Data
+namespace NKingime.Entity.Config
 {
     /// <summary>
     /// 默认数据实体映射配置基类。

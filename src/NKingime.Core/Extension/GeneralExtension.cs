@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Linq.Expressions;
+using System.Linq;
 using System.Reflection;
+using System.Linq.Expressions;
 using System.Collections.Generic;
 using NKingime.Core.Flag;
 using NKingime.Core.Utility;
-using System.Linq;
 
 namespace NKingime.Core.Extension
 {
     /// <summary>
-    /// 常规扩展方法（泛型 + object + Nullable<>）。
+    /// 普通方法扩展（泛型 + object + Nullable<>）。
     /// </summary>
     public static class GeneralExtension
     {

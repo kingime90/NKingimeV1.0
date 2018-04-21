@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data.Entity.ModelConfiguration.Configuration;
 
-namespace NKingime.Entity.Data
+namespace NKingime.Entity.Config
 {
     /// <summary>
     /// 数据实体映射接口。

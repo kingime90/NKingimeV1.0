@@ -86,47 +86,71 @@ namespace NKingime.Core.Extension
         }
 
         /// <summary>
-        /// 
+        /// 替换指定字符串的开头。
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        /// <param name="comparisonType"></param>
+        /// <param name="value">要替换的字符串。</param>
+        /// <param name="start">匹配开头的字符串。</param>
+        /// <param name="replace">要替换出现的 start 的字符串。</param>
+        /// <param name="comparisonType">枚举值之一，用于确定如何比较此字符串与 value。</param>
         /// <returns></returns>
-        public static string ReplaceStart(this string value, string oldValue, string newValue, StringComparison? comparisonType = null)
+        public static string ReplaceStart(this string value, string start, string replace, StringComparison? comparisonType = null)
         {
-            if (value.IsNullOrWhiteSpace() || oldValue.IsNullOrEmpty())
+            if (value.IsNullOrWhiteSpace() || start.IsNullOrEmpty())
             {
                 return value;
             }
-            int index = comparisonType.HasValue.IfElse(value.IndexOf(oldValue, comparisonType.Value), value.IndexOf(oldValue));
-            if (index == -1)
+            var isMatch = comparisonType.HasValue.IfElse(() => value.StartsWith(start, comparisonType.Value), value.StartsWith(start));
+            if (!isMatch)
             {
                 return value;
             }
-            return newValue + value.Remove(0, oldValue.Length);
+            return replace + value.Remove(0, start.Length);
         }
 
         /// <summary>
-        /// 
+        /// 替换指定字符串的尾部。
         /// </summary>
-        /// <param name="value"></param>
-        /// <param name="oldValue"></param>
-        /// <param name="newValue"></param>
-        /// <param name="comparisonType"></param>
+        /// <param name="value">要替换的字符串。</param>
+        /// <param name="end">匹配尾部的字符串。</param>
+        /// <param name="replace">要替换出现的 end 的字符串。</param>
+        /// <param name="comparisonType">枚举值之一，用于确定如何比较此字符串与 value。</param>
         /// <returns></returns>
-        public static string ReplaceEnd(this string value, string oldValue, string newValue, StringComparison? comparisonType = null)
+        public static string ReplaceEnd(this string value, string end, string replace, StringComparison? comparisonType = null)
         {
-            if (value.IsNullOrWhiteSpace() || oldValue.IsNullOrEmpty())
+            if (value.IsNullOrWhiteSpace() || end.IsNullOrEmpty())
             {
                 return value;
             }
-            int index = comparisonType.HasValue.IfElse(value.LastIndexOf(oldValue, comparisonType.Value), value.LastIndexOf(oldValue));
-            if (index == -1)
+            var isMatch = comparisonType.HasValue.IfElse(() => value.EndsWith(end, comparisonType.Value), value.EndsWith(end));
+            if (!isMatch)
             {
                 return value;
             }
-            return value.Substring(0, value.Length - oldValue.Length) + newValue;
+            return value.Substring(0, value.Length - end.Length) + replace;
+        }
+
+        /// <summary>
+        /// 移除指定字符串的开头。
+        /// </summary>
+        /// <param name="value">要移除的字符串。</param>
+        /// <param name="start">匹配开头的字符串。</param>
+        /// <param name="comparisonType">枚举值之一，用于确定如何比较此字符串与 value。</param>
+        /// <returns></returns>
+        public static string RemoveStart(this string value, string start, StringComparison? comparisonType = null)
+        {
+            return value.ReplaceStart(start, string.Empty, comparisonType);
+        }
+
+        /// <summary>
+        /// 移除指定字符串的尾部。
+        /// </summary>
+        /// <param name="value">要移除的字符串。</param>
+        /// <param name="end">匹配尾部的字符串。</param>
+        /// <param name="comparisonType">枚举值之一，用于确定如何比较此字符串与 value。</param>
+        /// <returns></returns>
+        public static string RemoveEnd(this string value, string end, StringComparison? comparisonType = null)
+        {
+            return value.ReplaceEnd(end, string.Empty, comparisonType);
         }
     }
 }

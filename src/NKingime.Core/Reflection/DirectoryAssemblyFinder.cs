@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Reflection;
-using System.IO;
+using System.Collections.Generic;
 using NKingime.Core.Generic;
 
 namespace NKingime.Core.Reflection

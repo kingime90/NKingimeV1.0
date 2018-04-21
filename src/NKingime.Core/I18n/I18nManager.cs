@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
 using System.Resources;
+using System.Collections.Generic;
 using NKingime.Core.Extension;
 
 namespace NKingime.Core.I18n

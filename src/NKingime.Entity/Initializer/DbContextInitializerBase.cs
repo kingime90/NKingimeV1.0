@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
-using System.Data.Entity;
 using System.Reflection;
-using System.Data.Entity.Infrastructure;
-using System.Data.Entity.Core.Mapping;
-using System.Data.Entity.Core.Metadata.Edm;
+using System.Data.Entity;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using NKingime.Entity.Migrations;
-using NKingime.Entity.Data;
+using System.Data.Entity.Core.Mapping;
+using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Metadata.Edm;
 using NKingime.Core.Data;
+using NKingime.Entity.Config;
 using NKingime.Core.Extension;
+using NKingime.Entity.Migrations;
 
 namespace NKingime.Entity.Initializer
 {

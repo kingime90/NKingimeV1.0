@@ -1,6 +1,6 @@
 ﻿using System;
-using NKingime.Core.Config;
 using System.Linq;
+using NKingime.Core.Config;
 using NKingime.Core.Initializer;
 
 namespace NKingime.Entity.Initializer

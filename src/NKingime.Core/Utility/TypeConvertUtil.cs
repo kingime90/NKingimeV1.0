@@ -1,6 +1,6 @@
 ﻿using System;
-using NKingime.Core.Extension;
 using System.ComponentModel;
+using NKingime.Core.Extension;
 
 namespace NKingime.Core.Utility
 {

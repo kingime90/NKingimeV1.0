@@ -1,6 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Reflection;
+using System.Collections.Generic;
 using NKingime.Core.Generic;
 
 namespace NKingime.Core.Reflection

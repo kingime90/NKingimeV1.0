@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Collections.Generic;
+using NKingime.Entity.Config;
 using NKingime.Entity.Initializer;
 
 namespace NKingime.Entity.Data

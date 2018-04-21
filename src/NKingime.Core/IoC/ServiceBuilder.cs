@@ -1,9 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using NKingime.Core.Reflection;
+using System.Collections.Generic;
 using NKingime.Core.Flag;
 using NKingime.Core.Extension;
+using NKingime.Core.Reflection;
 
 namespace NKingime.Core.IoC
 {

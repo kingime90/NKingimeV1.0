@@ -1,8 +1,8 @@
 ﻿using System;
+using NKingime.Entity.Data;
 using NKingime.Core.Config;
 using NKingime.Core.Extension;
 using NKingime.Core.Initializer;
-using NKingime.Entity.Data;
 
 namespace NKingime.Entity.Initializer
 {

@@ -1,7 +1,7 @@
-﻿using NKingime.Core.Flag;
-using NKingime.Core.IoC;
-using System;
+﻿using System;
 using System.Linq;
+using NKingime.Core.IoC;
+using NKingime.Core.Flag;
 
 namespace NKingime.Core.Extension
 {

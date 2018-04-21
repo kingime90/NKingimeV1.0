@@ -1,11 +1,11 @@
 ﻿using System;
-using NKingime.Core.Data;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration;
 using System.Data.Entity.ModelConfiguration.Configuration;
 using NKingime.Core.Entity;
+using NKingime.Core.Data;
 
-namespace NKingime.Entity.Data
+namespace NKingime.Entity.Config
 {
     /// <summary>
     /// 数据实体映射配置基类。
