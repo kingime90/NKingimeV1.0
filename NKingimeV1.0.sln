@@ -15,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKingime.Entity", "src\NKin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKingime.Entity.Tests", "tests\NKingime.Entity.Tests\NKingime.Entity.Tests.csproj", "{EF2A6BD8-D79F-4D53-BC76-6FCF3907D261}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NKingime.Web.Mvc", "src\NKingime.Web.Mvc\NKingime.Web.Mvc.csproj", "{06A21EEC-34AA-428C-BE47-6D213893A1D5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,6 +39,10 @@ Global
 		{EF2A6BD8-D79F-4D53-BC76-6FCF3907D261}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF2A6BD8-D79F-4D53-BC76-6FCF3907D261}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF2A6BD8-D79F-4D53-BC76-6FCF3907D261}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06A21EEC-34AA-428C-BE47-6D213893A1D5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06A21EEC-34AA-428C-BE47-6D213893A1D5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06A21EEC-34AA-428C-BE47-6D213893A1D5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06A21EEC-34AA-428C-BE47-6D213893A1D5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -46,5 +52,6 @@ Global
 		{51EF4CF8-DA72-4B32-BA83-E143B6101382} = {CB0AEE51-F32E-422A-A104-0E04862CCAC5}
 		{BAE87870-AF64-4A6C-9319-5A483A07B513} = {1F99E5D7-BAC4-4DAB-9577-CE6F5324F14F}
 		{EF2A6BD8-D79F-4D53-BC76-6FCF3907D261} = {CB0AEE51-F32E-422A-A104-0E04862CCAC5}
+		{06A21EEC-34AA-428C-BE47-6D213893A1D5} = {1F99E5D7-BAC4-4DAB-9577-CE6F5324F14F}
 	EndGlobalSection
 EndGlobal
