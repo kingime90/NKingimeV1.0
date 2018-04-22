@@ -44,7 +44,7 @@ namespace NKingime.Core.IoC
         /// <summary>
         /// 开始构建依赖注入映射。
         /// </summary>
-        /// <returns>服务提供者</returns>
+        /// <returns>服务提供者。</returns>
         public IServiceProvider Build()
         {
             if (_isBuilded)

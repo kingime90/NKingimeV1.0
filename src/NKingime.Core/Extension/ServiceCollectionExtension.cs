@@ -145,6 +145,17 @@ namespace NKingime.Core.Extension
         /// <summary>
         /// 添加单例模式服务映射信息到服务映射信息集合中。
         /// </summary>
+        /// <typeparam name="TService">泛型服务类型。</typeparam>
+        /// <param name="collection">服务映射信息集合。</param>
+        /// <param name="implementationInstance">服务实现实例。</param>
+        public static void AddSingleton<TService>(this IServiceCollection collection, TService instance) where TService : class
+        {
+            collection.TryAdd(ServiceDescriptor.Singleton<TService>(instance));
+        }
+
+        /// <summary>
+        /// 添加单例模式服务映射信息到服务映射信息集合中。
+        /// </summary>
         /// <param name="collection">服务映射信息集合。</param>
         /// <param name="serviceType">服务类型。</param>
         /// <param name="implementationType">服务实现类型。</param>

@@ -23,14 +23,14 @@ namespace NKingime.Core.IoC
         object Resolve(Type type);
 
         /// <summary>
-        /// 获取指定类型的实例序列。
+        /// 获取指定类型的所有实例序列。
         /// </summary>
         /// <typeparam name="T">要获取的类型。</typeparam>
         /// <returns></returns>
         IEnumerable<T> Resolves<T>();
 
         /// <summary>
-        /// 获取指定类型的实例序列。
+        /// 获取指定类型的所有实例序列。
         /// </summary>
         /// <param name="type">要获取的类型。</param>
         /// <returns></returns>

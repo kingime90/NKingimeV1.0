@@ -92,6 +92,7 @@
     <Compile Include="IoC\IIocBuilder.cs" />
     <Compile Include="IoC\IIocResolver.cs" />
     <Compile Include="IoC\IocBuilderBase.cs" />
+    <Compile Include="IoC\IocServiceProvider.cs" />
     <Compile Include="IoC\IScopedDependency.cs" />
     <Compile Include="IoC\IServiceBuilder.cs" />
     <Compile Include="IoC\IServiceCollection.cs" />
