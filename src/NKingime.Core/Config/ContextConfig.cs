@@ -45,7 +45,7 @@ namespace NKingime.Core.Config
         }
 
         /// <summary>
-        /// 获取数据库上下文集合。
+        /// 获取数据库上下文序列。
         /// </summary>
         /// <returns></returns>
         private static IEnumerable<DbContextConfig> GetDbContexts()
@@ -55,7 +55,7 @@ namespace NKingime.Core.Config
         }
 
         /// <summary>
-        /// 数据库上下文集合。
+        /// 数据库上下文序列。
         /// </summary>
         public IEnumerable<DbContextConfig> DbContexts { get; private set; }
     }

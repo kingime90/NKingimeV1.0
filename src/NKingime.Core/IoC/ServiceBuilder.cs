@@ -69,7 +69,7 @@ namespace NKingime.Core.IoC
         /// 添加依赖注入映射描述信息。
         /// </summary>
         /// <param name="collection">服务映射信息集合。</param>
-        /// <param name="implementationTypes">服务实现类型集合。</param>
+        /// <param name="implementationTypes">服务实现类型序列。</param>
         /// <param name="lifetime">生命周期。</param>
         protected void AddServiceDescriptor(IServiceCollection collection, IEnumerable<Type> implementationTypes, LifetimeScopeFlag lifetime)
         {

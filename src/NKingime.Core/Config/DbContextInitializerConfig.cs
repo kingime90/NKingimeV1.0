@@ -52,7 +52,7 @@ namespace NKingime.Core.Config
         private readonly List<Assembly> _mapperAssemblys;
 
         /// <summary>
-        /// 映射程序集集合。
+        /// 映射程序集序列。
         /// </summary>
         public IEnumerable<Assembly> MapperAssemblys
         {

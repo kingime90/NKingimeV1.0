@@ -73,9 +73,9 @@ namespace NKingime.Entity.Data
         }
 
         /// <summary>
-        /// 保存数据实体集合。
+        /// 保存数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         public override int Save(IEnumerable<TEntity> entities)
         {
@@ -115,9 +115,9 @@ namespace NKingime.Entity.Data
         }
 
         /// <summary>
-        /// 删除数据实体集合。
+        /// 删除数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         public override int Delete(IEnumerable<TEntity> entities)
         {
@@ -152,9 +152,9 @@ namespace NKingime.Entity.Data
         }
 
         /// <summary>
-        /// 更新数据实体数组。
+        /// 更新数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体数组。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         public override int Update(IEnumerable<TEntity> entities)
         {
@@ -228,7 +228,7 @@ namespace NKingime.Entity.Data
         /// 根据指定筛选表达式获取数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         public override List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
         {
@@ -239,7 +239,7 @@ namespace NKingime.Entity.Data
         /// 根据指定筛选表达式获取数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         public override List<TEntity> QueryTrack(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
         {
@@ -256,7 +256,7 @@ namespace NKingime.Entity.Data
         /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         public override IPagedResult<TEntity> PagedList(int pageSize, int pageIndex, Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
         {
@@ -303,7 +303,7 @@ namespace NKingime.Entity.Data
         /// 根据指定排序选择器集合排序。
         /// </summary>
         /// <param name="queryable">提供对数据类型已知的特定数据源的查询进行计算的功能。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         protected IOrderedQueryable<TEntity> OrderBy(IQueryable<TEntity> queryable, params OrderSelector<TEntity>[] orderSelectors)
         {
@@ -335,7 +335,7 @@ namespace NKingime.Entity.Data
         /// </summary>
         /// <param name="isTrack">是否跟踪查询。</param>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         private List<TEntity> Query(bool isTrack, Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors)
         {

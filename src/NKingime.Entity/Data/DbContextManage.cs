@@ -87,7 +87,7 @@ namespace NKingime.Entity.Data
         }
 
         /// <summary>
-        /// 根据数据库上下文类型获取数据实体映射实例集合。
+        /// 根据数据库上下文类型获取数据实体映射实例序列。
         /// </summary>
         /// <param name="dbContextType"></param>
         /// <returns></returns>

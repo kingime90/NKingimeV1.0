@@ -44,9 +44,9 @@ namespace NKingime.Core.Data
         public abstract int Save(TEntity entity);
 
         /// <summary>
-        /// 保存数据实体集合。
+        /// 保存数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         public abstract int Save(IEnumerable<TEntity> entities);
 
@@ -69,9 +69,9 @@ namespace NKingime.Core.Data
         public abstract int Delete(TEntity entity);
 
         /// <summary>
-        /// 删除数据实体集合。
+        /// 删除数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         public abstract int Delete(IEnumerable<TEntity> entities);
 
@@ -94,11 +94,19 @@ namespace NKingime.Core.Data
         public abstract int Update(TEntity entity);
 
         /// <summary>
-        /// 更新数据实体集合。
+        /// 更新数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         public abstract int Update(IEnumerable<TEntity> entities);
+
+        /// <summary>
+        /// 更新所有符合条件的数据实体。
+        /// </summary>
+        /// <param name="predicate">基于谓词筛选表达式。</param>
+        /// <param name="updateExpression">更新实体表达式。</param>
+        /// <returns></returns>
+        public abstract int Update(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateExpression);
 
         /// <summary>
         /// 根据主键逻辑删除数据实体。
@@ -118,20 +126,20 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public virtual int Recycle(TEntity entity)
         {
-            LogicDelete(entity);
+            RecycleEntity(entity);
             return Update(entity);
         }
 
         /// <summary>
-        /// 逻辑删除数据实体。
+        /// 逻辑删除数据序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         public virtual int Recycle(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
-                LogicDelete(entity);
+                RecycleEntity(entity);
             }
             return Update(entities);
         }
@@ -165,31 +173,23 @@ namespace NKingime.Core.Data
         /// <returns></returns>
         public virtual int Restore(TEntity entity)
         {
-            LogicRestore(entity);
+            RestoreEntity(entity);
             return Update(entity);
         }
 
         /// <summary>
-        /// 逻辑还原数据实体。
+        /// 逻辑还原数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         public virtual int Restore(IEnumerable<TEntity> entities)
         {
             foreach (var entity in entities)
             {
-                LogicRestore(entity);
+                RestoreEntity(entity);
             }
             return Update(entities);
         }
-
-        /// <summary>
-        /// 更新所有符合条件的数据实体。
-        /// </summary>
-        /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="updateExpression">更新实体表达式。</param>
-        /// <returns></returns>
-        public abstract int Update(Expression<Func<TEntity, bool>> predicate, Expression<Func<TEntity, TEntity>> updateExpression);
 
         /// <summary>
         /// 逻辑还原所有符合条件的数据实体。
@@ -282,7 +282,7 @@ namespace NKingime.Core.Data
         /// 根据指定筛选表达式获取数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         public abstract List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
@@ -310,7 +310,7 @@ namespace NKingime.Core.Data
         /// 根据指定筛选表达式获取数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         public abstract List<TEntity> QueryTrack(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
@@ -334,7 +334,7 @@ namespace NKingime.Core.Data
         /// </summary>
         /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         public virtual IPagedResult<TEntity> PagedList(int pageSize, int pageIndex, params OrderSelector<TEntity>[] orderSelectors)
         {
@@ -359,7 +359,7 @@ namespace NKingime.Core.Data
         /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         public abstract IPagedResult<TEntity> PagedList(int pageSize, int pageIndex, Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
@@ -393,27 +393,27 @@ namespace NKingime.Core.Data
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="isDeleted"></param>
-        private void CheckLogicDelete(TEntity entity, bool isDeleted)
+        private void CheckRecyclable(TEntity entity, bool isDeleted)
         {
-            entity.SetPropertyValue<TEntity, ILogicDelete, bool>(s => s.IsDeleted, isDeleted);
+            entity.SetPropertyValue<TEntity, IRecyclable, bool>(s => s.IsDeleted, isDeleted);
         }
 
         /// <summary>
-        /// 逻辑删除。
+        /// 逻辑删除数据实体。
         /// </summary>
         /// <param name="entity"></param>
-        protected virtual void LogicDelete(TEntity entity)
+        protected virtual void RecycleEntity(TEntity entity)
         {
-            CheckLogicDelete(entity, true);
+            CheckRecyclable(entity, true);
         }
 
         /// <summary>
-        /// 逻辑还原。
+        /// 逻辑还原数据实体。
         /// </summary>
         /// <param name="entity"></param>
-        protected virtual void LogicRestore(TEntity entity)
+        protected virtual void RestoreEntity(TEntity entity)
         {
-            CheckLogicDelete(entity, false);
+            CheckRecyclable(entity, false);
         }
 
         #endregion

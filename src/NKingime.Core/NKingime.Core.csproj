@@ -62,7 +62,7 @@
     <Compile Include="Entity\ICreateTime.cs" />
     <Compile Include="Entity\IEntity.cs" />
     <Compile Include="Entity\ILastUpdateTime.cs" />
-    <Compile Include="Entity\ILogicDelete.cs" />
+    <Compile Include="Entity\IRecyclable.cs" />
     <Compile Include="Extension\ExpressionExtension.cs" />
     <Compile Include="Extension\GeneralExtension.cs" />
     <Compile Include="Extension\ServiceCollectionExtension.cs" />
@@ -89,6 +89,7 @@
     <Compile Include="Initializer\IContextInitializer.cs" />
     <Compile Include="Initializer\IDatabaseInitializer.cs" />
     <Compile Include="IoC\IDependency.cs" />
+    <Compile Include="IoC\IIocResolver.cs" />
     <Compile Include="IoC\IScopedDependency.cs" />
     <Compile Include="IoC\IServiceBuilder.cs" />
     <Compile Include="IoC\IServiceCollection.cs" />

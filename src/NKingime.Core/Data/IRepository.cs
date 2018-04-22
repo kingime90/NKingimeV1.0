@@ -44,9 +44,9 @@ namespace NKingime.Core.Data
         int Save(TEntity entity);
 
         /// <summary>
-        /// 保存数据实体集合。
+        /// 保存数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         int Save(IEnumerable<TEntity> entities);
 
@@ -69,9 +69,9 @@ namespace NKingime.Core.Data
         int Delete(TEntity entity);
 
         /// <summary>
-        /// 删除数据实体集合。
+        /// 删除数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         int Delete(IEnumerable<TEntity> entities);
 
@@ -94,9 +94,9 @@ namespace NKingime.Core.Data
         int Update(TEntity entity);
 
         /// <summary>
-        /// 更新数据实体集合。
+        /// 更新数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         int Update(IEnumerable<TEntity> entities);
 
@@ -123,9 +123,9 @@ namespace NKingime.Core.Data
         int Recycle(TEntity entity);
 
         /// <summary>
-        /// 逻辑删除数据实体。
+        /// 逻辑删除数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         int Recycle(IEnumerable<TEntity> entities);
 
@@ -151,9 +151,9 @@ namespace NKingime.Core.Data
         int Restore(TEntity entity);
 
         /// <summary>
-        /// 逻辑还原数据实体。
+        /// 逻辑还原数据实体序列。
         /// </summary>
-        /// <param name="entities">数据实体集合。</param>
+        /// <param name="entities">数据实体序列。</param>
         /// <returns>返回受影响的行数。</returns>
         int Restore(IEnumerable<TEntity> entities);
 
@@ -229,7 +229,7 @@ namespace NKingime.Core.Data
         /// 根据指定筛选表达式获取数据实体列表（非跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         List<TEntity> Query(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
@@ -251,7 +251,7 @@ namespace NKingime.Core.Data
         /// 根据指定筛选表达式获取数据实体列表（跟踪查询）。
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         List<TEntity> QueryTrack(Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 
@@ -272,7 +272,7 @@ namespace NKingime.Core.Data
         /// </summary>
         /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         IPagedResult<TEntity> PagedList(int pageSize, int pageIndex, params OrderSelector<TEntity>[] orderSelectors);
 
@@ -291,7 +291,7 @@ namespace NKingime.Core.Data
         /// <param name="pageSize">每页多少条。</param>
         /// <param name="pageIndex">页码。</param>
         /// <param name="predicate">基于谓词筛选表达式。</param>
-        /// <param name="orderSelectors">排序选择器集合。</param>
+        /// <param name="orderSelectors">排序选择器数组。</param>
         /// <returns></returns>
         IPagedResult<TEntity> PagedList(int pageSize, int pageIndex, Expression<Func<TEntity, bool>> predicate, params OrderSelector<TEntity>[] orderSelectors);
 

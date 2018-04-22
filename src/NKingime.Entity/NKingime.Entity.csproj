@@ -66,6 +66,8 @@
     <Compile Include="Initializer\DatabaseInitializer.cs" />
     <Compile Include="Initializer\DbContextInitializerBase.cs" />
     <Compile Include="Initializer\DefaultDbContextInitializer.cs" />
+    <Compile Include="IoC\DbContextTypeResolver.cs" />
+    <Compile Include="IoC\IDbContextTypeResolver.cs" />
     <Compile Include="Migrations\AutoMigrationsConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

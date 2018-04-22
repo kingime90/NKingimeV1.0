@@ -91,7 +91,7 @@ namespace NKingime.Entity.Initializer
     public abstract class DbContextInitializerBase
     {
         /// <summary>
-        /// 映射程序集集合。
+        /// 映射程序集序列。
         /// </summary>
         public IEnumerable<Assembly> MapperAssemblys { get; set; }
 
@@ -149,7 +149,7 @@ namespace NKingime.Entity.Initializer
         /// <summary>
         /// 数据实体映射过滤。
         /// </summary>
-        /// <param name="entityMappers">数据实体映射集合。</param>
+        /// <param name="entityMappers">数据实体映射序列。</param>
         /// <returns></returns>
         protected abstract IEnumerable<IEntityMapper> EntityMappersFilter(IEnumerable<IEntityMapper> entityMappers);
     }

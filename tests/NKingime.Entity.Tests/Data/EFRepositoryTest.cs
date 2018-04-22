@@ -6,6 +6,8 @@ using NKingime.Entity.Tests.Model;
 using NKingime.Entity.Data;
 using NKingime.Core.Data;
 using NKingime.Core.Utility;
+using NKingime.Core.Entity;
+using NKingime.Core.Extension;
 
 namespace NKingime.Entity.Tests.Data
 {
@@ -50,7 +52,7 @@ namespace NKingime.Entity.Tests.Data
         [Test]
         public void GetByKey()
         {
-            int id = 1;
+            int id = 4;
             var user = userRepository.GetByKey(id);
             Assert.IsNotNull(user);
         }
@@ -78,6 +80,17 @@ namespace NKingime.Entity.Tests.Data
             var firstUser = users.FirstOrDefault();
             firstUser.Mobile = "13509098765";
             var result = userRepository.Update(firstUser);
+            Assert.IsTrue(result > 0);
+        }
+
+        /// <summary>
+        /// 更新所有符合条件的数据实体测试。
+        /// </summary>
+        [Test]
+        public void UpdateExpression()
+        {
+            string mobile = "13509098765";
+            var result = userRepository.Update(p => p.Mobile == mobile, (entity) => new User() { IsHappy = false, });
             Assert.IsTrue(result > 0);
         }
 

@@ -1,10 +1,10 @@
 ﻿using System;
-using NKingime.Entity.Tests.Flag;
 using NKingime.Core.Entity;
+using NKingime.Entity.Tests.Flag;
 
 namespace NKingime.Entity.Tests.Model
 {
-    public class User : EntityBase, ILogicDelete, ILastUpdateTime
+    public class User : EntityBase, IRecyclable, ILastUpdateTime
     {
         public string Name { get; set; }
 
