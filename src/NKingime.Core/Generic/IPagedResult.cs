@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace NKingime.Core.Generic
 {
     /// <summary>
-    /// 分页结果接口。
+    /// 定义分页结果接口。
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public interface IPagedResult<T>

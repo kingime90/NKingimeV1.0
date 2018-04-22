@@ -3,7 +3,7 @@
 namespace NKingime.Core.IoC
 {
     /// <summary>
-    /// 服务构建器接口。
+    /// 定义服务构建器接口。
     /// </summary>
     public interface IServiceBuilder
     {

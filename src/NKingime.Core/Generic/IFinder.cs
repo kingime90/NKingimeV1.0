@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace NKingime.Core.Generic
 {
     /// <summary>
-    /// 查找器接口。
+    /// 定义查找器接口。
     /// </summary>
     /// <typeparam name="T">要查找的项类型。</typeparam>
     public interface IFinder<out T>

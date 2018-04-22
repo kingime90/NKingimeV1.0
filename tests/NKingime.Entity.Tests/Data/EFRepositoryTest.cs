@@ -26,7 +26,7 @@ namespace NKingime.Entity.Tests.Data
         public static void Initialize()
         {
             new DatabaseInitializerTest().Initialize();
-            userRepository = new EFRepository<User, int>();
+            userRepository = new EFRepository<User, int>(null);
         }
 
         /// <summary>

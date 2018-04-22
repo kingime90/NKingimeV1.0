@@ -4,7 +4,7 @@ using NKingime.Core.Config;
 namespace NKingime.Core.Initializer
 {
     /// <summary>
-    /// 上下文初始化接口。
+    /// 定义上下文初始化接口。
     /// </summary>
     public interface IContextInitializer
     {

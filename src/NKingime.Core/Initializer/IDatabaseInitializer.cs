@@ -4,7 +4,7 @@ using NKingime.Core.Config;
 namespace NKingime.Core.Initializer
 {
     /// <summary>
-    /// 数据库初始化接口。
+    /// 定义数据库初始化接口。
     /// </summary>
     public interface IDatabaseInitializer
     {

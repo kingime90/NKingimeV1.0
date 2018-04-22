@@ -9,7 +9,7 @@ using NKingime.Core.Entity;
 namespace NKingime.Core.Data
 {
     /// <summary>
-    /// 数据仓储泛型接口。
+    /// 定义数据仓储泛型接口。
     /// </summary>
     /// <typeparam name="TEntity">数据实体类型。</typeparam>
     /// <typeparam name="TKey">主键类型。</typeparam>
@@ -310,7 +310,7 @@ namespace NKingime.Core.Data
     }
 
     /// <summary>
-    /// 数据仓储接口。
+    /// 定义数据仓储接口。
     /// </summary>
     public interface IRepository : IScopedDependency
     {

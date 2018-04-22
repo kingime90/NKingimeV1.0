@@ -8,3 +8,5 @@
 /src/NKingime.Entity/obj
 /tests/NKingime.Entity.Tests/bin
 /tests/NKingime.Entity.Tests/obj
+/src/NKingime.Web/bin
+/src/NKingime.Web/obj

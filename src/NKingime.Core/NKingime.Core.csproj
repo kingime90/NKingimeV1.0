@@ -89,7 +89,9 @@
     <Compile Include="Initializer\IContextInitializer.cs" />
     <Compile Include="Initializer\IDatabaseInitializer.cs" />
     <Compile Include="IoC\IDependency.cs" />
+    <Compile Include="IoC\IIocBuilder.cs" />
     <Compile Include="IoC\IIocResolver.cs" />
+    <Compile Include="IoC\IocBuilderBase.cs" />
     <Compile Include="IoC\IScopedDependency.cs" />
     <Compile Include="IoC\IServiceBuilder.cs" />
     <Compile Include="IoC\IServiceCollection.cs" />

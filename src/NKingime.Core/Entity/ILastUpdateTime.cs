@@ -3,7 +3,7 @@
 namespace NKingime.Core.Entity
 {
     /// <summary>
-    /// 最后更新时间数据实体接口。
+    /// 定义最后更新时间数据实体接口。
     /// </summary>
     public interface ILastUpdateTime
     {

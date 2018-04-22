@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace NKingime.Core.IoC
 {
     /// <summary>
-    /// 依赖注入映射描述信息集合接口。
+    /// 定义依赖注入映射描述信息集合接口。
     /// </summary>
     public interface IServiceCollection : IList<ServiceDescriptor>
     {

@@ -11,6 +11,7 @@ using NKingime.Core.Generic;
 using NKingime.Core.Utility;
 using NKingime.Core.Extension;
 using NKingime.Entity.Extension;
+using NKingime.Entity.IoC;
 
 namespace NKingime.Entity.Data
 {
@@ -21,19 +22,18 @@ namespace NKingime.Entity.Data
     /// <typeparam name="TKey">主键类型。</typeparam>
     public class EFRepository<TEntity, TKey> : RepositoryBase<TEntity, TKey> where TEntity : class, IEntity<TKey> where TKey : IEquatable<TKey>
     {
+        private readonly DbSet<TEntity> _dbSet;
+
         /// <summary>
         /// 初始化一个<see cref="EFRepository{TEntity}"/>新实例。
         /// </summary>
-        public EFRepository()
+        public EFRepository(IDbContextTypeResolver contextTypeResolver)
         {
-            var dbContext = new DefaultDbContext();
-            UnitOfWork = dbContext;
-            _dbSet = dbContext.Set<TEntity>();
+            UnitOfWork = contextTypeResolver.Resolve<TEntity, TKey>();
+            _dbSet = ((DbContext)UnitOfWork).Set<TEntity>();
         }
 
         #region 属性
-
-        private readonly DbSet<TEntity> _dbSet;
 
         /// <summary>
         /// 获取当前业务单元操作。
