@@ -11,7 +11,7 @@ namespace NKingime.Core.IoC
     public abstract class IocBuilderBase : IIocBuilder
     {
         /// <summary>
-        /// 服务信息集合。
+        /// 服务映射信息集合。
         /// </summary>
         private readonly IServiceCollection _services;
 
@@ -23,7 +23,7 @@ namespace NKingime.Core.IoC
         /// <summary>
         /// 初始化一个<see cref="IocBuilderBase"/>类型的新实例。
         /// </summary>
-        /// <param name="services">服务信息集合</param>
+        /// <param name="services">服务映射信息集合</param>
         protected IocBuilderBase(IServiceCollection services)
         {
             AssemblyFinder = new DirectoryAssemblyFinder();
