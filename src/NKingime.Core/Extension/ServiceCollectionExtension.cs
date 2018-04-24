@@ -226,7 +226,7 @@ namespace NKingime.Core.Extension
         /// <param name="serviceType">服务类型。</param>
         /// <param name="implementationType">服务实现类型。</param>
         /// <param name="lifetime">生命周期。</param>
-        public static void Add(this IServiceCollection collection, Type serviceType, Type implementationType, LifetimeScopeOption lifetime)
+        public static void Add(this IServiceCollection collection, Type serviceType, Type implementationType, LifetimeOption lifetime)
         {
             collection.TryAdd(ServiceDescriptor.Descriptor(serviceType, implementationType, lifetime));
         }
@@ -238,7 +238,7 @@ namespace NKingime.Core.Extension
         /// <param name="serviceType">服务类型。</param>
         /// <param name="implementationInstance">服务实现实例。</param>
         /// <param name="lifetime">生命周期。</param>
-        public static void Add(this IServiceCollection collection, Type serviceType, object implementationInstance, LifetimeScopeOption lifetime)
+        public static void Add(this IServiceCollection collection, Type serviceType, object implementationInstance, LifetimeOption lifetime)
         {
             collection.TryAdd(ServiceDescriptor.Descriptor(serviceType, implementationInstance, lifetime));
         }
@@ -250,7 +250,7 @@ namespace NKingime.Core.Extension
         /// <param name="serviceType">服务类型。</param>
         /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <param name="lifetime">生命周期。</param>
-        public static void Add(this IServiceCollection collection, Type serviceType, Func<IServiceProvider, object> implementationFactory, LifetimeScopeOption lifetime)
+        public static void Add(this IServiceCollection collection, Type serviceType, Func<IServiceProvider, object> implementationFactory, LifetimeOption lifetime)
         {
             collection.TryAdd(ServiceDescriptor.Descriptor(serviceType, implementationFactory, lifetime));
         }
@@ -262,7 +262,7 @@ namespace NKingime.Core.Extension
         /// <typeparam name="TImplementation">泛型实现类型。</typeparam>
         /// <param name="collection">服务映射信息集合。</param>
         /// <param name="lifetime">生命周期。</param>
-        public static void Add<TService, TImplementation>(this IServiceCollection collection, LifetimeScopeOption lifetime) where TService : class where TImplementation : TService
+        public static void Add<TService, TImplementation>(this IServiceCollection collection, LifetimeOption lifetime) where TService : class where TImplementation : TService
         {
             collection.TryAdd(ServiceDescriptor.Descriptor<TService, TImplementation>(lifetime));
         }
@@ -274,7 +274,7 @@ namespace NKingime.Core.Extension
         /// <param name="collection">服务映射信息集合。</param>
         /// <param name="implementationInstance">服务实现实例。</param>
         /// <param name="lifetime">生命周期。</param>
-        public static void Add<TService>(this IServiceCollection collection, object implementationInstance, LifetimeScopeOption lifetime) where TService : class
+        public static void Add<TService>(this IServiceCollection collection, object implementationInstance, LifetimeOption lifetime) where TService : class
         {
             collection.TryAdd(ServiceDescriptor.Descriptor<TService>(implementationInstance, lifetime));
         }
@@ -286,7 +286,7 @@ namespace NKingime.Core.Extension
         /// <param name="collection">服务映射信息集合。</param>
         /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <param name="lifetime">生命周期。</param>
-        public static void Add<TService>(this IServiceCollection collection, Func<IServiceProvider, object> implementationFactory, LifetimeScopeOption lifetime) where TService : class
+        public static void Add<TService>(this IServiceCollection collection, Func<IServiceProvider, object> implementationFactory, LifetimeOption lifetime) where TService : class
         {
             collection.TryAdd(ServiceDescriptor.Descriptor<TService>(implementationFactory, lifetime));
         }

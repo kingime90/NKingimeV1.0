@@ -17,9 +17,9 @@ namespace NKingime.Core.Dependency
         /// </summary>
         public ServiceBuilder()
         {
-            TransientTypeFinder = new TypeFinder<ITransientDependency>();
-            ScopedTypeFinder = new TypeFinder<IScopedDependency>();
-            SingletonTypeFinder = new TypeFinder<ISingletonDependency>();
+            TransientTypeFinder = new TransientDependencyTypeFinder();
+            ScopedTypeFinder = new ScopedDependencyTypeFinder();
+            SingletonTypeFinder = new SingletonDependencyTypeFinder();
             ExceptInterfaceTypes = new Type[]
             {
                 typeof(IDependency),
@@ -32,17 +32,17 @@ namespace NKingime.Core.Dependency
         /// <summary>
         /// 实时模式依赖注入接口类型查找器。
         /// </summary>
-        public ITypeFinder<ITransientDependency> TransientTypeFinder { get; private set; }
+        public ITypeFinder TransientTypeFinder { get; private set; }
 
         /// <summary>
         /// 局部模式依赖注入接口类型查找器。
         /// </summary>
-        public ITypeFinder<IScopedDependency> ScopedTypeFinder { get; private set; }
+        public ITypeFinder ScopedTypeFinder { get; private set; }
 
         /// <summary>
         /// 单例模式依赖注入接口类型查找器。
         /// </summary>
-        public ITypeFinder<ISingletonDependency> SingletonTypeFinder { get; private set; }
+        public ITypeFinder SingletonTypeFinder { get; private set; }
 
         /// <summary>
         /// 排除的接口类型数组。
@@ -56,13 +56,13 @@ namespace NKingime.Core.Dependency
         public void Build(IServiceCollection collection)
         {
             var implementationTypes = TransientTypeFinder.FindAll().ToList();
-            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeOption.Transient);
+            AddServiceDescriptor(collection, implementationTypes, LifetimeOption.Transient);
 
             implementationTypes = ScopedTypeFinder.FindAll().ToList();
-            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeOption.Scoped);
+            AddServiceDescriptor(collection, implementationTypes, LifetimeOption.Scoped);
 
             implementationTypes = SingletonTypeFinder.FindAll().ToList();
-            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeOption.Singleton);
+            AddServiceDescriptor(collection, implementationTypes, LifetimeOption.Singleton);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace NKingime.Core.Dependency
         /// <param name="collection">服务映射信息集合。</param>
         /// <param name="implementationTypes">服务实现类型序列。</param>
         /// <param name="lifetime">生命周期。</param>
-        protected void AddServiceDescriptor(IServiceCollection collection, IEnumerable<Type> implementationTypes, LifetimeScopeOption lifetime)
+        protected void AddServiceDescriptor(IServiceCollection collection, IEnumerable<Type> implementationTypes, LifetimeOption lifetime)
         {
             Type[] interfaceTypes;
             foreach (var implementationType in implementationTypes)

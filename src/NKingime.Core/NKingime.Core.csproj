@@ -56,6 +56,9 @@
     <Compile Include="Data\IRepository.cs" />
     <Compile Include="Data\IUnitOfWork.cs" />
     <Compile Include="Data\RepositoryBase.cs" />
+    <Compile Include="Dependency\ScopedDependencyTypeFinder.cs" />
+    <Compile Include="Dependency\SingletonDependencyTypeFinder.cs" />
+    <Compile Include="Dependency\TransientDependencyTypeFinder.cs" />
     <Compile Include="Entity\AutoIdentity.cs" />
     <Compile Include="Entity\EntityBase.cs" />
     <Compile Include="Entity\GuidIdentity.cs" />
@@ -66,12 +69,14 @@
     <Compile Include="Extension\ExpressionExtension.cs" />
     <Compile Include="Extension\GeneralExtension.cs" />
     <Compile Include="Extension\ServiceCollectionExtension.cs" />
+    <Compile Include="Extension\ServiceProviderExtension.cs" />
     <Compile Include="Extension\StringExtension.cs" />
     <Compile Include="Extension\TypeExtension.cs" />
     <Compile Include="Extension\ValidationExtension.cs" />
     <Compile Include="Extension\ValueTypeExtension.cs" />
+    <Compile Include="Initializer\ContextInitializer.cs" />
     <Compile Include="Option\CompareOption.cs" />
-    <Compile Include="Option\LifetimeScopeOption.cs" />
+    <Compile Include="Option\LifetimeOption.cs" />
     <Compile Include="Option\StingRemoveOption.cs" />
     <Compile Include="Generic\FinderBase.cs" />
     <Compile Include="Generic\IFinder.cs" />
@@ -105,9 +110,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reflection\AppDomainAssemblyFinder.cs" />
     <Compile Include="Reflection\DirectoryAssemblyFinder.cs" />
+    <Compile Include="Reflection\IAllAssemblyFinder.cs" />
     <Compile Include="Reflection\IAssemblyFinder.cs" />
     <Compile Include="Reflection\ITypeFinder.cs" />
-    <Compile Include="Reflection\TypeFinder.cs" />
+    <Compile Include="Reflection\TypeFinderBase.cs" />
     <Compile Include="Utility\ExceptionUtil.cs" />
     <Compile Include="Utility\OrderUtil.cs" />
     <Compile Include="Utility\PagedResultUtil.cs" />

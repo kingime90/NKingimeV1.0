@@ -62,7 +62,6 @@
     <Compile Include="Data\DefaultDbContext.cs" />
     <Compile Include="Data\EFRepository.cs" />
     <Compile Include="Extension\DbContextExtension.cs" />
-    <Compile Include="Initializer\ContextInitializer.cs" />
     <Compile Include="Initializer\DatabaseInitializer.cs" />
     <Compile Include="Initializer\DbContextInitializerBase.cs" />
     <Compile Include="Initializer\DefaultDbContextInitializer.cs" />

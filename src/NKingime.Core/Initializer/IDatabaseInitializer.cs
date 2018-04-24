@@ -1,12 +1,13 @@
 ﻿using System;
 using NKingime.Core.Config;
+using NKingime.Core.Dependency;
 
 namespace NKingime.Core.Initializer
 {
     /// <summary>
     /// 定义数据库初始化接口。
     /// </summary>
-    public interface IDatabaseInitializer
+    public interface IDatabaseInitializer : ISingletonDependency
     {
         /// <summary>
         /// 初始化。

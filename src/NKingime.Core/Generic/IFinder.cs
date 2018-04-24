@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace NKingime.Core.Generic
 {
@@ -14,12 +13,12 @@ namespace NKingime.Core.Generic
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns></returns>
-        IEnumerable<T> Find(Func<T, bool> predicate);
+        T[] Find(Func<T, bool> predicate);
 
         /// <summary>
         /// 查找所有。
         /// </summary>
         /// <returns></returns>
-        IEnumerable<T> FindAll();
+        T[] FindAll();
     }
 }

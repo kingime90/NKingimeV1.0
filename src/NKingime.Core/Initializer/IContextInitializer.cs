@@ -1,5 +1,5 @@
 ﻿using System;
-using NKingime.Core.Config;
+using NKingime.Core.Dependency;
 
 namespace NKingime.Core.Initializer
 {
@@ -11,7 +11,7 @@ namespace NKingime.Core.Initializer
         /// <summary>
         /// 初始化。
         /// </summary>
-        /// <param name="contextConfig">上下文配置。</param>
-        void Initialize(ContextConfig contextConfig);
+        /// <param name="iocBuilder">依赖注入构建器。</param>
+        void Initialize(IIocBuilder iocBuilder);
     }
 }

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
 
 namespace NKingime.Core.Generic
 {
     /// <summary>
     /// 查找器基类。
     /// </summary>
-    /// <typeparam name="T"></typeparam>
+    /// <typeparam name="T">要查找的项类型。</typeparam>
     public abstract class FinderBase<T> : IFinder<T>
     {
         /// <summary>
@@ -15,15 +14,15 @@ namespace NKingime.Core.Generic
         /// </summary>
         /// <param name="predicate">基于谓词筛选表达式。</param>
         /// <returns></returns>
-        public IEnumerable<T> Find(Func<T, bool> predicate)
+        public T[] Find(Func<T, bool> predicate)
         {
-            return FindAll().Where(predicate);
+            return FindAll().Where(predicate).ToArray();
         }
 
         /// <summary>
         /// 查找所有。
         /// </summary>
         /// <returns></returns>
-        public abstract IEnumerable<T> FindAll();
+        public abstract T[] FindAll();
     }
 }
