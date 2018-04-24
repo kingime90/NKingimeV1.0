@@ -1,10 +1,10 @@
 ﻿
-namespace NKingime.Core.Flag
+namespace NKingime.Core.Option
 {
     /// <summary>
-    /// 生命周期标识。
+    /// 生命周期选项。
     /// </summary>
-    public enum LifetimeScopeFlag
+    public enum LifetimeScopeOption
     {
         /// <summary>
         /// 实时模式，每次创建一个不同的对象。

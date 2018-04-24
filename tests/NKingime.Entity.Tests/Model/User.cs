@@ -1,6 +1,6 @@
 ﻿using System;
 using NKingime.Core.Entity;
-using NKingime.Entity.Tests.Flag;
+using NKingime.Entity.Tests.Option;
 
 namespace NKingime.Entity.Tests.Model
 {
@@ -15,9 +15,9 @@ namespace NKingime.Entity.Tests.Model
         public string Mobile { get; set; }
 
         /// <summary>
-        /// 性别枚举。
+        /// 性别类型。
         /// </summary>
-        public GenderFlag GenderType { get; set; }
+        public GenderOption GenderType { get; set; }
 
         public bool IsDeleted { get; set; }
 

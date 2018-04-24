@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Diagnostics;
-using NKingime.Core.Flag;
+using NKingime.Core.Option;
 using NKingime.Core.Extension;
 
-namespace NKingime.Core.IoC
+
+namespace NKingime.Core.Dependency
 {
     /// <summary>
     /// 依赖注入映射描述信息。
@@ -19,7 +20,7 @@ namespace NKingime.Core.IoC
         /// <param name="serviceType">服务类型。</param>
         /// <param name="implementationType">服务实现类型。</param>
         /// <param name="lifetime">生命周期。</param>
-        public ServiceDescriptor(Type serviceType, Type implementationType, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) : this(serviceType, lifetime)
+        public ServiceDescriptor(Type serviceType, Type implementationType, LifetimeScopeOption lifetime = LifetimeScopeOption.Transient) : this(serviceType, lifetime)
         {
             ImplementationType = implementationType;
         }
@@ -30,7 +31,7 @@ namespace NKingime.Core.IoC
         /// <param name="serviceType">服务类型。</param>
         /// <param name="implementationInstance">服务实现实例。</param>
         /// <param name="lifetime">生命周期。</param>
-        public ServiceDescriptor(Type serviceType, object implementationInstance, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) : this(serviceType, lifetime)
+        public ServiceDescriptor(Type serviceType, object implementationInstance, LifetimeScopeOption lifetime = LifetimeScopeOption.Transient) : this(serviceType, lifetime)
         {
             ImplementationInstance = implementationInstance;
         }
@@ -41,7 +42,7 @@ namespace NKingime.Core.IoC
         /// <param name="serviceType">服务类型。</param>
         /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <param name="lifetime">生命周期。</param>
-        public ServiceDescriptor(Type serviceType, Func<IServiceProvider, object> implementationFactory, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) : this(serviceType, lifetime)
+        public ServiceDescriptor(Type serviceType, Func<IServiceProvider, object> implementationFactory, LifetimeScopeOption lifetime = LifetimeScopeOption.Transient) : this(serviceType, lifetime)
         {
             ImplementationFactory = implementationFactory;
         }
@@ -51,7 +52,7 @@ namespace NKingime.Core.IoC
         /// </summary>
         /// <param name="serviceType">服务类型。</param>
         /// <param name="lifetime">生命周期。</param>
-        private ServiceDescriptor(Type serviceType, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient)
+        private ServiceDescriptor(Type serviceType, LifetimeScopeOption lifetime = LifetimeScopeOption.Transient)
         {
             Lifetime = lifetime;
             ServiceType = serviceType;
@@ -64,7 +65,7 @@ namespace NKingime.Core.IoC
         /// <summary>
         /// 生命周期。
         /// </summary>
-        public LifetimeScopeFlag Lifetime { get; private set; }
+        public LifetimeScopeOption Lifetime { get; private set; }
 
         /// <summary>
         /// 服务类型。
@@ -164,7 +165,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Scoped<TService>(Func<IServiceProvider, object> implementationFactory) where TService : class
         {
-            return Descriptor<TService>(implementationFactory, LifetimeScopeFlag.Scoped);
+            return Descriptor<TService>(implementationFactory, LifetimeScopeOption.Scoped);
         }
 
         /// <summary>
@@ -175,7 +176,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Scoped<TService>(object implementationInstance) where TService : class
         {
-            return Descriptor<TService>(implementationInstance, LifetimeScopeFlag.Scoped);
+            return Descriptor<TService>(implementationInstance, LifetimeScopeOption.Scoped);
         }
 
         /// <summary>
@@ -186,7 +187,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Scoped<TService, TImplementation>() where TService : class where TImplementation : TService
         {
-            return Descriptor<TService, TImplementation>(LifetimeScopeFlag.Scoped);
+            return Descriptor<TService, TImplementation>(LifetimeScopeOption.Scoped);
         }
 
         /// <summary>
@@ -197,7 +198,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Scoped(Type serviceType, Type implementationType)
         {
-            return Descriptor(serviceType, implementationType, LifetimeScopeFlag.Scoped);
+            return Descriptor(serviceType, implementationType, LifetimeScopeOption.Scoped);
         }
 
         /// <summary>
@@ -208,7 +209,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Scoped(Type serviceType, object implementationInstance)
         {
-            return Descriptor(serviceType, implementationInstance, LifetimeScopeFlag.Scoped);
+            return Descriptor(serviceType, implementationInstance, LifetimeScopeOption.Scoped);
         }
 
         /// <summary>
@@ -219,7 +220,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Scoped(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
-            return Descriptor(serviceType, implementationFactory, LifetimeScopeFlag.Scoped);
+            return Descriptor(serviceType, implementationFactory, LifetimeScopeOption.Scoped);
         }
 
         /// <summary>
@@ -230,7 +231,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Singleton<TService>(Func<IServiceProvider, object> implementationFactory) where TService : class
         {
-            return Descriptor<TService>(implementationFactory, LifetimeScopeFlag.Singleton);
+            return Descriptor<TService>(implementationFactory, LifetimeScopeOption.Singleton);
         }
 
         /// <summary>
@@ -241,7 +242,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Singleton<TService>(object implementationInstance) where TService : class
         {
-            return Descriptor<TService>(implementationInstance, LifetimeScopeFlag.Singleton);
+            return Descriptor<TService>(implementationInstance, LifetimeScopeOption.Singleton);
         }
 
         /// <summary>
@@ -252,7 +253,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Singleton<TService, TImplementation>() where TService : class where TImplementation : TService
         {
-            return Descriptor<TService, TImplementation>(LifetimeScopeFlag.Singleton);
+            return Descriptor<TService, TImplementation>(LifetimeScopeOption.Singleton);
         }
 
         /// <summary>
@@ -263,7 +264,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Singleton(Type serviceType, Type implementationType)
         {
-            return Descriptor(serviceType, implementationType, LifetimeScopeFlag.Singleton);
+            return Descriptor(serviceType, implementationType, LifetimeScopeOption.Singleton);
         }
 
         /// <summary>
@@ -274,7 +275,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Singleton(Type serviceType, object implementationInstance)
         {
-            return Descriptor(serviceType, implementationInstance, LifetimeScopeFlag.Singleton);
+            return Descriptor(serviceType, implementationInstance, LifetimeScopeOption.Singleton);
         }
 
         /// <summary>
@@ -285,7 +286,7 @@ namespace NKingime.Core.IoC
         /// <returns></returns>
         public static ServiceDescriptor Singleton(Type serviceType, Func<IServiceProvider, object> implementationFactory)
         {
-            return Descriptor(serviceType, implementationFactory, LifetimeScopeFlag.Singleton);
+            return Descriptor(serviceType, implementationFactory, LifetimeScopeOption.Singleton);
         }
 
         /// <summary>
@@ -295,7 +296,7 @@ namespace NKingime.Core.IoC
         /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
-        public static ServiceDescriptor Descriptor<TService>(Func<IServiceProvider, object> implementationFactory, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) where TService : class
+        public static ServiceDescriptor Descriptor<TService>(Func<IServiceProvider, object> implementationFactory, LifetimeScopeOption lifetime = LifetimeScopeOption.Transient) where TService : class
         {
             return Descriptor(typeof(TService), implementationFactory, lifetime);
         }
@@ -307,7 +308,7 @@ namespace NKingime.Core.IoC
         /// <param name="implementationInstance">服务实现实例。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
-        public static ServiceDescriptor Descriptor<TService>(object implementationInstance, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) where TService : class
+        public static ServiceDescriptor Descriptor<TService>(object implementationInstance, LifetimeScopeOption lifetime = LifetimeScopeOption.Transient) where TService : class
         {
             return Descriptor(typeof(TService), implementationInstance, lifetime);
         }
@@ -319,7 +320,7 @@ namespace NKingime.Core.IoC
         /// <typeparam name="TImplementation">泛型实现类型。</typeparam>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
-        public static ServiceDescriptor Descriptor<TService, TImplementation>(LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient) where TService : class where TImplementation : TService
+        public static ServiceDescriptor Descriptor<TService, TImplementation>(LifetimeScopeOption lifetime = LifetimeScopeOption.Transient) where TService : class where TImplementation : TService
         {
             return Descriptor(typeof(TService), typeof(TImplementation), lifetime);
         }
@@ -331,7 +332,7 @@ namespace NKingime.Core.IoC
         /// <param name="implementationType">服务实现类型。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
-        public static ServiceDescriptor Descriptor(Type serviceType, Type implementationType, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient)
+        public static ServiceDescriptor Descriptor(Type serviceType, Type implementationType, LifetimeScopeOption lifetime = LifetimeScopeOption.Transient)
         {
             return new ServiceDescriptor(serviceType, implementationType, lifetime);
         }
@@ -343,7 +344,7 @@ namespace NKingime.Core.IoC
         /// <param name="implementationInstance">服务实现实例。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
-        public static ServiceDescriptor Descriptor(Type serviceType, object implementationInstance, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient)
+        public static ServiceDescriptor Descriptor(Type serviceType, object implementationInstance, LifetimeScopeOption lifetime = LifetimeScopeOption.Transient)
         {
             return new ServiceDescriptor(serviceType, implementationInstance, lifetime);
         }
@@ -355,7 +356,7 @@ namespace NKingime.Core.IoC
         /// <param name="implementationFactory">服务实现实例工厂。</param>
         /// <param name="lifetime">生命周期。</param>
         /// <returns></returns>
-        public static ServiceDescriptor Descriptor(Type serviceType, Func<IServiceProvider, object> implementationFactory, LifetimeScopeFlag lifetime = LifetimeScopeFlag.Transient)
+        public static ServiceDescriptor Descriptor(Type serviceType, Func<IServiceProvider, object> implementationFactory, LifetimeScopeOption lifetime = LifetimeScopeOption.Transient)
         {
             return new ServiceDescriptor(serviceType, implementationFactory, lifetime);
         }

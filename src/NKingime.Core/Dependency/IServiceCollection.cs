@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace NKingime.Core.IoC
+namespace NKingime.Core.Dependency
 {
     /// <summary>
     /// 定义依赖注入映射描述信息集合接口。

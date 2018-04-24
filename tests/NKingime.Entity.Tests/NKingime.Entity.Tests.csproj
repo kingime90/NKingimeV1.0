@@ -71,7 +71,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Data\EFRepositoryTest.cs" />
-    <Compile Include="Flag\GenderFlag.cs" />
+    <Compile Include="Option\GenderOption.cs" />
     <Compile Include="Initializer\DatabaseInitializerTest.cs" />
     <Compile Include="Mapping\UserMapping.cs" />
     <Compile Include="Model\User.cs" />

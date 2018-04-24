@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using NKingime.Core.Reflection;
 
-namespace NKingime.Core.IoC
+namespace NKingime.Core.Dependency
 {
     /// <summary>
     /// 依赖注入构建器基类。

@@ -1,7 +1,7 @@
 ﻿using System;
-using NKingime.Core.IoC;
 using NKingime.Core.Data;
 using NKingime.Core.Entity;
+using NKingime.Core.Dependency;
 
 namespace NKingime.Entity.IoC
 {

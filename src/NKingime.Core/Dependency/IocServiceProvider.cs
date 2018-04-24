@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKingime.Core.IoC
+namespace NKingime.Core.Dependency
 {
     /// <summary>
     /// 默认IoC服务提供者实现。

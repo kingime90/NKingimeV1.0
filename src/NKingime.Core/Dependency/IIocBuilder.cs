@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace NKingime.Core.IoC
+namespace NKingime.Core.Dependency
 {
     /// <summary>
     /// 定义依赖注入构建器接口。

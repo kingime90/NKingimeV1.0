@@ -2,9 +2,9 @@
 using System.Linq;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using NKingime.Core.IoC;
 using NKingime.Core.Generic;
 using NKingime.Core.Entity;
+using NKingime.Core.Dependency;
 
 namespace NKingime.Core.Data
 {

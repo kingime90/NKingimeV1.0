@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Linq;
 using System.Collections.Generic;
-using NKingime.Core.Flag;
+using NKingime.Core.Option;
 using NKingime.Core.Extension;
 using NKingime.Core.Reflection;
 
-namespace NKingime.Core.IoC
+namespace NKingime.Core.Dependency
 {
     /// <summary>
     /// 服务构建器。
@@ -56,13 +56,13 @@ namespace NKingime.Core.IoC
         public void Build(IServiceCollection collection)
         {
             var implementationTypes = TransientTypeFinder.FindAll().ToList();
-            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeFlag.Transient);
+            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeOption.Transient);
 
             implementationTypes = ScopedTypeFinder.FindAll().ToList();
-            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeFlag.Scoped);
+            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeOption.Scoped);
 
             implementationTypes = SingletonTypeFinder.FindAll().ToList();
-            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeFlag.Singleton);
+            AddServiceDescriptor(collection, implementationTypes, LifetimeScopeOption.Singleton);
         }
 
         /// <summary>
@@ -71,7 +71,7 @@ namespace NKingime.Core.IoC
         /// <param name="collection">服务映射信息集合。</param>
         /// <param name="implementationTypes">服务实现类型序列。</param>
         /// <param name="lifetime">生命周期。</param>
-        protected void AddServiceDescriptor(IServiceCollection collection, IEnumerable<Type> implementationTypes, LifetimeScopeFlag lifetime)
+        protected void AddServiceDescriptor(IServiceCollection collection, IEnumerable<Type> implementationTypes, LifetimeScopeOption lifetime)
         {
             Type[] interfaceTypes;
             foreach (var implementationType in implementationTypes)

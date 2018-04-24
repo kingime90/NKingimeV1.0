@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Linq.Expressions;
 using System.Collections.Generic;
-using NKingime.Core.Flag;
+using NKingime.Core.Option;
 using NKingime.Core.Utility;
 
 namespace NKingime.Core.Extension
@@ -66,23 +66,23 @@ namespace NKingime.Core.Extension
         /// <param name="value">要测试的值。</param>
         /// <param name="minValue">最小值。</param>
         /// <param name="maxValue">最大值。</param>
-        /// <param name="compareFlag">比较标识，默认大于等于和小于等于。</param>
+        /// <param name="CompareOption">比较标识，默认大于等于和小于等于。</param>
         /// <returns></returns>
-        public static bool IsRange<T>(this T value, T minValue, T maxValue, CompareFlag compareFlag = CompareFlag.GreaterEqualAndLessEqual) where T : struct, IComparable
+        public static bool IsRange<T>(this T value, T minValue, T maxValue, CompareOption CompareOption = CompareOption.GreaterEqualAndLessEqual) where T : struct, IComparable
         {
             bool result = false;
-            switch (compareFlag)
+            switch (CompareOption)
             {
-                case CompareFlag.GreaterAndLess:
+                case CompareOption.GreaterAndLess:
                     result = value.IsGreater(minValue) && value.IsLess(maxValue);
                     break;
-                case CompareFlag.GreaterEqualAndLessEqual:
+                case CompareOption.GreaterEqualAndLessEqual:
                     result = value.IsGreaterEqual(maxValue) && value.IsLessEqual(maxValue);
                     break;
-                case CompareFlag.GreaterAndLessEqual:
+                case CompareOption.GreaterAndLessEqual:
                     result = value.IsGreater(minValue) && value.IsLessEqual(maxValue);
                     break;
-                case CompareFlag.GreaterEqualAndLess:
+                case CompareOption.GreaterEqualAndLess:
                     result = value.IsGreaterEqual(maxValue) && value.IsLess(maxValue);
                     break;
             }

@@ -1,5 +1,5 @@
 ﻿using System;
-using NKingime.Core.Flag;
+using NKingime.Core.Option;
 
 namespace NKingime.Core.Extension
 {
@@ -43,12 +43,12 @@ namespace NKingime.Core.Extension
         /// 获取移除数组中指定的一组字符后的字符串。
         /// </summary>
         /// <param name="value">要获取的字符串。</param>
-        /// <param name="removeFlag">字符移除标识。</param>
+        /// <param name="removeOption">字符移除选项。</param>
         /// <param name="trimChars">要删除的 Unicode 字符的数组，或 null。</param>
         /// <returns></returns>
-        public static string GetString(this string value, StingRemoveFlag removeFlag, params char[] trimChars)
+        public static string GetString(this string value, StingRemoveOption removeOption, params char[] trimChars)
         {
-            return value.GetString(string.Empty, removeFlag, trimChars);
+            return value.GetString(string.Empty, removeOption, trimChars);
         }
 
         /// <summary>
@@ -56,30 +56,30 @@ namespace NKingime.Core.Extension
         /// </summary>
         /// <param name="value">要获取的字符串。</param>
         /// <param name="defVal">默认字符串。</param>
-        /// <param name="removeFlag">字符移除标识。</param>
+        /// <param name="removeOption">字符移除选项。</param>
         /// <param name="trimChars">要删除的 Unicode 字符的数组，或 null。</param>
         /// <returns></returns>
-        public static string GetString(this string value, string defVal, StingRemoveFlag removeFlag, params char[] trimChars)
+        public static string GetString(this string value, string defVal, StingRemoveOption removeOption, params char[] trimChars)
         {
-            return value.GetOrDefault(defVal).Trim(removeFlag, trimChars);
+            return value.GetOrDefault(defVal).Trim(removeOption, trimChars);
         }
 
         /// <summary>
         /// 从当前 System.String 对象移除数组中指定的一组字符。
         /// </summary>
         /// <param name="value">目标字符串。</param>
-        /// <param name="removeFlag">字符移除标识。</param>
+        /// <param name="removeOption">字符移除选项。</param>
         /// <param name="trimChars">要删除的 Unicode 字符的数组，或 null。</param>
         /// <returns></returns>
-        public static string Trim(this string value, StingRemoveFlag removeFlag, params char[] trimChars)
+        public static string Trim(this string value, StingRemoveOption removeOption, params char[] trimChars)
         {
-            switch (removeFlag)
+            switch (removeOption)
             {
-                case StingRemoveFlag.Start:
+                case StingRemoveOption.Start:
                     return value.TrimStart(trimChars);
-                case StingRemoveFlag.End:
+                case StingRemoveOption.End:
                     return value.TrimEnd(trimChars);
-                case StingRemoveFlag.None:
+                case StingRemoveOption.None:
                     return value.Trim(trimChars);
             }
             return value;

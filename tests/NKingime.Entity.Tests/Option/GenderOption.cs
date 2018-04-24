@@ -1,15 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace NKingime.Entity.Tests.Flag
+namespace NKingime.Entity.Tests.Option
 {
     /// <summary>
-    /// 性别。
+    /// 性别选项。
     /// </summary>
-    public enum GenderFlag : byte
+    public enum GenderOption : byte
     {
         /// <summary>
         /// 男。

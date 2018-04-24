@@ -1,10 +1,10 @@
 ﻿
-namespace NKingime.Core.Flag
+namespace NKingime.Core.Option
 {
     /// <summary>
-    /// 比较标识。
+    /// 比较选项。
     /// </summary>
-    public enum CompareFlag
+    public enum CompareOption
     {
         /// <summary>
         /// 大于和小于

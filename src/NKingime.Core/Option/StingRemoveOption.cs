@@ -1,10 +1,10 @@
 ﻿
-namespace NKingime.Core.Flag
+namespace NKingime.Core.Option
 {
     /// <summary>
-    /// 字符或字符串移除标识。
+    /// 字符或字符串移除选项。
     /// </summary>
-    public enum StingRemoveFlag
+    public enum StingRemoveOption
     {
         /// <summary>
         /// 首部+尾部。
