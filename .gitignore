@@ -12,3 +12,5 @@
 /src/NKingime.Web/obj
 /src/NKingime.Web.Mvc/bin
 /src/NKingime.Web.Mvc/obj
+/app/NKingime.App.Mvc/bin
+/app/NKingime.App.Mvc/obj
